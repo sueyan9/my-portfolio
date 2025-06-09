@@ -1,38 +1,26 @@
 import React from "react";
-import techs from "../data/techs";
-import styled from "styled-components";
-
-const TechWrapper = styled.section`
-  background: #f6ced8;
-  padding: 2rem 0;
-  text-align: center;
-`;
-
-const TechList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
-`;
-
-const TechItem = styled.div`
-  background: #a2b9bc;
-  color: #fff;
-  border-radius: 12px;
-  padding: 1rem 2rem;
-  font-size: 1.2rem;
-  min-width: 100px;
-`;
+import techGroups from "../data/techs";
+import "./TechStack.css";
 
 export default function TechStack() {
     return (
-        <TechWrapper>
-            <h2>Tech Stack</h2>
-            <TechList>
-                {techs.map((tech) => (
-                    <TechItem key={tech}>{tech}</TechItem>
+        <section className="tech-section">
+            <h2 className="tech-title">Explore My Tech Stack</h2>
+            <p className="tech-desc">
+                From Frontend to Backend, Mobile to Cloud, here are the core technologies I use to build and deploy modern applications.
+            </p>
+            <div className="tech-card-grid">
+                {techGroups.map((group) => (
+                    <div className="tech-card" key={group.title}>
+                        <h3 className="tech-card-title">{group.title}</h3>
+                        <ul className="tech-list">
+                            {group.techs.map((tech) => (
+                                <li className="tech-list-item" key={tech}>{tech}</li>
+                            ))}
+                        </ul>
+                    </div>
                 ))}
-            </TechList>
-        </TechWrapper>
+            </div>
+        </section>
     );
 }

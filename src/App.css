@@ -1,3 +1,33 @@
+:root {
+  --section-gap: 3rem;
+}
+.section-block {
+  margin-top: var(--section-gap);
+  margin-bottom: var(--section-gap);
+}
+.section-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+@media (max-width: 600px) {
+  .section-container {
+    padding: 0 0.5rem;
+  }
+}
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+}
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -32,11 +62,19 @@
     animation: logo-spin infinite 20s linear;
   }
 }
+@media screen and (max-width: 768px) {
+  #root {
+    padding: 1rem;
+  }
 
-.card {
-  padding: 2em;
+  h1, h2, h3 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
 }
-
 .read-the-docs {
   color: #888;
 }
