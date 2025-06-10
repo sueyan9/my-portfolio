@@ -1,4 +1,5 @@
 import React from "react";
+import Navbar from "./components/Navbar.jsx";
 import AboutMe from "./components/AboutMe";
 import ProjectCarousel from "./components/ProjectCarousel";
 import TechStack from "./components/TechStack";
@@ -7,6 +8,8 @@ import './App.css';
  function App() {
     return (
         <div>
+            {/* Nav Bar*/}
+            <Navbar/>
             {/* 顶部 About Me */}
             <section className="section-block">
                 <div className="container">
