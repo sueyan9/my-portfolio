@@ -60,3 +60,38 @@
     background: #2196f3;
     color: #fff;
 }
+/* ✅ 移动端响应式 */
+@media (max-width: 768px) {
+    .carousel-wrapper {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .carousel-left,
+    .carousel-right {
+        width: 100%;
+        min-width: auto;
+    }
+
+    .carousel-img {
+        width: 100%;
+        height: auto;
+    }
+
+    .carousel-text-block {
+        padding: 0.8rem;
+    }
+
+    .carousel-text-block h3 {
+        font-size: 1.1rem;
+    }
+
+    .carousel-text-block p {
+        font-size: 0.95rem;
+    }
+
+    .carousel-text-block a {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+}

@@ -3,6 +3,7 @@ import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import styled from "styled-components";
 import palaceImg from "../assets/hero-bg.jpg"
 import "./AboutMe.css";
+
 const AboutWrapper = styled.section`
   background: #f3e6e8;
   padding: 2rem;

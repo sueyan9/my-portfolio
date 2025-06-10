@@ -66,3 +66,27 @@
     font-size: 1.1rem;
     color: #555;
 }
+@media (max-width: 600px) {
+    .tech-title {
+        font-size: 1.5rem;
+    }
+
+    .tech-desc {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+        padding: 0 1rem;
+    }
+
+    .tech-card {
+        padding: 1.5rem 1rem;
+        min-height: auto;
+    }
+
+    .tech-card-title {
+        font-size: 1.1rem;
+    }
+
+    .tech-list-item {
+        font-size: 1rem;
+    }
+}
