@@ -54,3 +54,15 @@
         font-size: 1.1rem;
     }
 }
+.nav-btn-link {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: none;
+}
+.nav-btn-link:hover {
+    text-decoration: underline;
+}

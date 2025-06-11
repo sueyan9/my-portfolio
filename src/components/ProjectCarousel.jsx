@@ -3,12 +3,13 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./ProjectCarousel.css";
+import project1 from "../assets/project1.jpg";
 
 const projects = [
     {
         title: "Project One",
         desc: "A cool project about ...",
-        image: "/img1.png",
+        image: project1,
         link: "#",
     },
     {
