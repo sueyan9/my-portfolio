@@ -1,8 +1,9 @@
 .tech-section {
-    background: #f8f8fa;
+    background: rgba(192, 174, 140,0.7);
     padding: 2rem 0;
     margin: 2rem 0;
     text-align: center;
+    border-radius: 20px;
 }
 
 .tech-title {
@@ -39,7 +40,7 @@
 }
 
 .tech-card {
-    background: #f6ced8;
+    background: rgb(32, 48, 40);
     border-radius: 20px;
     padding: 2rem 1.5rem;
     min-height: 220px;
@@ -51,7 +52,7 @@
 
 .tech-card-title {
     margin-bottom: 1rem;
-    color: #333;
+    color: rgb(250, 230, 207);
     font-size: 1.2rem;
 }
 
@@ -64,7 +65,7 @@
 .tech-list-item {
     margin: 0.5rem 0;
     font-size: 1.1rem;
-    color: #555;
+    color:rgb(212, 175, 132);
 }
 @media (max-width: 600px) {
     .tech-title {
@@ -89,4 +90,13 @@
     .tech-list-item {
         font-size: 1rem;
     }
+}
+.tech-card{
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+.tech-card:hover, .project-card:hover {
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+    transform: translateY(-4px) scale(1.03);
+    background: linear-gradient(120deg, #3a5d47 60%, #6ec6ff 100%);
 }

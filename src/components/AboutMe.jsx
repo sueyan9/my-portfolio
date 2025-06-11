@@ -1,7 +1,7 @@
 import React from "react";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import styled from "styled-components";
-import palaceImg from "../assets/hero-bg.jpg"
+import palaceImg from "../assets/hero.jpg"
 import "./AboutMe.css";
 
 const AboutWrapper = styled.section`
@@ -18,9 +18,11 @@ export default function AboutMe() {
         <section className="hero-section">
             <div className="hero-content">
                 <div className="hero-text">
-                    <h1>Experi<br />of Indian Culture<br />and Diversity</h1>
+                    <h1>Welcome To My Page !</h1>
                     <p>
-                        Discover the rich heritage of Indian culture and the vibrant diversity that makes it truly unique. Immerse yourself in the breathtaking traditions, art forms, music, and cuisines that showcase the beauty of India.
+                        A passionate Full-Stack Developer exploring 3D applications, cloud integration, and modern tech stacks.
+                                  📚 Final year Bachelor of Computer and Information Science student
+                                      🌏 Based in New Zealand
                     </p>
                     <button className="hero-btn">Explore Now</button>
                 </div>

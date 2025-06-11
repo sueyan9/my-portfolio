@@ -4,6 +4,16 @@
 .section-block {
   margin-top: var(--section-gap);
   margin-bottom: var(--section-gap);
+  position: relative;
+}
+.section-block:not(:last-child)::after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 60px;
+  margin: 2rem auto 0 auto;
+  background: linear-gradient(90deg, #7c4d4d, rgb(250, 230, 207));
+  border-radius: 2px;
 }
 .section-container {
   max-width: 1100px;

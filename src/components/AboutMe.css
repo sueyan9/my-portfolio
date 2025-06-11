@@ -1,9 +1,9 @@
 .hero-section {
-    background: #fde6ed;
+    background:rgb(251, 231, 207);
     padding: 2rem;
     border-radius: 10px;
     margin: 2rem auto;
-    max-width: 1100px;
+
     box-sizing: border-box;
 
 }
@@ -37,18 +37,19 @@
 }
 
 .hero-btn {
-    background: #7c4d4d;
+    background: linear-gradient(90deg, #7c4d4d 60%, rgb(250, 230, 207) 100%);
     color: #fff;
     border: none;
     border-radius: 20px;
     padding: 0.6rem 1.5rem;
     font-size: 1rem;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s, transform 0.2s;
 }
 
 .hero-btn:hover {
-    background: #5a3535;
+    background: linear-gradient(90deg, rgb(250, 230, 207) 60%, #7c4d4d 100%);
+    transform: scale(1.05);
 }
 
 .hero-img-wrapper {
@@ -63,7 +64,7 @@
     width: 100%;
     max-width: 320px;
     border-radius: 16px;
-    border: 5px solid #2196f3; /*  */
+    border: 5px solid rgb(212, 175, 132); /*  */
     box-sizing: border-box;
 }
 
