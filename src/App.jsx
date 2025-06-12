@@ -7,33 +7,43 @@ import './App.css';
 
 export default function App() {
     const aboutRef = useRef(null);
-    const projectRef = useRef(null);
+    const projectsRef = useRef(null);
     const techRef = useRef(null);
+
+    const scrollToAbout = () => {
+        aboutRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
+    const scrollToProjects = () => {
+        projectsRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
+    const scrollToTech = () => {
+        techRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
 
     return (
         <div>
             {/* Nav Bar*/}
             <Navbar
-                onAboutClick={() => aboutRef.current?.scrollIntoView({ behavior: "smooth", block: "center" })}
-                onProjectClick={() => projectRef.current?.scrollIntoView({ behavior: "smooth", block: "center" })}
-                onTechClick={() => techRef.current?.scrollIntoView({ behavior: "smooth", block: "center" })}
+                onAboutClick={scrollToAbout}
+                onProjectClick={scrollToProjects}
+                onTechClick={scrollToTech}
             />
             {/* 顶部 About Me */}
-            <section className="section-block">
+            <section className="section-block" ref={aboutRef}>
                 <div className="container">
                 <AboutMe />
                 </div>
             </section>
 
             {/* 中间 Project 墙，背景色全屏 */}
-            <section className="section-block project-wall-bg">
+            <section className="section-block project-wall-bg"ref={projectsRef}>
                 <div className="container">
                     <ProjectCarousel />
                 </div>
             </section>
 
             {/* 底部 技术栈 */}
-            <section className="section-block">
+            <section className="section-block" ref={techRef}>
                 <div className="container">
                 <TechStack />
                 </div>

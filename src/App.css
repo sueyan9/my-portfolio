@@ -5,6 +5,7 @@
   margin-top: var(--section-gap);
   margin-bottom: var(--section-gap);
   position: relative;
+  min-height: 600px;
 }
 .section-block:not(:last-child)::after {
   content: "";
@@ -32,6 +33,7 @@
   padding: 0 2rem;
   width: 100%;
   box-sizing: border-box;
+  min-height: 500px;
 }
 @media screen and (max-width: 768px) {
   .container {
