@@ -9,7 +9,7 @@ export default function App() {
     const aboutRef = useRef(null);
     const projectsRef = useRef(null);
     const techRef = useRef(null);
-    const contactRef = useRef(null);
+
 
     const scrollToAbout = () => {
         aboutRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -20,14 +20,19 @@ export default function App() {
     const scrollToTech = () => {
         techRef.current?.scrollIntoView({ behavior: "smooth" });
     };
-    const scrollToContact = () => {
-        contactRef.current?.scrollIntoView({ behavior: "smooth" });
-    };
+
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
     const goToBlog = () => {
         window.location.href = "/blog";
+    };
+    const openCrispChat = () => {
+        if (window.$crisp) {
+            window.$crisp.push(["do", "chat:open"]);
+        }
+        // 如果你还想滚动到 contact 区域，可以加上：
+        // contactRef.current?.scrollIntoView({ behavior: "smooth" });
     };
     useEffect(() => {
         function setMainContentPadding() {
@@ -51,7 +56,7 @@ export default function App() {
                 onProjectClick={scrollToProjects}
                 onTechClick={scrollToTech}
                 onBlogClick={goToBlog}
-                onChatClick={scrollToContact}
+                onChatClick={openCrispChat}
                 />
             <div className="main-content">
             {/* 顶部 About Me */}
@@ -62,7 +67,7 @@ export default function App() {
             </section>
 
             {/*  技术栈 */}
-            <section className="section-block" ref={techRef}>
+            <section className="section-block tech-stack-bg" ref={techRef}>
                 <div className="container">
                 <TechStack />
                 </div>
@@ -75,13 +80,6 @@ export default function App() {
                     </div>
                 </section>
 
-            {/* 联系方式区域 */}
-            <section className="section-block" ref={contactRef}>
-                <div className="container">
-                    {/* 你的联系方式内容 */}
-                    Contact Me!
-                </div>
-            </section>
         </div>
         </div>
     );

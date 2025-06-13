@@ -5,17 +5,17 @@
     gap: 2.5rem; /* 卡片间距更大 */
     flex-wrap: wrap;
     overflow-x: auto;
-    padding: 3rem 0;
+    overflow: visible;
+    padding: 3rem 2rem;
     max-width: 1400px;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
+    margin: 0 auto;   /* 关键：让内容居中 */
     box-sizing: border-box;
 }
 
 .tech-card {
-    background: #fff;
+    background: #f8f8fa;
     border-radius: 32px;
-    box-shadow: 0 8px 32px rgba(137,130,184,0.13);
+    box-shadow: 0 8px 32px rgb(160, 149, 234);
     padding: 3rem 2.5rem;
     min-width: 0;      /* 卡片更宽 */
     max-width: 400px;
@@ -26,7 +26,28 @@
     transition: box-shadow 0.2s, transform 0.2s;
 }
 
-.tech-card:hover {
+/*.tech-card:hover {*/
+/*    background: #d8d3f5;*/
+/*    box-shadow: 0 12px 40px rgba(137,130,184,0.20);*/
+/*    transform: translateY(-6px) scale(1.04);*/
+/*}*/
+.tech-stack-row .tech-card:nth-child(1):hover {
+    background: #d8d3f5; /* 第1个卡片hover色 */
+    box-shadow: 0 12px 40px rgba(137,130,184,0.20);
+    transform: translateY(-6px) scale(1.04);
+}
+.tech-stack-row .tech-card:nth-child(2):hover {
+    background: rgb(198, 156, 167); /* 第2个卡片hover色 */
+    box-shadow: 0 12px 40px rgba(137,130,184,0.20);
+    transform: translateY(-6px) scale(1.04);
+}
+.tech-stack-row .tech-card:nth-child(3):hover {
+    background: rgb(93, 175, 153) ; /* 第3个卡片hover色 */
+    box-shadow: 0 12px 40px rgba(137,130,184,0.20);
+    transform: translateY(-6px) scale(1.04);
+}
+.tech-stack-row .tech-card:nth-child(4):hover {
+    background: rgb(146, 168, 208); /* 第4个卡片hover色 */
     box-shadow: 0 12px 40px rgba(137,130,184,0.20);
     transform: translateY(-6px) scale(1.04);
 }
