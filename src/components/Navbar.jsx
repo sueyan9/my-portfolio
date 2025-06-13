@@ -46,7 +46,12 @@ export default function Navbar({
                 <button className="nav-btn-link" onClick={() => handleNavClick(onProjectClick)}>Projects</button>
                 <button className="nav-btn-link" onClick={() => handleNavClick(onTechClick)}>Tech Stack</button>
                 <button className="nav-btn-link" onClick={() => handleNavClick(onBlogClick)}>Blog</button>
-                <button className="nav-btn-link chat-btn" onClick={() => handleNavClick(onChatClick)}>Let’s Chat! 👋</button>
+                <button className="nav-btn-link chat-btn" onClick={() => {
+                    if (window.$crisp) {
+                        window.$crisp.push(["do", "chat:open"]);
+                    }
+                }}
+                >Let’s Chat! 👋</button>
             </div>
             {/* 遮罩层 */}
             {menuOpen && <div className="menu-backdrop" onClick={() => setMenuOpen(false)}></div>}
