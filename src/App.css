@@ -10,7 +10,17 @@
 .section-block:first-child {
   margin-top: 70px; /* 70px为导航栏实际高度 */
 }
-
+.tech-stack-bg {
+  background: white; /* 你喜欢的背景色 */
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding: 3rem 0;
+  box-sizing: border-box;
+}
 html, body, #root {
   margin: 0;
   padding: 0;
