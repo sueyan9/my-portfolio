@@ -1,102 +1,82 @@
-.tech-section {
-    background: rgba(192, 174, 140,0.7);
-    padding: 2rem 0;
-    margin: 2rem 0;
-    text-align: center;
-    border-radius: 20px;
-}
-
-.tech-title {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-}
-
-.tech-desc {
-    color: #444;
-    font-size: 1.1rem;
-    margin-bottom: 2.5rem;
-}
-
-.tech-card-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-@media (max-width: 900px) {
-    .tech-card-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
-}
-
-@media (max-width: 600px) {
-    .tech-card-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
+.tech-stack-row {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 2.5rem; /* 卡片间距更大 */
+    flex-wrap: wrap;
+    overflow-x: auto;
+    padding: 3rem 0;
+    max-width: 1400px;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    box-sizing: border-box;
 }
 
 .tech-card {
-    background: rgb(32, 48, 40);
-    border-radius: 20px;
-    padding: 2rem 1.5rem;
-    min-height: 220px;
+    background: #fff;
+    border-radius: 32px;
+    box-shadow: 0 8px 32px rgba(137,130,184,0.13);
+    padding: 3rem 2.5rem;
+    min-width: 0;      /* 卡片更宽 */
+    max-width: 400px;
+    flex: 1 1 220px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: box-shadow 0.2s, transform 0.2s;
 }
 
-.tech-card-title {
-    margin-bottom: 1rem;
-    color: rgb(250, 230, 207);
-    font-size: 1.2rem;
+.tech-card:hover {
+    box-shadow: 0 12px 40px rgba(137,130,184,0.20);
+    transform: translateY(-6px) scale(1.04);
 }
 
-.tech-list {
+.tech-card h3 {
+    color: rgb(137, 130, 184);
+    margin-bottom: 2rem;
+    font-size: 2rem;      /* 标题更大 */
+    letter-spacing: 1.5px;
+}
+
+.tech-card ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    width: 100%;
 }
 
-.tech-list-item {
-    margin: 0.5rem 0;
-    font-size: 1.1rem;
-    color:rgb(212, 175, 132);
+.tech-card li {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.35rem;   /* 技术名更大 */
+    color: #444;
+    justify-content: flex-start;
 }
-@media (max-width: 600px) {
-    .tech-title {
-        font-size: 1.5rem;
-    }
 
-    .tech-desc {
-        font-size: 1rem;
-        margin-bottom: 2rem;
-        padding: 0 1rem;
-    }
+.tech-icon {
+    font-size: 2.1rem;    /* icon更大 */
+    display: flex;
+    align-items: center;
+}
 
+.tech-name {
+    font-size: 1.35rem;
+    font-weight: 600;
+}
+
+@media (max-width: 900px) {
+    .tech-stack-row {
+        flex-wrap: wrap;
+        width: 100%;
+        margin: 0;
+        padding: 1.5rem 0;
+    }
     .tech-card {
-        padding: 1.5rem 1rem;
-        min-height: auto;
+        width: 95%;
+        max-width: 500px;
+        margin: 1.5rem auto;
+        padding: 2rem 1rem;
     }
-
-    .tech-card-title {
-        font-size: 1.1rem;
-    }
-
-    .tech-list-item {
-        font-size: 1rem;
-    }
-}
-.tech-card{
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    transition: box-shadow 0.2s, transform 0.2s;
-}
-.tech-card:hover, .project-card:hover {
-    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
-    transform: translateY(-4px) scale(1.03);
-    background: linear-gradient(120deg, #3a5d47 60%, #6ec6ff 100%);
 }

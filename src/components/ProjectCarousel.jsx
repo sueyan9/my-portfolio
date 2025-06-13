@@ -45,8 +45,8 @@ export default function ProjectCarousel() {
                     <div key={idx} className="carousel-text-block">
                         <h3>{proj.title}</h3>
                         <p>{proj.desc}</p>
-                        <a href={proj.link} target="_blank" rel="noreferrer">
-                            View Project
+                        <a href={proj.link} target="_blank" rel="noreferrer" className="see-detail-btn">
+                            See Detail
                         </a>
                     </div>
                 ))}

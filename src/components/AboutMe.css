@@ -1,10 +1,10 @@
 .hero-section {
-    background:rgb(251, 231, 207);
+    background:rgb(246, 246, 246);
     padding: 2rem;
     border-radius: 10px;
     margin: 2rem auto;
     box-sizing: border-box;
-    min-height: 500px;
+    min-height: 600px;
 
 }
 
@@ -37,7 +37,7 @@
 }
 
 .hero-btn {
-    background: linear-gradient(90deg, #7c4d4d 60%, rgb(250, 230, 207) 100%);
+    background: linear-gradient(90deg, rgb(121, 102, 231) 60%, #d7d2f5 100%);
     color: #fff;
     border: none;
     border-radius: 20px;
@@ -48,7 +48,7 @@
 }
 
 .hero-btn:hover {
-    background: linear-gradient(90deg, rgb(250, 230, 207) 60%, #7c4d4d 100%);
+    background: linear-gradient(90deg,  #d7d2f5 0%, rgb(121, 102, 231) 100%);
     transform: scale(1.05);
 }
 
@@ -65,7 +65,7 @@
     width: 100%;
     max-width: 320px;
     border-radius: 16px;
-    border: 5px solid rgb(212, 175, 132); /*  */
+    border: 5px solid rgb(93, 175, 153); /*  */
     box-sizing: border-box;
 }
 

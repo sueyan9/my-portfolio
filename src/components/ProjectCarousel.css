@@ -6,7 +6,7 @@
     gap: 2rem;
     padding: 2rem;
     max-width: 100%;
-    background: linear-gradient(135deg, #4e5e4d 0%, rgb(32, 48, 40) 100%);
+    background:    rgb(246, 246, 246) ;
     border-radius: 20px;
 }
 @media (max-width: 768px) {
@@ -35,7 +35,7 @@
 }
 
 .carousel-text-block {
-    background:rgb(212, 175, 132);
+    background: rgb(93, 175, 153) ;
     padding: 1rem;
     border-radius: 12px;
     color: #f3e6e8;
@@ -49,7 +49,7 @@
 }
 
 .carousel-text-block a {
-    background: linear-gradient(90deg, rgb(32, 48, 40) 60%, rgb(250, 230, 207)100%);
+    background: linear-gradient(90deg,rgb(121, 102, 231) 0%,  #d7d2f5  100%);
     color: #fff;
     border: none;
     border-radius: 20px;
@@ -61,7 +61,7 @@
 }
 
 .carousel-text-block a:hover {
-    background: linear-gradient(90deg,rgb(250, 230, 207) 60%, rgb(32, 48, 40)100%);
+    background: linear-gradient(90deg,rgb(121, 102, 231) 400%, rgb(224, 221, 245) 100%);
     transform: scale(1.05);
 }
 /* ✅ 移动端响应式 */
