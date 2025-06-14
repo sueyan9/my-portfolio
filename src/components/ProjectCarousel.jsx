@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState }  from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -27,13 +27,21 @@ const settings = {
     speed: 500,
     slidesToShow: 1,
     arrows: false,
+    afterChange: () => {},
 };
 
 export default function ProjectCarousel() {
+    const [current, setCurrent] = useState(0);
+
+    const sliderSettings = {
+        ...settings,
+        afterChange: (index) => setCurrent(index),
+    };
+
     return (
         <div className="carousel-wrapper">
             <div className="carousel-left">
-                <Slider {...settings}>
+                <Slider {...sliderSettings}>
                     {projects.map((proj, idx) => (
                         <div key={idx} className="carousel-image-box">
                             {proj.video ? (
@@ -56,15 +64,13 @@ export default function ProjectCarousel() {
                 </Slider>
             </div>
             <div className="carousel-right">
-                {projects.map((proj, idx) => (
-                    <div key={idx} className="carousel-text-block">
-                        <h3>{proj.title}</h3>
-                        <p>{proj.desc}</p>
-                        <a href={proj.link} target="_blank" rel="noreferrer" className="see-detail-btn">
-                            See Detail
-                        </a>
-                    </div>
-                ))}
+                <div className="carousel-text-block">
+                    <h3>{projects[current].title}</h3>
+                    <p>{projects[current].desc}</p>
+                    <a href={projects[current].link} target="_blank" rel="noreferrer" className="see-detail-btn">
+                        See Detail
+                    </a>
+                </div>
             </div>
         </div>
     );
