@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./ProjectCarousel.css";
 import project1 from "../assets/project1.jpg";
+import project2 from "../assets/project2.MP4";
 
 const projects = [
     {
@@ -15,7 +16,7 @@ const projects = [
     {
         title: "Project Two",
         desc: "Another project ...",
-        image: "/img2.png",
+        video: project2,
         link: "#",
     },
 ];
@@ -35,7 +36,21 @@ export default function ProjectCarousel() {
                 <Slider {...settings}>
                     {projects.map((proj, idx) => (
                         <div key={idx} className="carousel-image-box">
-                            <img src={proj.image} alt={proj.title} className="carousel-img" />
+                            {proj.video ? (
+                                <video
+                                    src={proj.video}
+                                    controls
+                                    className="carousel-media"
+                                    style={{ width: "100%", borderRadius: "16px" }}
+                                />
+                            ) : (
+                                <img
+                                    src={proj.image}
+                                    alt={proj.title}
+                                    className="carousel-media"
+                                    style={{ width: "100%", borderRadius: "16px" }}
+                                />
+                            )}
                         </div>
                     ))}
                 </Slider>
