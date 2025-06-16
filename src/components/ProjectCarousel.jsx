@@ -8,8 +8,10 @@ import project2 from "../assets/project2.MP4";
 
 const projects = [
     {
-        title: "Project One",
-        desc: "A cool project about ...",
+        title: "ToothMate App",
+        desc: "A cool project about dental service and education projects." +
+            "Using react-native with node.js and Express.Key Features: 3D dental chart ," +
+            "personial plan and eduaction.",
         image: project1,
         link: "#",
     },
