@@ -2,61 +2,57 @@
     display: flex;
     justify-content: center;
     align-items: stretch;
-    gap: 2.5rem; /* 卡片间距更大 */
     flex-wrap: wrap;
-    overflow-x: auto;
-    overflow: visible;
-    padding: 3rem 2rem;
+    gap: 2.5rem;
     max-width: 1400px;
-    margin: 0 auto;   /* 关键：让内容居中 */
+    margin: 0 auto;
+    padding: 3rem 2rem;
     box-sizing: border-box;
 }
 
 .tech-card {
     background: #f8f8fa;
     border-radius: 32px;
-    box-shadow: 0 8px 32px rgb(160, 149, 234);
+    box-shadow: 0 8px 32px rgba(160, 149, 234, 0.25);
     padding: 3rem 2.5rem;
-    min-width: 0;      /* 卡片更宽 */
     max-width: 400px;
-    flex: 1 1 220px;
+    flex: 1 1 280px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    transition: box-shadow 0.2s, transform 0.2s;
+    align-items: flex-start;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    will-change: transform;
 }
 
-/*.tech-card:hover {*/
-/*    background: #d8d3f5;*/
-/*    box-shadow: 0 12px 40px rgba(137,130,184,0.20);*/
-/*    transform: translateY(-6px) scale(1.04);*/
-/*}*/
+/* Hover styles - unique colors */
 .tech-stack-row .tech-card:nth-child(1):hover {
-    background: #d8d3f5; /* 第1个卡片hover色 */
-    box-shadow: 0 12px 40px rgba(137,130,184,0.20);
+    background: #d8d3f5;
     transform: translateY(-6px) scale(1.04);
 }
 .tech-stack-row .tech-card:nth-child(2):hover {
-    background: rgb(198, 156, 167); /* 第2个卡片hover色 */
-    box-shadow: 0 12px 40px rgba(137,130,184,0.20);
+    background: #e8d1d6;
     transform: translateY(-6px) scale(1.04);
 }
 .tech-stack-row .tech-card:nth-child(3):hover {
-    background: rgb(93, 175, 153) ; /* 第3个卡片hover色 */
-    box-shadow: 0 12px 40px rgba(137,130,184,0.20);
+    background: #c5ede1;
     transform: translateY(-6px) scale(1.04);
 }
 .tech-stack-row .tech-card:nth-child(4):hover {
-    background: rgb(146, 168, 208); /* 第4个卡片hover色 */
-    box-shadow: 0 12px 40px rgba(137,130,184,0.20);
+    background: #d1daef;
+    transform: translateY(-6px) scale(1.04);
+}
+.tech-stack-row .tech-card:nth-child(5):hover {
+    background: #f5ebaa;
     transform: translateY(-6px) scale(1.04);
 }
 
 .tech-card h3 {
-    color: rgb(137, 130, 184);
+    color: #8982b8;
+    font-size: 2rem;
     margin-bottom: 2rem;
-    font-size: 2rem;      /* 标题更大 */
     letter-spacing: 1.5px;
+    width: 100%;
+    text-align: left;
 }
 
 .tech-card ul {
@@ -71,13 +67,13 @@
     align-items: center;
     gap: 1.2rem;
     margin-bottom: 1.5rem;
-    font-size: 1.35rem;   /* 技术名更大 */
+    font-size: 1.35rem;
     color: #444;
     justify-content: flex-start;
 }
 
 .tech-icon {
-    font-size: 2.1rem;    /* icon更大 */
+    font-size: 2.1rem;
     display: flex;
     align-items: center;
 }
@@ -89,15 +85,25 @@
 
 @media (max-width: 900px) {
     .tech-stack-row {
-        flex-wrap: wrap;
-        width: 100%;
-        margin: 0;
-        padding: 1.5rem 0;
+        padding: 1.5rem 1rem;
     }
+
     .tech-card {
-        width: 95%;
-        max-width: 500px;
+        width: 90%;
         margin: 1.5rem auto;
-        padding: 2rem 1rem;
+        padding: 2rem 1.5rem;
+    }
+
+    .tech-card h3 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .tech-card li {
+        font-size: 1.2rem;
+    }
+
+    .tech-name {
+        font-size: 1.2rem;
     }
 }
