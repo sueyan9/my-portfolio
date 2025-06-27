@@ -8,16 +8,17 @@
 .project-card-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(380px, 1fr));
-    gap: 2.5rem;
+    gap: 4.5rem;
     max-width: 1200px;
     width: 100%;
+    min-height: 1460px;
     margin: 0 auto;
     align-items: stretch;
 }
 
 .card.hover-flip, .project-card {
-    min-width: 480px;
-    min-height: 454px;
+    min-width: 580px;
+    min-height: 654px;
     height: 454px;
     padding: 2.5rem 2rem;
     font-size: 1.1rem;
@@ -32,7 +33,7 @@
 
 .card__img, .project-card__img {
     min-width: 480px;
-    min-height: 454px;
+    min-height: 554px;
     object-fit: cover;
     border-radius: 12px;
     margin-bottom: 1.2rem;
@@ -48,6 +49,32 @@
     font-size: 1.05rem;
     color: #555;
     flex: 1;
+    line-height: 1.7;
+    margin-top: 0.5rem;
+    max-width: 95%;
+}
+
+.project-card__overview {
+    margin-bottom: 0.7rem;
+}
+
+.project-card__features {
+    margin: 0.5rem 0 0.5rem 1.2rem;
+    padding: 0;
+    list-style: disc;
+    color: #444;
+    font-size: 1rem;
+}
+
+.project-card__features li {
+    margin-bottom: 0.3rem;
+    line-height: 1.5;
+}
+
+.project-card__techstack {
+    margin-top: 0.7rem;
+    color: #333;
+    font-size: 0.98rem;
 }
 
 .project-card__btn {
@@ -73,8 +100,7 @@
         max-width: 600px;
     }
     .project-card {
-        min-width: 0;
-        min-height: 260px;
+
         padding: 1.2rem 1rem;
     }
     .project-card__img {

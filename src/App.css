@@ -5,7 +5,7 @@
   margin-top: var(--section-gap);
   margin-bottom: var(--section-gap);
   position: relative;
-  /*min-height: 560px;*/
+
 }
 .section-block:first-child {
   margin-top: 70px; /* 70px为导航栏实际高度 */
