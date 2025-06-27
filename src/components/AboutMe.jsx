@@ -56,7 +56,6 @@ export default function AboutMe() {
                         <br />
                         🌏 Based in New Zealand
                     </p>
-                    <button className="hero-btn">Explore Now</button>
                 </HeroText>
 
                 <AvatarWrapper

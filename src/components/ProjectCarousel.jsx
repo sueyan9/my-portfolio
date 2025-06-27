@@ -1,8 +1,6 @@
-import React, { useState }  from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import React from "react";
 import "./ProjectCarousel.css";
+import ProjectCard from "./ProjectCard";
 import project1 from "../assets/project1.jpg";
 import project2 from "../assets/project2.MP4";
 import project3 from "../assets/priceHound.jpg";
@@ -64,64 +62,22 @@ React · React Three Fiber · Three.js · JavaScript · HTML/CSS`,
         image: project3,
         link: "https://github.com/thomasbrears/SDP_PriceHound.git",
     },
-
 ];
 
-const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    arrows: false,
-    afterChange: () => {},
-};
-
 export default function ProjectCarousel() {
-    const [current, setCurrent] = useState(0);
-
-    const sliderSettings = {
-        ...settings,
-        afterChange: (index) => setCurrent(index),
-    };
-
     return (
-        <div className="carousel-wrapper">
-            <div className="carousel-left">
-                <Slider {...sliderSettings}>
-                    {projects.map((proj, idx) => (
-                        <div key={idx} className="carousel-image-box">
-                            {proj.video ? (
-                                <video
-                                    src={proj.video}
-                                    controls
-                                    className="carousel-media"
-                                    style={{ width: "80%",           // 视频宽度缩小
-                                        maxHeight: "860px",     // 限制最大高度
-                                        borderRadius: "16px",
-                                        margin: "auto",         // 居中
-                                        display: "block",
-                                        background: "#000"}}
-                                />
-                            ) : (
-                                <img
-                                    src={proj.image}
-                                    alt={proj.title}
-                                    className="carousel-media"
-                                    style={{ width: "100%", borderRadius: "16px" }}
-                                />
-                            )}
-                        </div>
-                    ))}
-                </Slider>
-            </div>
-            <div className="carousel-right">
-                <div className="carousel-text-block">
-                    <h3>{projects[current].title}</h3>
-                    <p>{projects[current].desc}</p>
-                    <a href={projects[current].link} target="_blank" rel="noreferrer" className="see-detail-btn">
-                        See Detail
-                    </a>
-                </div>
+        <div className="project-card-grid-wrapper">
+            <div className="project-card-grid">
+                {projects.map((proj, idx) => (
+                    <ProjectCard
+                        key={idx}
+                        image={proj.image}
+                        video={proj.video}
+                        title={proj.title}
+                        desc={proj.desc}
+                        link={proj.link}
+                    />
+                ))}
             </div>
         </div>
     );
