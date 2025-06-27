@@ -49,7 +49,7 @@
     transform: translate3d(0, 0, 31px);
 }
 
-.content .title {
+.content  .title {
     display: block;
     color: #3c2f80;
     font-weight: 900;
