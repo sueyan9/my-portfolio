@@ -49,10 +49,10 @@ export default function AboutMe() {
                 <HeroText>
                     <h1>Welcome To My Page !</h1>
                     <p>
-                        A passionate Full-Stack Developer exploring 3D applications, cloud
-                        integration, and modern tech stacks.
+                        A soon-to-graduate software engineering student with hands-on internship experience at a local company. Specializing in C# and full-stack web application development, with a strong foundation in Java, PHP, Spring Boot, HTML, JavaScript, and RESTful APIs.
+
                         <br />
-                        📚 Final year Bachelor of Computer and Information Science student
+                        📚 Proficient in Git, CI/CD pipelines, DevOps practices, and software testing, with practical experience working in agile development environments. Passionate about delivering reliable and innovative solutions on time, and eager to contribute to collaborative, high-performing engineering teams.
                         <br />
                         🌏 Based in New Zealand
                     </p>
