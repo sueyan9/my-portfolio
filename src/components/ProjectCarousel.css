@@ -9,7 +9,7 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(380px, 1fr));
     gap: 4.5rem;
-    max-width: 1200px;
+    max-width: 1900px;
     width: 100%;
     min-height: 1460px;
     margin: 0 auto;
