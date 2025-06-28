@@ -1,99 +1,99 @@
-.card.hover-flip {
-    width: 380px;
-    height: 260px;
-    perspective: 1000px;
-    border-radius: 16px;
-    box-shadow: 0 0 0 5px #ffffff80;
-    background: #f2f2f2;
-    position: relative;
-    cursor: pointer;
-}
-
-.card__face {
-    width: 100%;
-    height: 100%;
-    border-radius: 16px;
-    background: #f2f2f2;
-    position: absolute;
-    top: 0; left: 0;
-    backface-visibility: hidden;
+.modern-card {
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 8px 32px 0 #e0e0e0;
+    width: 650px;
+    max-height: 750px;
     display: flex;
     flex-direction: column;
+    align-items: stretch;
+    margin: 2rem auto;
+    padding-bottom: 1.5rem;
+    transition: box-shadow 0.2s;
+}
+
+.modern-card__media {
+    height: 460px;
+    border-radius: 20px;
+    background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+    margin: 0 1rem -2.5rem 1rem;
+    box-shadow: 0 4px 16px 0 #3b82f633;
+    display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    position: relative;
+    top: -2.5rem;
 }
 
-.card__face--front {
-    z-index: 2;
+.modern-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
 }
 
-.card__face--back {
-    transform: rotateY(180deg);
+.modern-card__content {
+    padding: 2.5rem 2rem 0 2rem;
+    display: flex;
     flex-direction: column;
-    padding: 20px;
-    justify-content: flex-start;
     align-items: flex-start;
 }
 
-.card__img {
-    width: 180px;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px #0001;
+.modern-card__title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #374151;
+    margin-bottom: 0.5rem;
 }
 
-.card__title {
-    margin: 0 0 10px 0;
-    font-size: 22px;
-    color: #333;
-    font-weight: 700;
-}
-
-.card__description {
-    white-space: pre-line;   /* 让 \n 换行符在页面上显示为换行 */
-    font-size: 1.05rem;
-    color: #555;
-    line-height: 1.7;
-    margin-top: 0.5rem;
-    max-width: 95%;
-    max-height: 654px;
+.modern-card__desc {
+    color: #6b7280;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    white-space: pre-line;
+    max-height: 240px;   /* 可根据需要调整 */
     overflow: auto;
 }
 
-.see-detail-btn {
-    margin-top: 16px;
-    display: inline-block;
-    background: #6a5acd;
+.modern-card__btn {
+    background: #3b82f6;
     color: #fff;
-    padding: 6px 18px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 14px;
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px #3b82f633;
+    cursor: pointer;
     transition: background 0.2s;
+    text-decoration: none;
+    display: inline-block;
 }
-.see-detail-btn:hover {
-    background: #483d8b;
+.modern-card__btn:hover {
+    background: #2563eb;
 }
 
-/* 翻转动画 */
-.card.hover-flip:hover .card__face--front {
-    transform: rotateY(180deg);
-}
-.card.hover-flip:hover .card__face--back {
-    transform: rotateY(0deg);
-}
-.slick-slide {
-    height: auto !important;
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
-}
-.slick-slide > div {
-
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
+/* 响应式 */
+@media (max-width: 500px) {
+    .modern-card {
+        width: 98vw;
+        padding-bottom: 1rem;
+    }
+    .modern-card__media {
+        height: 90px;
+        border-radius: 14px;
+        margin: 0 0.5rem -1.5rem 0.5rem;
+        top: -1.5rem;
+    }
+    .modern-card__title {
+        font-size: 1.3rem;
+    }
+    .modern-card__desc {
+        font-size: 1rem;
+    }
+    .modern-card__content {
+        padding: 1.2rem 0.5rem 0 0.5rem;
+    }
 }
