@@ -45,6 +45,18 @@
     background: #f5ebaa;
     transform: translateY(-6px) scale(1.04);
 }
+.tech-stack-row .tech-card:nth-child(6):hover {
+    background: #ef8e97;
+    transform: translateY(-6px) scale(1.04);
+}
+.tech-stack-row .tech-card:nth-child(7):hover {gti
+    background: #7b5624;
+    transform: translateY(-6px) scale(1.04);
+}
+.tech-stack-row .tech-card:nth-child(8):hover {
+    background: #9cfa0f;
+    transform: translateY(-6px) scale(1.04);
+}
 
 .tech-card h3 {
     color: #8982b8;

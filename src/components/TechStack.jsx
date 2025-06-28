@@ -1,68 +1,85 @@
-import {  FaReact, FaNodeJs, FaGithub, FaMobileAlt, FaSass, FaBootstrap, FaGitAlt,
-    FaFigma ,FaAws , FaCube} from "react-icons/fa";
 import {
-    SiRedux, SiExpo, SiMongodb, SiVercel, SiFirebase, SiNgrok, SiNetlify,
-    SiPostman, SiJira, SiMiro, SiGooglecloud,
-    SiTailwindcss, SiSpring, SiAdobephotoshop, SiAdobepremierepro
-} from "react-icons/si";
-import { GrMysql } from "react-icons/gr";
+    FaReact, FaNodeJs, FaAws, FaCloud, FaCogs, FaDatabase, FaMobileAlt, FaCloudflare, FaJava, FaMicrosoft, FaDocker, FaEnvelope, FaSearch, FaCheckCircle, FaBug, FaListAlt, FaTasks
+} from "react-icons/fa";
+import { SiSpring, SiMongodb, SiPostgresql, SiMysql  , SiRabbitmq, SiCucumber,SiTestcafe, SiTypescript, SiNextdotjs, SiMui, SiAntdesign, SiVite, SiGooglecloud } from "react-icons/si";
 import "./TechStack.css";
 
 const techStacks = [
     {
+        title: "Backend",
+        items: [
+            { name: "Java (Spring Boot, Maven/Gradle)", icon: <FaJava color="#007396" /> },
+            { name: "C# (ASP.NET Core, NuGet)", icon: <FaMicrosoft color="#0078D4" /> },
+            { name: "Node.js", icon: <FaNodeJs color="#3c873a" /> },
+            { name: "Restful API", icon: <FaCogs color="#888" /> },
+            { name: "Hibernate/MyBatis", icon: <FaCogs color="#888" /> },
+            { name: "Entity Framework", icon: <FaCogs color="#888" /> },
+            { name: "LINQ", icon: <FaCogs color="#888" /> }
+        ]
+    },
+    {
         title: "Frontend",
         items: [
             { name: "React", icon: <FaReact color="#61dafb" /> },
-            { name: "Tailwind CSS", icon: <SiTailwindcss color="#38b2ac" /> },
-            { name: "Bootstrap", icon: <FaBootstrap color="#7952b3" /> },
-            { name: "Sass", icon: <FaSass color="#cc6699" /> },
-        ],
-    },
-    {
-        title: "Backend",
-        items: [
-            { name: "Node.js", icon: <FaNodeJs color="#3c873a" /> },
-            { name: "Express.js", icon: <FaNodeJs color="#000" /> },
-            { name: "MongoDB", icon: <SiMongodb color="#47a248" /> },
-            { name: "Spring Boot", icon: <SiSpring color="#6db33f" /> },
-            { name: "MySQL", icon: <GrMysql color="#00758f" /> },
-        ],
-    },
-    {
-        title: "Mobile",
-        items: [
             { name: "React Native", icon: <FaMobileAlt color="#61dafb" /> },
-            { name: "Expo", icon: <SiExpo color="#000" /> },
-            { name: "WebView", icon: <FaMobileAlt color="#888" /> },
-            { name: "Three.js", icon: < FaCube color="#000" /> },
-        ],
+            { name: "Next.js", icon: <SiNextdotjs color="#000" /> },
+            { name: "Material-UI", icon: <SiMui color="#007fff" /> },
+            { name: "Ant Design", icon: <SiAntdesign color="#0170FE" /> },
+            { name: "Typescript", icon: <SiTypescript color="#3178c6" /> },
+            { name: "Vite", icon: <SiVite color="#646cff" /> }
+        ]
     },
     {
-        title: "Cloud & DevOps",
+        title: "Cloud and Infrastructure",
         items: [
-            { name: "AWS", icon: <FaAws color="#ff9900" /> },
-            { name: "Google Cloud", icon: <SiGooglecloud color="#4285f4" /> },
-            { name: "Firebase", icon: <SiFirebase color="#ffca28" /> },
-            { name: "Netlify", icon: <SiNetlify color="#00c7b7" /> },
-            { name: "Vercel", icon: <SiVercel color="#000" /> },
-            { name: "ngrok", icon: <SiNgrok color="#1f1f1f" /> },
-        ],
+            { name: "AWS (EC2, RDB)", icon: <FaAws color="#ff9900" /> },
+            { name: "Azure", icon: <FaCloud color="#0078D4" /> },
+            { name: "GCP", icon: <SiGooglecloud color="#4285f4" /> },
+            { name: "Cloudflare", icon: <FaCloudflare color="#f38020" /> }
+        ]
     },
     {
-        title: "Tools & Collaboration",
+        title: "DevOps",
         items: [
-            { name: "Git", icon: <FaGitAlt color="#f34f29" /> },
-            { name: "GitHub", icon: <FaGithub color="#333" /> },
-            { name: "Postman", icon: <SiPostman color="#ff6c37" /> },
-            { name: "Figma", icon: <FaFigma color="#a259ff" /> },
-            { name: "Jira", icon: <SiJira color="#0052cc" /> },
-            { name: "Miro", icon: <SiMiro color="#ffd02f" /> },
-            { name: "Photoshop", icon: <SiAdobephotoshop color="#31a8ff" /> },
-            { name: "Premiere Pro", icon: <SiAdobepremierepro color="#9999ff" /> },
-        ],
+            { name: "Containerization", icon: <FaDocker color="#2496ed" /> },
+            { name: "CICD pipeline", icon: <FaCogs color="#888" /> },
+            { name: "Support Request Handling", icon: <FaEnvelope color="#888" /> },
+            { name: "Manually configuration and Integration", icon: <FaCogs color="#888" /> }
+        ]
     },
+    {
+        title: "Messaging & Search",
+        items: [
+            { name: "RabbitMQ", icon: <SiRabbitmq color="#ff6600" /> }
+        ]
+    },
+    {
+        title: "Databases",
+        items: [
+            { name: "MySQL", icon: <SiMysql color="#00758f" /> },
+            { name: "SQL Server", icon: <FaDatabase color="#CC2927" /> },
+            { name: "PostgreSQL", icon: <SiPostgresql color="#336791" /> },
+            { name: "MongoDB", icon: <SiMongodb color="#47a248" /> }
+        ]
+    },
+    {
+        title: "Testing",
+        items: [
+            { name: "Unit Testing", icon: <FaCheckCircle color="#4caf50" /> },
+            { name: "Playwright", icon: <FaCheckCircle color="#45ba47" /> },
+            { name: "Test-café", icon: <SiTestcafe color="#2d9cdb" /> },
+            { name: "Cucumber test", icon: <SiCucumber color="#23d96c" /> }
+        ]
+    },
+    {
+        title: "Methodology",
+        items: [
+            { name: "SCRUM", icon: <FaListAlt color="#888" /> },
+            { name: "Kanban", icon: <FaTasks color="#888" /> },
+            { name: "Ticket management", icon: <FaListAlt color="#888" /> }
+        ]
+    }
 ];
-
 export default function TechStack() {
     return (
         <div className="tech-stack-row">

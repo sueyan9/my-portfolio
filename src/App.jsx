@@ -62,7 +62,7 @@ export default function App() {
             {/* 顶部 About Me */}
             <section className="section-block" ref={aboutRef}>
                 <div className="container">
-                <AboutMe />
+                <AboutMe onExploreClick={scrollToProjects}/>
                 </div>
             </section>
 
