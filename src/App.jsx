@@ -1,4 +1,5 @@
 import React, { useRef , useEffect } from "react";
+import HeroSection from './components/HeroSection';
 import Navbar from "./components/Navbar.jsx";
 import AboutMe from "./components/AboutMe";
 import ProjectCarousel from "./components/ProjectCarousel";
@@ -49,6 +50,7 @@ export default function App() {
 
     return (
         <div >
+            <HeroSection />
             {/* Nav Bar*/}
             <Navbar
                 onLogoClick={scrollToTop}
