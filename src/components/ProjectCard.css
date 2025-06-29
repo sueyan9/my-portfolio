@@ -2,7 +2,7 @@
     background: #fff;
     border-radius: 24px;
     box-shadow: 0 8px 32px 0 #e0e0e0;
-    width: 650px;
+    /*width: 650px;*/
     max-height: 750px;
     display: flex;
     flex-direction: column;
@@ -76,6 +76,29 @@
 }
 
 /* 响应式 */
+@media (max-width: 900px) {
+    .modern-card {
+        width: 98vw;
+        max-width: 350px !important;
+        padding-bottom: 1rem;
+    }
+    .modern-card__media {
+        height: 260px;
+        border-radius: 16px;
+        margin: 0 0.7rem -1.5rem 0.7rem;
+        top: -1.5rem;
+    }
+    .modern-card__title {
+        font-size: 1.5rem;
+    }
+    .modern-card__desc {
+        font-size: 1rem;
+        max-height: 140px;
+    }
+    .modern-card__content {
+        padding: 1.5rem 1rem 0 1rem;
+    }
+}
 @media (max-width: 500px) {
     .modern-card {
         width: 98vw;
