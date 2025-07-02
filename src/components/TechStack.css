@@ -54,7 +54,7 @@
     transform: translateY(-6px) scale(1.04);
 }
 .tech-stack-row .tech-card:nth-child(8):hover {
-    background: #9cfa0f;
+    background: #7ec90d;
     transform: translateY(-6px) scale(1.04);
 }
 
@@ -75,24 +75,28 @@
 }
 
 .tech-card li {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 2.8em 1fr; /* 图标区固定宽度，文字区自适应 */
+    align-items: flex-start;
     gap: 1.2rem;
     margin-bottom: 1.5rem;
     font-size: 1.35rem;
     color: #444;
-    justify-content: flex-start;
 }
 
 .tech-icon {
     font-size: 2.1rem;
     display: flex;
     align-items: center;
+    min-width: 2.8em;         /* 关键：图标区固定宽度 */
+    justify-content: center;
+    vertical-align: top;
 }
 
 .tech-name {
     font-size: 1.35rem;
     font-weight: 600;
+    word-break: break-word;
 }
 
 @media (max-width: 900px) {
