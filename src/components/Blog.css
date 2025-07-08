@@ -1,0 +1,251 @@
+body {
+    background: #f7f7f7;
+}
+
+.blog-container {
+    margin-top: 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 0 2rem 4rem 2rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+}
+
+.blog-article-container h1,
+.blog-article-container h2 {
+    margin-top: 2em;
+}
+
+.blog-article-container ul {
+    padding-left: 1.5em;
+}
+.blog-card {
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+    background: #fff;
+    border-radius: 32px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    padding: 3rem 3rem 3rem 3rem;
+    transition: box-shadow 0.2s;
+    min-height: 420px;
+}
+
+.blog-card:hover {
+    box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+}
+
+.blog-image {
+    width: 480px;
+    height: 270px;
+    border-radius: 24px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.blog-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    justify-content: center;
+}
+
+.blog-date {
+    color: #888;
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+    text-align: left;
+}
+
+.blog-title {
+    font-size: 2.6rem;
+    font-weight: 700;
+    margin: 0.5rem 0 0.5rem 0;
+    line-height: 1.15;
+    text-align: left;
+}
+
+.blog-author {
+    font-size: 1.15rem;
+    color: #222;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    text-align: left;
+}
+
+.blog-snippet {
+    color: #444;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    text-align: left;
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: 1.2rem;
+    color: #222;
+    font-weight: 600;
+    text-decoration: underline;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+    text-align: left;
+}
+
+.read-more:hover {
+    color: #b00;
+}
+.markdown-blog-container {
+    max-width: 900px;
+    margin: 100px auto 60px; /* 让出顶部导航栏空间 */
+    padding: 0 20px;
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    line-height: 1.8;
+    font-size: 1.25rem;
+    background: transparent;
+    color:#222;
+}
+.markdown-blog-container,
+.markdown-content,
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content p,
+.markdown-content ul,
+.markdown-content li {
+    text-align: left;
+}
+.markdown-content table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 12px; /* 行间距 */
+    margin: 24px 0;
+}
+
+.markdown-content th,
+.markdown-content td {
+    padding: 16px 20px;
+    text-align: left;
+    vertical-align: top;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.markdown-content th {
+
+    background-color: #d8d3f5;
+    font-weight: bold;
+}
+.markdown-content table {
+    background: transparent;
+}
+
+.markdown-content td, .markdown-content th {
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.markdown-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: 2rem;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+}
+
+.markdown-content h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.markdown-content h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+.markdown-content p {
+    margin-bottom: 2rem;
+    font-size: 1.75rem;
+    line-height: 1.8;
+    color: #222;
+}
+
+.markdown-content ul {
+    padding-left: 2em;
+    margin-bottom: 2rem;
+}
+
+.markdown-content ul li {
+    margin-bottom: 1rem;
+    font-size: 1.58rem;
+    line-height: 1.7;
+    position: relative;
+}
+
+.back-button {
+    display: block;
+    margin: 40px auto;
+    text-align: center;
+    color: #0070f3;
+    font-weight: bold;
+    text-decoration: none;
+}
+.markdown-content ul li::marker {
+    font-size: 1.2em;
+    color: #222;
+}
+
+.markdown-content img {
+    width: 100%;
+    border-radius: 16px;
+    margin: 2.5rem 0;
+}
+
+.markdown-content code {
+    background: #f4f4f4;
+    padding: 0.2rem 0.4rem;
+    font-size: 1.05rem;
+    border-radius: 4px;
+}
+
+.markdown-content pre {
+    background: #1e1e1e;
+    color: #fff;
+    padding: 1.2rem;
+    overflow-x: auto;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+}
+@media (max-width: 900px) {
+    .blog-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2rem 1rem;
+    }
+    .blog-image {
+        width: 100%;
+        max-width: 100%;
+        height: 200px;
+    }
+}
+@media (max-width: 700px) {
+    .markdown-blog-container {
+        max-width: 100%;
+        padding: 0 8px;
+        font-size: 1rem;
+    }
+    .markdown-content h1 {
+        font-size: 2rem;
+    }
+    .markdown-content h2 {
+        font-size: 1.3rem;
+    }
+}
