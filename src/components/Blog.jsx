@@ -1,13 +1,11 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { blogPosts } from "./blogData";
-import Navbar from "./Navbar";
 import "./Blog.css";
 
 export default function Blog() {
     return (
         <div>
-            <Navbar />
             <div className="blog-container">
                 {blogPosts.map((post) => (
                     <div key={post.id} className="blog-card">

@@ -1,68 +1,55 @@
-import React, { useRef , useEffect } from "react";
-import { useNavigate,BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React from "react";
 import HeroSection from './components/HeroSection';
-import Navbar from "./components/Navbar.jsx";
 import AboutMe from "./components/AboutMe";
 import ProjectCarousel from "./components/ProjectCarousel";
 import TechStack from "./components/TechStack";
 import './App.css';
 
-export default function App() {
-    const aboutRef = useRef(null);
-    const projectsRef = useRef(null);
-    const techRef = useRef(null);
+export default function Home({ aboutRef, projectsRef, techRef , mainContentRef }) {
 
 
-    const scrollToAbout = () => {
-        aboutRef.current?.scrollIntoView({ behavior: "smooth" });
-    };
-    const scrollToProjects = () => {
-        projectsRef.current?.scrollIntoView({ behavior: "smooth" });
-    };
-    const scrollToTech = () => {
-        techRef.current?.scrollIntoView({ behavior: "smooth" });
-    };
-
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    };
-    const navigate = useNavigate();
-    const goToBlog = () => {
-        navigate('/blog');
-    };
-    const openCrispChat = () => {
-        if (window.$crisp) {
-            window.$crisp.push(["do", "chat:open"]);
-        }
-        // 如果你还想滚动到 contact 区域，可以加上：
-        // contactRef.current?.scrollIntoView({ behavior: "smooth" });
-    };
-    useEffect(() => {
-        function setMainContentPadding() {
-            const navbar = document.querySelector('.navbar');
-            const mainContent = document.querySelector('.main-content');
-            if (navbar && mainContent) {
-                mainContent.style.paddingTop = navbar.offsetHeight + 'px';
-            }
-        }
-        setMainContentPadding();
-        window.addEventListener('resize', setMainContentPadding);
-        return () => window.removeEventListener('resize', setMainContentPadding);
-    }, []);
+    // const scrollToAbout = () => {
+    //     aboutRef.current?.scrollIntoView({ behavior: "smooth" });
+    // };
+    // const scrollToProjects = () => {
+    //     projectsRef.current?.scrollIntoView({ behavior: "smooth" });
+    // };
+    // const scrollToTech = () => {
+    //     techRef.current?.scrollIntoView({ behavior: "smooth" });
+    // };
+    //
+    // const scrollToTop = () => {
+    //     window.scrollTo({ top: 0, behavior: "smooth" });
+    // };
+    // const navigate = useNavigate();
+    // const goToBlog = () => {
+    //     navigate('/blog');
+    // };
+    // const openCrispChat = () => {
+    //     if (window.$crisp) {
+    //         window.$crisp.push(["do", "chat:open"]);
+    //     }
+    //     // 如果你还想滚动到 contact 区域，可以加上：
+    //     // contactRef.current?.scrollIntoView({ behavior: "smooth" });
+    // };
+    // useEffect(() => {
+    //     function setMainContentPadding() {
+    //         const navbar = document.querySelector('.navbar');
+    //         const mainContent = document.querySelector('.main-content');
+    //         if (navbar && mainContent) {
+    //             mainContent.style.paddingTop = navbar.offsetHeight + 'px';
+    //         }
+    //     }
+    //     setMainContentPadding();
+    //     window.addEventListener('resize', setMainContentPadding);
+    //     return () => window.removeEventListener('resize', setMainContentPadding);
+    // }, []);
 
     return (
-        <div >
+        <div ref={mainContentRef}>
             <HeroSection />
-            {/* Nav Bar*/}
-            <Navbar
-                onLogoClick={scrollToTop}
-                onAboutClick={scrollToAbout}
-                onProjectClick={scrollToProjects}
-                onTechClick={scrollToTech}
-                onBlogClick={goToBlog}
-                onChatClick={openCrispChat}
-            />
-            {/*  From Uiverse.io by whoisyourdeadie*/}
+
+            {/* matrix background */}
             <div className="matrix-container">
                 <div className="matrix-pattern">
                     <div className="matrix-column"></div>
@@ -276,11 +263,11 @@ export default function App() {
                 </div>
             </div>
 
-            <div className="main-content">
+            <div className="main-content" >
                 {/* 顶部 About Me */}
                 <section className="section-block" ref={aboutRef}>
                     <div className="container">
-                        <AboutMe onExploreClick={scrollToProjects}/>
+                        <AboutMe />
                     </div>
                 </section>
 

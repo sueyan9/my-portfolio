@@ -1,17 +1,66 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useRef }  from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation} from 'react-router-dom';
 import Blog from './components/Blog';
 import MarkdownBlog from "./components/MarkdownBlog";
 import Home from './Home';
+import Navbar from './components/Navbar';
 
-export default function App() {
+function AppContent() {
+    const aboutRef = useRef(null);
+    const projectsRef = useRef(null);
+    const techRef = useRef(null);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const mainContentRef = useRef(null);
+
+    const handleLogoClick = () => {
+        if (location.pathname === "/") {
+
+            mainContentRef.current?.scrollIntoView({ behavior: "smooth" });
+        } else {
+            console.log('navigate to /');
+            navigate("/");
+        }
+    };
+
+    const scrollToAbout = () => aboutRef.current?.scrollIntoView({ behavior: "smooth" });
+    const scrollToProjects = () => projectsRef.current?.scrollIntoView({ behavior: "smooth" });
+    const scrollToTech = () => techRef.current?.scrollIntoView({ behavior: "smooth" });
+    const openCrispChat = () => {
+        if (window.$crisp) {
+            window.$crisp.push(["do", "chat:open"]);
+        }
+    };
     return (
-        <Router>
+        <>
+            <Navbar
+                onLogoClick={handleLogoClick}
+                onAboutClick={scrollToAbout}
+                onProjectClick={scrollToProjects}
+                onTechClick={scrollToTech}
+                onBlogClick={() => navigate('/blog')}
+                onChatClick={openCrispChat}
+            />
             <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={
+                    <Home
+                        aboutRef={aboutRef}
+                        projectsRef={projectsRef}
+                        techRef={techRef}
+                        mainContentRef={mainContentRef}
+                    />
+                } />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:slug" element={<MarkdownBlog />} />
             </Routes>
+        </>
+    );
+}
+export default function App() {
+    return (
+        <Router>
+            <AppContent />
         </Router>
     );
 }

@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { motion, useScroll , useTransform } from "framer-motion";
+import {
+    motion ,
+    useScroll,
+    useTransform
+} from "framer-motion";
 import "./Navbar.css";
 
 export default function Navbar({
@@ -24,7 +28,8 @@ export default function Navbar({
     // 关闭菜单后再跳转
     const handleNavClick = (fn) => {
         setMenuOpen(false);
-        fn && fn();
+        console.log('handleNavClick', fn);
+        if (fn) fn();
     };
 
     return (
@@ -37,7 +42,7 @@ export default function Navbar({
             }}
         >
             <div className="navbar-grid">
-                <span className="navbar-logo" onClick={() => handleNavClick(onLogoClick)}>Sue Yan</span>
+                <span className="navbar-logo" onClick={() => {console.log('logo clicked'); handleNavClick(onLogoClick)}}>Sue Yan</span>
                 <div className="navbar-links desktop-nav">
                     <button className="nav-btn-link" onClick={() => handleNavClick(onAboutClick)}>About</button>
                     <button className="nav-btn-link" onClick={() => handleNavClick(onProjectClick)}>Projects</button>
@@ -63,14 +68,9 @@ export default function Navbar({
                 <button className="nav-btn-link" onClick={() => handleNavClick(onProjectClick)}>Projects</button>
                 <button className="nav-btn-link" onClick={() => handleNavClick(onTechClick)}>Tech Stack</button>
                 <button className="nav-btn-link" onClick={() => handleNavClick(onBlogClick)}>Blog</button>
-                <button className="nav-btn-link chat-btn" onClick={() => {
-                    setMenuOpen(false);
-                    if (window.$crisp) {
-                        window.$crisp.push(["do", "chat:open"]);
-                    }
-                }}
-                >
-                    Let’s Chat! 👋</button>
+                <button className="nav-btn-link chat-btn" onClick={() => handleNavClick(onChatClick)}>
+                    Let’s Chat! 👋
+                </button>
             </div>
             {/* 遮罩层 */}
             {menuOpen && <div className="menu-backdrop" onClick={() => setMenuOpen(false)}></div>}
