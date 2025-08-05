@@ -20,7 +20,7 @@ function AppContent() {
             mainContentRef.current?.scrollIntoView({ behavior: "smooth" });
         } else {
             console.log('navigate to /');
-            navigate("/");
+            navigate("/", { state: { scrollToMain: true } });
         }
     };
 
@@ -42,7 +42,7 @@ function AppContent() {
                 onBlogClick={() => navigate('/blog')}
                 onChatClick={openCrispChat}
             />
-            <Routes>
+            <Routes location={location} key={location.pathname}>
                 <Route path="/" element={
                     <Home
                         aboutRef={aboutRef}

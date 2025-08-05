@@ -28,8 +28,12 @@ export default function Navbar({
     // 关闭菜单后再跳转
     const handleNavClick = (fn) => {
         setMenuOpen(false);
-        console.log('handleNavClick', fn);
-        if (fn) fn();
+        if (fn && typeof fn === "function") {
+            console.log('Calling nav handler:', fn.name || 'anonymous');
+            fn();
+        } else {
+            console.warn('handleNavClick got invalid fn:', fn);
+        }
     };
 
     return (

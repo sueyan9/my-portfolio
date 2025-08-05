@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams , Link} from 'react-router-dom';
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import Navbar from "./Navbar";
+// import Navbar from "./Navbar";
 import "./Blog.css";
 
 export default function MarkdownBlog( ) {
@@ -20,7 +20,7 @@ export default function MarkdownBlog( ) {
 
     return (
         <>
-            <Navbar />
+
             <div className="markdown-blog-container">
                 <div className="markdown-content">
                     <ReactMarkdown remarkPlugins={[remarkGfm]}>

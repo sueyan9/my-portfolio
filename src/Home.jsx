@@ -1,13 +1,14 @@
-import React from "react";
+import React,{ useEffect, useRef } from "react";
 import HeroSection from './components/HeroSection';
 import AboutMe from "./components/AboutMe";
 import ProjectCarousel from "./components/ProjectCarousel";
 import TechStack from "./components/TechStack";
 import './App.css';
+import { useLocation } from "react-router-dom";
 
 export default function Home({ aboutRef, projectsRef, techRef , mainContentRef }) {
 
-
+    const location = useLocation();
     // const scrollToAbout = () => {
     //     aboutRef.current?.scrollIntoView({ behavior: "smooth" });
     // };
@@ -44,7 +45,11 @@ export default function Home({ aboutRef, projectsRef, techRef , mainContentRef }
     //     window.addEventListener('resize', setMainContentPadding);
     //     return () => window.removeEventListener('resize', setMainContentPadding);
     // }, []);
-
+    useEffect(() => {
+        if (location.state?.scrollToMain && mainContentRef?.current) {
+            mainContentRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [location, mainContentRef]);
     return (
         <div ref={mainContentRef}>
             <HeroSection />
