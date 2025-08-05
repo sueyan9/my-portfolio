@@ -80,12 +80,12 @@ To achieve this, we chose **file-by-file migration** — a safe, controlled meth
 
 ### 🧭 Migration Strategies Comparison
 
-| Approach | Description | Pros | Cons | Best For |
-|----------|-------------|------|------|----------|
-| 🔁 **File-by-File Migration**<br>(our approach) | Gradually move files into a new modern project, one at a time | ✅ Lower risk<br>✅ Easier testing<br>✅ Keeps app running during upgrades<br>✅ Aligns with client workflow | ❌ Takes longer<br>❌ Temporary code duplication | ✅ Active projects with existing users<br>✅ Client requires continuity |
-| 🔨 **Full Rewrite**<br>aka "Big Bang" | Start fresh and rebuild everything from scratch | ✅ Modern code<br>✅ Clean architecture<br>✅ No legacy debt | ❌ Risky<br>❌ Long downtime<br>❌ Expensive | ❌ Only ideal when old app can be shut down or paused |
-| 🛠 **In-place Refactor** | Clean up and upgrade directly inside the old project | ✅ No migration overhead<br>✅ Short-term improvements | ❌ Hard to fully modernize<br>❌ Mixed old/new code | ✅ Small refactors<br>✅ Projects that can’t be restarted |
-| 🌿 **Strangler Pattern** | Wrap the old system and replace modules gradually | ✅ Parallel new/old coexistence<br>✅ Flexible architecture | ❌ Complex structure<br>❌ More suited to services than frontends | ✅ APIs or backend-heavy systems |
+| Approach                              | Description | Pros | Cons | Best For |
+|---------------------------------------|-------------|------|------|----------|
+| 🔁 **File-by-File Migration**(our approach) | Gradually move files into a new modern project, one at a time | ✅ Lower risk<br>✅ Easier testing<br>✅ Keeps app running during upgrades<br>✅ Aligns with client workflow | ❌ Takes longer<br>❌ Temporary code duplication | ✅ Active projects with existing users<br>✅ Client requires continuity |
+| 🔨 **Full Rewrite**（aka "Big Bang"）   | Start fresh and rebuild everything from scratch | ✅ Modern code<br>✅ Clean architecture<br>✅ No legacy debt | ❌ Risky<br>❌ Long downtime<br>❌ Expensive | ❌ Only ideal when old app can be shut down or paused |
+| 🛠 **In-place Refactor**              | Clean up and upgrade directly inside the old project | ✅ No migration overhead<br>✅ Short-term improvements | ❌ Hard to fully modernize<br>❌ Mixed old/new code | ✅ Small refactors<br>✅ Projects that can’t be restarted |
+| 🌿 **Strangler Pattern**              | Wrap the old system and replace modules gradually | ✅ Parallel new/old coexistence<br>✅ Flexible architecture | ❌ Complex structure<br>❌ More suited to services than frontends | ✅ APIs or backend-heavy systems |
 
 ---
 
