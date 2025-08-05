@@ -70,7 +70,7 @@ Maintaining and upgrading an inherited codebase is not just a technical decision
 In our case, **we inherited an old React Native project**, and we needed to:
 
 - Modernize it technically
-- Add web support (React + Vite)
+- Add web support (React + web view)
 - **Avoid interrupting the existing mobile workflows**
 - Ensure the client-facing experience and team workflow stayed familiar
 
