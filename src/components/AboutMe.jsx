@@ -102,14 +102,14 @@ export default function AboutMe({ onExploreClick }) {
                         {currentTextIndex >= 4 ? texts[3] : ""}
                     </motion.p>
 
-                    {/* 独立显示，不依赖文字动画 */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.5 }}  // 页面加载后0.5秒显示
-                    >
-                        <FlipCard />
-                    </motion.div>
+                    {/*/!* 独立显示，不依赖文字动画 *!/*/}
+                    {/*<motion.div*/}
+                    {/*    initial={{ opacity: 0, y: 30 }}*/}
+                    {/*    animate={{ opacity: 1, y: 0 }}*/}
+                    {/*    transition={{ duration: 0.8, delay: 0.5 }}  // 页面加载后0.5秒显示*/}
+                    {/*>*/}
+                    {/*    <FlipCard />*/}
+                    {/*</motion.div>*/}
 
                 </HeroText>
                 <AvatarWrapper
