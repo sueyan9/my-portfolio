@@ -6,70 +6,57 @@ import AvatarCard from "./AvatarCard";
 import { SimpleTimeline } from "./SimpleTimeline";
 
 const AboutWrapper = styled.section`
-    --step-line-active-color: #7c3aed; /* 紫色 */
-    --step-line-inactive-color: #d1d5db;
-    --icon-active-color: #7c3aed;
-    --icon-inactive-color: #9ca3af;
-    --time-active-color: #7c3aed;
-    --time-inactive-color: #6b7280;
-    --description-color: #374151;
-    
     background: #f5f5f8;
-    padding: 2rem;
+    padding: 6rem 3rem 3rem 3rem; // 顶部增加到6rem，左右增加到3rem
     border-radius: 22px;
     text-align: center;
     @media (max-width: 768px) {
-        padding: 1rem;
+        padding: 4rem 2rem 2rem 2rem; // 移动端也相应调整
     }
 `;
 
 const HeroContent = styled.div`
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
+    margin-bottom: 4rem; // 增加底部边距
+    gap: 4rem; // 增加间距
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 `;
 
 const HeroText = styled.div`
     max-width: 500px;
-    padding: 1rem;
+    padding: 1.5rem; // 增加内边距
     text-align: left;
     h1 {
         font-size: 2.5rem;
+        margin-top: 0;
+        margin-bottom: 1.5rem; // 增加标题底部边距
     }
     p {
-        margin-top: 1rem;
+        margin-top: 1.5rem; // 增加段落间距
+        margin-bottom: 1rem; // 增加段落底部边距
         font-size: 1.2rem;
+        line-height: 1.6; // 增加行高
     }
 `;
 
 const AvatarWrapper = styled(motion.div)`
-    margin: 2rem;
+    margin: 0;
     cursor: pointer;
 `;
 
-const data = [
-    {
-        time: "2023",
-        steps: [
-            { icon: <span>💻</span>, content: "Started coding journey" },
-            { icon: <span>📚</span>, content: "Learned React & Vite" },
-        ],
-    },
-    {
-        time: "2024",
-        steps: [
-            { icon: <span>🛠</span>, content: "Built personal portfolio" },
-            { icon: <span>🚀</span>, content: "Launched first project" },
-        ],
-    },
-    {
-        time: "2025",
-        steps: [
-            { icon: <span>🏆</span>, content: "Graduated & got first job" },
-        ],
-    },
-];
+const TimelineSection = styled.div`
+    width: 100%;
+    margin-top: 3rem; // 增加顶部边距
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+`;
+
 export default function AboutMe({ onExploreClick }) {
     const [currentTextIndex, setCurrentTextIndex] = useState(0);
     
@@ -91,6 +78,7 @@ export default function AboutMe({ onExploreClick }) {
 
     return (
         <AboutWrapper>
+            {/* 上半部分：文字和Profile Card */}
             <HeroContent>
                 <HeroText className="hero-text">
                     <motion.h1
@@ -118,15 +106,6 @@ export default function AboutMe({ onExploreClick }) {
                     >
                         {texts[2]}
                     </motion.p>
-
-                    {/* 交互式时间线 */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ type: "spring", stiffness: 70, damping: 16, duration: 0.8 }}
-                    >
-                        <SimpleTimeline />
-                    </motion.div>
                 </HeroText>
                 
                 <AvatarWrapper
@@ -137,6 +116,11 @@ export default function AboutMe({ onExploreClick }) {
                     <AvatarCard onExploreClick={onExploreClick}/>
                 </AvatarWrapper>
             </HeroContent>
+            
+            {/* 下半部分：时间轴 */}
+            <TimelineSection>
+                <SimpleTimeline />
+            </TimelineSection>
         </AboutWrapper>
     );
 }

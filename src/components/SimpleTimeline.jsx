@@ -1,46 +1,77 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 export function SimpleTimeline() {
-  const [activeIndex, setActiveIndex] = useState(2);
+  const [activeIndex, setActiveIndex] = useState(2); // 默认激活实习经历
+  const [timelinePosition, setTimelinePosition] = useState(0);
+  const timelineRef = useRef(null);
+  const containerRef = useRef(null);
 
   const timelineData = [
     {
-      time: "2022-2023",
+      time: "2008",
       icon: "🌏",
-      title: "移民新西兰",
-      description: "从中国移民到新西兰，开始适应新的教育体系和文化环境"
+      title: "Moved to NZ",
+      description: "Immigrated to New Zealand from China, started adapting to new culture and education system"
+    },
+    {
+      time: "2021",
+      icon: "❤️",
+      title: "SPCA Volunteer",
+      description: "Started volunteering at SPCA, participating in animal care and front desk support work"
     },
     {
       time: "2023",
-      icon: "❤️",
-      title: "SPCA义工",
-      description: "开始SPCA义工工作，参与动物照护与前台支持工作"
+      icon: "🎓",
+      title: "University",
+      description: "Started software engineering studies at university, began academic journey in tech"
     },
     {
-      time: "2023-2024",
-      icon: "🏔️",
-      title: "徒步经历",
-      description: "完成多条新西兰步道，培养路线规划和风险评估能力"
+      time: "2023 Aug",
+      icon: "💼",
+      title: "First Internship",
+      description: "Started first internship at a local company, gained C# and full-stack development experience"
     },
     {
-      time: "2024",
-      icon: "💻",
-      title: "实习经历",
-      description: "在本地公司实习，获得C#和全栈开发实践经验"
-    },
-    {
-      time: "2024-2025",
+      time: "2025",
       icon: "⭐",
-      title: "即将毕业",
-      description: "准备在软件工程领域开启职业生涯"
+      title: "Graduation",
+      description: "Will graduate and ready to start career in software engineering field"
     }
   ];
+
+  // 计算时间轴移动位置
+  const calculateTimelinePosition = (index) => {
+    if (!containerRef.current) return 0;
+    const containerWidth = containerRef.current.offsetWidth;
+    
+    // 计算每个时间点之间的间距
+    const itemSpacing = containerWidth / (timelineData.length - 1);
+    
+    // 中心位置是索引2（实习经历），计算需要移动的距离
+    const centerIndex = 2;
+    const offset = (index - centerIndex) * itemSpacing;
+    
+    return -offset; // 负号确保方向正确
+  };
+
+  // 点击图标时的动画
+  const handleIconClick = (index) => {
+    setActiveIndex(index);
+    const newPosition = calculateTimelinePosition(index);
+    setTimelinePosition(newPosition);
+  };
+
+  // 初始化位置
+  useEffect(() => {
+    const initialPosition = calculateTimelinePosition(activeIndex);
+    setTimelinePosition(initialPosition);
+  }, []);
 
   return (
     <div style={{ 
       marginTop: '3rem', 
       marginBottom: '2rem',
-      padding: '0 1rem'
+      width: '100%'
     }}>
       <h2 style={{ 
         color: '#6b5cd6', 
@@ -52,31 +83,42 @@ export function SimpleTimeline() {
         My Journey
       </h2>
       
-      <div style={{
-        position: 'relative',
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '2rem 0'
-      }}>
-        {/* 主时间线 */}
-        <div style={{
-          position: 'absolute',
-          top: '50%',
-          left: '0',
-          right: '0',
-          height: '2px',
-          background: '#e5e7eb',
-          transform: 'translateY(-50%)'
-        }} />
-        
-        {/* 时间点容器 */}
-        <div style={{
+      <div 
+        ref={containerRef}
+        style={{
           position: 'relative',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          minHeight: '200px'
-        }}>
+          width: '100%',
+          margin: '0 auto',
+          padding: '2rem 0',
+          overflow: 'hidden'
+        }}
+      >
+        {/* 时间轴容器 - 添加移动动画 */}
+        <div 
+          ref={timelineRef}
+          style={{
+            position: 'relative',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            transform: `translateX(${timelinePosition}px)`,
+            transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+            width: '100%',
+            minHeight: '200px'
+          }}
+        >
+          {/* 主时间线 */}
+          <div style={{
+            position: 'absolute',
+            top: '50%',
+            left: '0',
+            right: '0',
+            height: '2px',
+            background: '#e5e7eb',
+            transform: 'translateY(-50%)'
+          }} />
+          
+          {/* 时间点容器 */}
           {timelineData.map((item, index) => (
             <div key={index} style={{
               display: 'flex',
@@ -85,7 +127,9 @@ export function SimpleTimeline() {
               position: 'relative',
               cursor: 'pointer',
               transition: 'all 0.3s ease',
-              transform: index === activeIndex ? 'scale(1.1)' : 'scale(1)'
+              transform: index === activeIndex ? 'scale(1.1)' : 'scale(1)',
+              flex: '1',
+              maxWidth: '200px'
             }}>
               {/* 时间标签 */}
               <div style={{
@@ -112,7 +156,7 @@ export function SimpleTimeline() {
               
               {/* 图标 */}
               <div 
-                onClick={() => setActiveIndex(index)}
+                onClick={() => handleIconClick(index)}
                 style={{
                   width: '50px',
                   height: '50px',
@@ -187,7 +231,7 @@ export function SimpleTimeline() {
         color: '#6b7280',
         fontSize: '0.8rem'
       }}>
-        当前激活: {timelineData[activeIndex]?.title} | 总时间点: {timelineData.length}
+        Current: {timelineData[activeIndex]?.title} | Position: {timelinePosition.toFixed(0)}px | Total points: {timelineData.length}
       </div>
       
       {/* 交互提示 */}
@@ -198,7 +242,7 @@ export function SimpleTimeline() {
         fontSize: '0.9rem',
         fontStyle: 'italic'
       }}>
-        点击图标查看详细信息
+        Click icon to view details
       </div>
     </div>
   );
