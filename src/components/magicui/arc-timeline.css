@@ -1,0 +1,121 @@
+.arc-timeline {
+  --step-line-active-color: #6b5cd6;
+  --step-line-inactive-color: #d1d5db;
+  --placeholder-line-color: #e5e7eb;
+  --icon-active-color: #6b5cd6;
+  --icon-inactive-color: #9ca3af;
+  --time-active-color: #6b5cd6;
+  --time-inactive-color: #9ca3af;
+  --description-color: #374151;
+  
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.arc-timeline-circle-container {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arc-timeline-circle {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  border: 2px solid var(--step-line-inactive-color);
+  border-radius: 50%;
+}
+
+.arc-timeline-step {
+  position: absolute;
+  transform-origin: center;
+}
+
+.arc-timeline-step-content {
+  position: absolute;
+  width: 200px;
+  padding: 1rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.arc-timeline-step-content.active {
+  border-color: var(--step-line-active-color);
+  box-shadow: 0 10px 25px -3px rgba(107, 92, 214, 0.1);
+}
+
+.arc-timeline-step-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--icon-inactive-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.arc-timeline-step-icon.active {
+  background: var(--icon-active-color);
+}
+
+.arc-timeline-step-time {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--time-inactive-color);
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.arc-timeline-step-time.active {
+  color: var(--time-active-color);
+}
+
+.arc-timeline-step-description {
+  font-size: 0.875rem;
+  color: var(--description-color);
+  line-height: 1.5;
+}
+
+.arc-timeline-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.arc-timeline-line {
+  position: absolute;
+  background: var(--placeholder-line-color);
+  height: 1px;
+  transform-origin: left center;
+}
+
+.arc-timeline-line.active {
+  background: var(--step-line-active-color);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .arc-timeline-circle {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .arc-timeline-step-content {
+    width: 150px;
+    padding: 0.75rem;
+  }
+}
