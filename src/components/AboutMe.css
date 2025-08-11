@@ -94,6 +94,17 @@
     min-height: 300px;
 
 }
+/* ArcTimeline 自定义颜色变量 - 使用你的紫色主题 */
+:root {
+    --step-line-active-color: #6b5cd6;
+    --step-line-inactive-color: #c1c2c5;
+    --placeholder-line-color: #e5e7eb;
+    --time-active-color: #6b5cd6;
+    --time-inactive-color: #9ca3af;
+    --description-color: #374151;
+    --icon-active-color: #6b5cd6;
+    --icon-inactive-color: #9ca3af;
+}
 
 /* responsive */
 @media (max-width: 768px) {
