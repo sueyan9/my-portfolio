@@ -1,0 +1,91 @@
+
+.flip-card-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.flip-card {
+    width: 300px;
+    height: 200px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform .6s ease;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(99,75,199,.12);
+}
+
+.flip-card:hover .flip-card-inner,
+.flip-card.is-flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    padding: 18px;
+    color: #111827;
+    text-align: left;
+}
+
+.flip-card-front {
+    background: linear-gradient(135deg, #67b26f, #4ca2cd);
+    color: #0b1220;
+}
+
+.flip-card-back {
+    background: linear-gradient(135deg, #fccb90, #d57eeb);
+    transform: rotateY(180deg);
+    color: #0b1220;
+}
+
+.flip-card-content h3 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    color: #0b1220;
+    font-weight: 600;
+}
+
+.flip-card-content ul {
+    margin: 0;
+    padding-left: 18px;
+    line-height: 1.4;
+    font-size: 14px;
+}
+
+.flip-card-content li {
+    margin-bottom: 4px;
+}
+
+.flip-card-hint {
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    font-size: 12px;
+    opacity: .8;
+    color: #0b1220;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .flip-card-container {
+        justify-content: center;
+    }
+    .flip-card {
+        width: 100%;
+        max-width: 320px;
+    }
+}
