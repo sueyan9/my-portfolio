@@ -9,19 +9,19 @@ export function SimpleTimeline() {
   const timelineData = [
     {
       time: "2008",
-      icon: "🌏",
+      icon: "✈️",
       title: "Moved to NZ",
       description: "Immigrated to New Zealand from China, started adapting to new culture and education system"
     },
     {
       time: "2021",
-      icon: "❤️",
+      icon: "🐶",
       title: "SPCA Volunteer",
       description: "Started volunteering at SPCA, participating in animal care and front desk support work"
     },
     {
       time: "2023",
-      icon: "🎓",
+      icon: "📚",
       title: "University",
       description: "Started software engineering studies at university, began academic journey in tech"
     },
@@ -29,11 +29,11 @@ export function SimpleTimeline() {
       time: "2023 Aug",
       icon: "💼",
       title: "First Internship",
-      description: "Started first internship at a local company, gained C# and full-stack development experience"
+      description: "Started first internship at a local company, gained full-stack development experience"
     },
     {
       time: "2025",
-      icon: "⭐",
+      icon: "🎓",
       title: "Graduation",
       description: "Will graduate and ready to start career in software engineering field"
     }
