@@ -2,7 +2,7 @@ import React from "react";
 import "./ProjectCarousel.css";
 import ProjectCard from "./ProjectCard";
 import project1 from "../assets/project1.jpg";
-import project2 from "../assets/project2.MP4";
+import project2 from "../assets/project2.mov";
 import project3 from "../assets/priceHound.jpg";
 
 const projects = [
