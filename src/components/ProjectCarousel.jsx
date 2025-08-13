@@ -1,14 +1,19 @@
 import React from "react";
 import "./ProjectCarousel.css";
 import ProjectCard from "./ProjectCard";
-import project1 from "../assets/project1.jpg";
+import project1 from "../assets/project1.png";
 import project2 from "../assets/project2.mov";
 import project3 from "../assets/priceHound.jpg";
+import project4 from "../assets/project3DProject.png";
+import project5 from "../assets/project5.png";
+import project6 from "../assets/project6.png";
+
 
 const projects = [
     {
         title: "3D Dental Chart",
         desc: `Overview:
+         
 This is a React-based 3D dental chart application that provides an interactive, educational, and engaging way to explore human teeth anatomy. Built for web platforms, the application allows users to rotate, zoom, and drag the full set of teeth in a 3D view, offering a modern solution for dental education, patient communication, and treatment planning.
 
 Key Features:
@@ -20,13 +25,12 @@ Key Features:
 Tech Stack:
 React · React Three Fiber · Three.js · JavaScript · HTML/CSS`,
         image: project1,
-        link: "https://github.com/sueyan9/tooth-static.git",
+        link: " https://tooth-mate-app-2025.vercel.app/",
     },
     {
-        title: "ToothMate Mobile App",
-        desc: "🦷 ToothMate Mobile App\n" +
+        title: "🦷ToothMate Mobile App",
+        desc: "Overview:\n" +
             "\n" +
-            "Overview:\n" +
             "ToothMate is a personalized dental care and education mobile app designed to enhance dental awareness and streamline treatment management. Tailored for patients and parents, the app provides interactive 3D dental charts, custom treatment plans, and engaging educational content—all accessible from your phone.\n" +
             "\n" +
             "Key Features:\n" +
@@ -46,6 +50,7 @@ React · React Three Fiber · Three.js · JavaScript · HTML/CSS`,
     {
         title: "Price Hound",
         desc: "Overview:\n" +
+            "\n" +
             "PriceHound is a smart price comparison web application tailored for users in New Zealand and Australia. It allows users to search for products and instantly compare prices across multiple online retailers—helping them find the best deals effortlessly.\n" +
             "\n" +
             "Key Features:\n" +
@@ -62,6 +67,61 @@ React · React Three Fiber · Three.js · JavaScript · HTML/CSS`,
         image: project3,
         link: "https://github.com/thomasbrears/SDP_PriceHound.git",
     },
+    {
+        title: "SPEED — SERC Public Evidence Extraction Database",
+        desc: "Overview:\n" +
+            "A full-stack web application for collecting, storing, and presenting structured public evidence data, built with the MNNN stack (MongoDB, NestJS, Next.js, Node.js). It supports secure user authentication, article submission, and moderation workflows.\n\n" +
+            "Key Features:\n" +
+            "- Data Management: MongoDB database for storing and indexing structured article data for fast querying\n" +
+            "- Authentication & Moderation: Secure login system with admin moderation logic implemented in NestJS\n" +
+            "- Interactive Frontend: Responsive user interface for article submission and browsing using Next.js\n" +
+            "- API Integration: RESTful and GraphQL endpoints for smooth client-server communication\n" +
+            "- Deployment: Frontend deployed on Vercel, backend on Node.js hosting with CI/CD\n" +
+            "- Team Collaboration: Four-member development team using GitHub for version control and issue tracking\n\n" +
+            "Tech Stack:\n" +
+            "Frontend: Next.js, CSS\n" +
+            "Backend: NestJS, Node.js, TypeScript\n" +
+            "Database: MongoDB\n" +
+            "Deployment: Vercel (frontend), Node.js hosting (backend)",
+        image: project5,
+        link: "https://github.com/sueyan9/SPEED"
+    },
+    {
+        title: "Parametric Design & Fabrication",
+        desc: "Overview:\n" +
+            "This project showcases the full workflow from digital design in Rhino to physical fabrication via 3D printing and laser cutting. The aim was to create a functional and aesthetically pleasing model by combining parametric modeling techniques with modern fabrication methods.\n" +
+            "\n" +
+            "Key Features:\n" +
+            "\n" +
+            "\t•\t📐 Rhino 3D Modeling: Designed complex geometric forms using Rhino and Grasshopper for parametric control\n" +
+            "\t•\t⚙️ Parametric Workflow: Easily modify design dimensions and proportions for rapid iteration\n" +
+            "\t•\t🖨️ 3D Printing: Fabricated prototypes using PLA and resin-based 3D printers for structural and visual testing\n" +
+            "\t•\t🔦 Laser Cutting: Produced precision-cut acrylic and plywood components using vector-based cutting paths\n" +
+            "\t•\t🎨 Material Experimentation: Tested various materials to achieve desired strength, texture, and transparency effects\n" +
+            "\t•\t📏 Assembly & Finishing: Post-processed and assembled components for presentation\n" +
+            "\t•\t🏫 Educational Application: Demonstrates end-to-end design-to-fabrication pipeline for teaching purposes",
+        image:  project4,
+
+    },
+    {
+        title: "All-In-One (ERP + CRM + E-commerce) Platform (Internship Project)",
+        desc: "Overview:\n" +
+            "\n"+
+            "During my internship at Matricle Solutions, I contributed to a full-stack ERP, CRM, and E-commerce platform. My focus was on front-end development, building interactive e-commerce pages, performing testing, and implementing simple backend logic to support the system.\n\n" +
+            "Key Features:\n" +
+            "\t• Frontend Development: Built responsive e-commerce pages and UI components using React, Thymeleaf, Bootstrap, Material-UI, and TypeScript.\n" +
+            "\t• Backend Support: Implemented basic RESTful APIs and CRUD operations using Java (Spring Boot), C#, and Node.js.\n" +
+            "\t• Testing & QA: Wrote unit tests with JUnit and conducted full-cycle manual testing to ensure functionality and stability.\n" +
+            "\t• Purchase Order Module: Developed a core ERP module for creating, submitting, and managing purchase orders, improving efficiency and reducing errors.\n" +
+            "\t• Agile Collaboration: Participated in sprint cycles, iterative feature enhancements, and cross-functional team collaboration.\n\n" +
+            "Achievements:\n" +
+            "\t• Reduced manual input errors by 40% through the Purchase Order module.\n" +
+            "\t• Achieved over 85% unit test coverage, leading to more stable releases.\n" +
+            "\t• Contributed to multiple feature releases within tight deadlines, receiving positive feedback from stakeholders.\n\n" +
+            "Tech Stack: React · Thymeleaf · Bootstrap · Material-UI · Java (Spring Boot) · C# · Node.js · MySQL · PostgreSQL · MongoDB",
+        image: project6,
+        link: "https://www.matricle.com/"
+    }
 ];
 
 export default function ProjectCarousel() {
