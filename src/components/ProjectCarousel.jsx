@@ -10,43 +10,43 @@ import project6 from "../assets/project6.png";
 
 
 const projects = [
-    {
-        title: "3D Dental Chart",
-        desc: `Overview:
-         
-This is a React-based 3D dental chart application that provides an interactive, educational, and engaging way to explore human teeth anatomy. Built for web platforms, the application allows users to rotate, zoom, and drag the full set of teeth in a 3D view, offering a modern solution for dental education, patient communication, and treatment planning.
-
-Key Features:
-• 🧠 Interactive 3D Visualization: Users can freely rotate and zoom the dental model to explore different angles and perspectives.
-• 🦷 Tooth-Specific Info Display: Clicking on a single tooth reveals detailed information (e.g., name, ID, treatment record placeholder).
-• 🖱️ Drag & Pan Support: Smooth drag-to-rotate and pinch-to-zoom interactions using Three.js and React Three Fiber.
-• 🎓 Educational Use: Ideal for dental students, educators, or apps requiring anatomical visualization.
-
-Tech Stack:
-React · React Three Fiber · Three.js · JavaScript · HTML/CSS`,
-        image: project1,
-        link: " https://tooth-mate-app-2025.vercel.app/",
-    },
-    {
-        title: "🦷ToothMate Mobile App",
-        desc: "Overview:\n" +
-            "\n" +
-            "ToothMate is a personalized dental care and education mobile app designed to enhance dental awareness and streamline treatment management. Tailored for patients and parents, the app provides interactive 3D dental charts, custom treatment plans, and engaging educational content—all accessible from your phone.\n" +
-            "\n" +
-            "Key Features:\n" +
-            "\t•\t🦷 3D Dental Chart: Interactive, age-based 3D tooth models with click-to-view treatment history\n" +
-            "\t•\t📋 Treatment Records: Add and view treatment history independently or through appointments\n" +
-            "\t•\t🎓 Personalized Dental Education: Interactive modules with animations, quizzes, and flashcards\n" +
-            "\t•\t📅 Appointment Management: View completed appointments and associated treatment details\n" +
-            "\t•\t🧒 Child-Friendly Mode: Tailored views for younger users with simplified interaction\n" +
-            "\t•\t🌐 Cross-Platform Ready: Built with React Native for both Android and iOS compatibility\n" +
-            "\t•\t🔒 Authentication & Profiles: User login, role-based access, and secure treatment data\n" +
-            "\n" +
-            "Tech Stack:\n" +
-            "React Native · Node.js · Express · MongoDB · Three.js · Firebase · Expo\n",
-        video: project2,
-        link: "https://github.com/sueyan9/ToothMate_App_2025",
-    },
+//     {
+//         title: "3D Dental Chart",
+//         desc: `Overview:
+//
+// This is a React-based 3D dental chart application that provides an interactive, educational, and engaging way to explore human teeth anatomy. Built for web platforms, the application allows users to rotate, zoom, and drag the full set of teeth in a 3D view, offering a modern solution for dental education, patient communication, and treatment planning.
+//
+// Key Features:
+// • 🧠 Interactive 3D Visualization: Users can freely rotate and zoom the dental model to explore different angles and perspectives.
+// • 🦷 Tooth-Specific Info Display: Clicking on a single tooth reveals detailed information (e.g., name, ID, treatment record placeholder).
+// • 🖱️ Drag & Pan Support: Smooth drag-to-rotate and pinch-to-zoom interactions using Three.js and React Three Fiber.
+// • 🎓 Educational Use: Ideal for dental students, educators, or apps requiring anatomical visualization.
+//
+// Tech Stack:
+// React · React Three Fiber · Three.js · JavaScript · HTML/CSS`,
+//         image: project1,
+//         link: " https://tooth-mate-app-2025.vercel.app/",
+//     },
+//     {
+//         title: "🦷ToothMate Mobile App",
+//         desc: "Overview:\n" +
+//             "\n" +
+//             "ToothMate is a personalized dental care and education mobile app designed to enhance dental awareness and streamline treatment management. Tailored for patients and parents, the app provides interactive 3D dental charts, custom treatment plans, and engaging educational content—all accessible from your phone.\n" +
+//             "\n" +
+//             "Key Features:\n" +
+//             "\t•\t🦷 3D Dental Chart: Interactive, age-based 3D tooth models with click-to-view treatment history\n" +
+//             "\t•\t📋 Treatment Records: Add and view treatment history independently or through appointments\n" +
+//             "\t•\t🎓 Personalized Dental Education: Interactive modules with animations, quizzes, and flashcards\n" +
+//             "\t•\t📅 Appointment Management: View completed appointments and associated treatment details\n" +
+//             "\t•\t🧒 Child-Friendly Mode: Tailored views for younger users with simplified interaction\n" +
+//             "\t•\t🌐 Cross-Platform Ready: Built with React Native for both Android and iOS compatibility\n" +
+//             "\t•\t🔒 Authentication & Profiles: User login, role-based access, and secure treatment data\n" +
+//             "\n" +
+//             "Tech Stack:\n" +
+//             "React Native · Node.js · Express · MongoDB · Three.js · Firebase · Expo\n",
+//         video: project2,
+//         link: "https://github.com/sueyan9/ToothMate_App_2025",
+//     },
     {
         title: "Price Hound",
         desc: "Overview:\n" +
