@@ -21,9 +21,9 @@ export default function Navbar({
     const background = useTransform(
         scrollY,
         [0, 100],
-        ["rgba(255,255,255,0)", "rgba(255,255,255,0.95)"] // 你可以自定义颜色
+        ["rgba(255,255,255,0)", "rgba(255,255,255,0.8)"] // 你可以自定义颜色
     );
-    const height = useTransform(scrollY, [0, 100], [120, 60]);
+    const height = useTransform(scrollY, [0, 100], [100, 40]);
 
     // 关闭菜单后再跳转
     const handleNavClick = (fn) => {
@@ -42,7 +42,9 @@ export default function Navbar({
             style={{
                 background,
                 height,
-                boxShadow: "0 2px 16px rgba(0,0,0,0.06)" // 可选：滚动时加阴影
+                backdropFilter: "blur(8px)",   // 模糊玻璃感
+                WebkitBackdropFilter: "blur(8px)", // Safari 兼容
+                boxShadow: "0 2px 16px rgba(0,0,0,0.06)"
             }}
         >
             <div className="navbar-grid">
