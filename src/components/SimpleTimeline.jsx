@@ -35,7 +35,7 @@ export function SimpleTimeline() {
       time: "2025",
       icon: "🎓",
       title: "Graduation",
-      description: "Will graduate and ready to start career in software engineering field"
+      description: "Graduated and ready to start career in software engineering field"
     }
   ];
 
