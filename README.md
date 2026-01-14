@@ -14,5 +14,5 @@ Live site: https://sueyan.top
 - React
 - Vite
 - TypeScript
-- Tailwind
+- Tailwind / Bootstrap
 
