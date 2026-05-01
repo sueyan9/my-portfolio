@@ -34,12 +34,14 @@ const timelineData = [
 ];
 
 const ARC_WIDTH = 1080;
-const ARC_HEIGHT = 260;
+const ARC_HEIGHT = 360;
 const CENTER_X = ARC_WIDTH / 2;
-const CENTER_Y = -250;
+const CENTER_Y = 620;
 const RADIUS = 560;
-const START_ANGLE = (52 * Math.PI) / 180;
-const END_ANGLE = (128 * Math.PI) / 180;
+const START_ANGLE = (214 * Math.PI) / 180;
+const END_ANGLE = (326 * Math.PI) / 180;
+const ACTIVE_ANGLE = (270 * Math.PI) / 180;
+const EDGE_PADDING_SLOTS = 2;
 
 function polarToCartesian(cx, cy, radius, angle) {
   return {
@@ -57,25 +59,34 @@ function describeArc(cx, cy, radius, startAngle, endAngle) {
 
 export function SimpleTimeline() {
   const [activeIndex, setActiveIndex] = useState(2);
+  const baseAngles = useMemo(() => {
+    const totalSlots = timelineData.length + EDGE_PADDING_SLOTS * 2;
+    return timelineData.map((_, index) => {
+      const slotIndex = index + EDGE_PADDING_SLOTS;
+      const progress = totalSlots <= 1 ? 0.5 : slotIndex / (totalSlots - 1);
+      return START_ANGLE + (END_ANGLE - START_ANGLE) * progress;
+    });
+  }, []);
+
+  const rotationOffset = ACTIVE_ANGLE - baseAngles[activeIndex];
 
   const arcPath = useMemo(
-    () => describeArc(CENTER_X, CENTER_Y, RADIUS, START_ANGLE, END_ANGLE),
-    []
+    () => describeArc(CENTER_X, CENTER_Y, RADIUS, START_ANGLE + rotationOffset, END_ANGLE + rotationOffset),
+    [rotationOffset]
   );
 
   const tickAngles = useMemo(() => {
     return Array.from({ length: 25 }, (_, index) => {
       const progress = index / 24;
-      return START_ANGLE + (END_ANGLE - START_ANGLE) * progress;
+      return START_ANGLE + (END_ANGLE - START_ANGLE) * progress + rotationOffset;
     });
-  }, []);
+  }, [rotationOffset]);
 
   const points = useMemo(() => {
     return timelineData.map((item, index) => {
-      const progress = timelineData.length === 1 ? 0.5 : index / (timelineData.length - 1);
-      const angle = START_ANGLE + (END_ANGLE - START_ANGLE) * progress;
+      const angle = baseAngles[index] + rotationOffset;
       const point = polarToCartesian(CENTER_X, CENTER_Y, RADIUS, angle);
-      const timePoint = polarToCartesian(CENTER_X, CENTER_Y, RADIUS - 62, angle);
+      const timePoint = polarToCartesian(CENTER_X, CENTER_Y, RADIUS - 88, angle);
       const iconPoint = polarToCartesian(CENTER_X, CENTER_Y, RADIUS + 10, angle);
 
       return {
@@ -86,7 +97,7 @@ export function SimpleTimeline() {
         iconPoint,
       };
     });
-  }, []);
+  }, [baseAngles, rotationOffset]);
 
   const activeItem = timelineData[activeIndex];
 
@@ -116,7 +127,7 @@ export function SimpleTimeline() {
           maxWidth: "1120px",
           margin: "0 auto",
           position: "relative",
-          padding: "0 0 11rem",
+          padding: "0 0 14.5rem",
         }}
       >
         <svg
@@ -142,7 +153,7 @@ export function SimpleTimeline() {
             const inner = polarToCartesian(
               CENTER_X,
               CENTER_Y,
-              index % 6 === 0 ? RADIUS - 18 : RADIUS - 8,
+              index % 6 === 0 ? RADIUS - 24 : RADIUS - 10,
               angle
             );
 
@@ -181,14 +192,14 @@ export function SimpleTimeline() {
                   fill={isActive ? "#6b5cd6" : "#9ca3af"}
                   fontSize={isActive ? "24" : "18"}
                   fontWeight={isActive ? "600" : "500"}
-                  transform={`rotate(${((item.angle - Math.PI / 2) * 180) / Math.PI} ${item.timePoint.x} ${item.timePoint.y - 14})`}
+                  style={{ transition: "all 0.35s ease" }}
                 >
                   {item.time}
                 </text>
 
                 <g
                   onClick={() => setActiveIndex(index)}
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer", transition: "all 0.35s ease" }}
                 >
                   <circle
                     cx={item.iconPoint.x}
@@ -217,7 +228,7 @@ export function SimpleTimeline() {
           style={{
             position: "absolute",
             left: "50%",
-            bottom: "1.2rem",
+            bottom: "-1.6rem",
             transform: "translateX(-50%)",
             width: "min(520px, 88%)",
             textAlign: "center",
@@ -228,7 +239,8 @@ export function SimpleTimeline() {
               color: "#6b5cd6",
               fontSize: "1.05rem",
               fontWeight: "600",
-              marginBottom: "0.65rem",
+              marginTop: "2.6rem",
+              marginBottom: "0.75rem",
             }}
           >
             {activeItem.title}
