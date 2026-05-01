@@ -19,9 +19,9 @@
     justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0.7rem 1.6rem;
+    padding: 0.5rem 1.3rem;
     list-style: none;
-    gap: 1.25rem;
+    gap: 0.9rem;
 }
 
 .navbar-grid li {
@@ -31,7 +31,7 @@
 }
 
 .navbar-logo {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 500;
     font-family: 'Playfair Display', serif;
     color: rgb(137, 130, 184);
@@ -64,7 +64,7 @@
 }
 .navbar-links {
     display: flex;
-    gap: 1rem;
+    gap: 0.8rem;
     align-items: center;
 }
 
@@ -72,8 +72,8 @@
     background: none;
     color: rgb(137, 130, 184);
     border: none;
-    padding: 0.2rem 0.35rem;
-    font-size: 1rem;
+    padding: 0.15rem 0.25rem;
+    font-size: 0.95rem;
     font-weight: 500;
     cursor: pointer;
     transition: color 0.2s ease, transform 0.2s ease;
@@ -88,9 +88,9 @@
     background: #fff;
     color:rgb(137, 130, 184);
     border: none;
-    border-radius: 18px;
-    padding: 0.55rem 1.5rem;
-    font-size: 1rem;
+    border-radius: 16px;
+    padding: 0.45rem 1.2rem;
+    font-size: 0.95rem;
     font-weight: 500;
     text-decoration: none;
     box-shadow: 0 4px 16px #b3c6ff33;
@@ -185,8 +185,8 @@
         display: none !important;
     }
     .navbar-grid {
-        padding: 0.65rem 1rem;
-        min-height: 64px;
+        padding: 0.45rem 0.9rem;
+        min-height: 58px;
     }
     .hamburger {
         display: flex;
@@ -194,7 +194,7 @@
         height: 36px;
     }
     .navbar-logo {
-        font-size: 1.45rem;
+        font-size: 1.3rem;
         margin-right: 0;
         line-height: 1;
     }
@@ -206,7 +206,7 @@
         display: flex;
     }
     .navbar{
-        height:64px!important;
+        height:58px!important;
         border-radius: 0 0 18px 18px;
     }
     .hamburger .bar {

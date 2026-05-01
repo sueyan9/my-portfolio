@@ -26,7 +26,7 @@ export default function Navbar({
         [0, 100],
         ["rgba(255,255,255,0)", "rgba(255,255,255,0.8)"] // 你可以自定义颜色
     );
-    const height = useTransform(scrollY, [0, 100], [82, 40]);
+    const height = useTransform(scrollY, [0, 100], [72, 38]);
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 700);
@@ -50,7 +50,7 @@ export default function Navbar({
             className="navbar"
             style={{
                 background: isMobile ? "rgba(255,255,255,0.96)" : background,
-                height: isMobile ? 64 : height,
+                height: isMobile ? 58 : height,
                 backdropFilter: "blur(8px)",   // 模糊玻璃感
                 WebkitBackdropFilter: "blur(8px)", // Safari 兼容
                 boxShadow: "0 2px 16px rgba(0,0,0,0.06)"
