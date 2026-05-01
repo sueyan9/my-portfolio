@@ -14,12 +14,20 @@ export default function ProjectCard({ image, video, title, desc, link }) {
                         loop
                         playsInline
                     />
-                ) : (
+                ) : image ? (
                     <img
                         src={image}
                         alt={title}
                         className="modern-card__img"
                     />
+                ) : (
+                    <div className="modern-card__placeholder">
+                        <span className="modern-card__placeholder-badge">New Project</span>
+                        <h6 className="modern-card__placeholder-title">{title}</h6>
+                        <p className="modern-card__placeholder-text">
+                            Clinic workflows, patient records, and appointment coordination in one place.
+                        </p>
+                    </div>
                 )}
             </div>
             <div className="modern-card__content">
