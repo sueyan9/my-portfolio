@@ -167,11 +167,19 @@
     .desktop-nav {
         display: none !important;
     }
+    .navbar-grid {
+        padding: 0.65rem 1rem;
+        min-height: 64px;
+    }
     .hamburger {
         display: flex;
+        width: 36px;
+        height: 36px;
     }
     .navbar-logo {
-        font-size: 1.8rem; /* 缩小 logo 字体 */
+        font-size: 1.45rem;
+        margin-right: 0;
+        line-height: 1;
     }
     .nav-btn-link {
         font-size: 1rem;
@@ -181,6 +189,12 @@
         display: flex;
     }
     .navbar{
-        height:70px!important;
+        height:64px!important;
+        border-radius: 0 0 18px 18px;
+    }
+    .hamburger .bar {
+        width: 24px;
+        height: 3px;
+        margin: 2px 0;
     }
 }

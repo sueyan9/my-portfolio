@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     motion ,
     useScroll,
@@ -15,6 +15,9 @@ export default function Navbar({
                                    onChatClick
                                }) {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [isMobile, setIsMobile] = useState(() =>
+        typeof window !== "undefined" ? window.innerWidth <= 700 : false
+    );
 
     // framer-motion hooks
     const { scrollY } = useScroll();
@@ -24,6 +27,12 @@ export default function Navbar({
         ["rgba(255,255,255,0)", "rgba(255,255,255,0.8)"] // 你可以自定义颜色
     );
     const height = useTransform(scrollY, [0, 100], [100, 40]);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 700);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     // 关闭菜单后再跳转
     const handleNavClick = (fn) => {
@@ -40,8 +49,8 @@ export default function Navbar({
         <motion.nav
             className="navbar"
             style={{
-                background,
-                height,
+                background: isMobile ? "rgba(255,255,255,0.96)" : background,
+                height: isMobile ? 64 : height,
                 backdropFilter: "blur(8px)",   // 模糊玻璃感
                 WebkitBackdropFilter: "blur(8px)", // Safari 兼容
                 boxShadow: "0 2px 16px rgba(0,0,0,0.06)"
