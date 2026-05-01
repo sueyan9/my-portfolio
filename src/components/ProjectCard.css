@@ -31,9 +31,16 @@
     width: 100%;
     height: 100%;
     min-height: 364px;
-    object-fit: contain;
     border-radius: 20px;
     background: #f0f0f0;
+}
+
+.modern-card__img--contain {
+    object-fit: contain;
+}
+
+.modern-card__img--cover {
+    object-fit: cover;
 }
 
 .modern-card__placeholder {

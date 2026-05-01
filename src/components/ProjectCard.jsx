@@ -1,7 +1,7 @@
 import React from "react";
 import "./ProjectCard.css";
 
-export default function ProjectCard({ image, video, title, desc, link }) {
+export default function ProjectCard({ image, video, title, desc, link, imageFit = "contain" }) {
     return (
         <div className="modern-card">
             <div className="modern-card__media">
@@ -18,7 +18,7 @@ export default function ProjectCard({ image, video, title, desc, link }) {
                     <img
                         src={image}
                         alt={title}
-                        className="modern-card__img"
+                        className={`modern-card__img modern-card__img--${imageFit}`}
                     />
                 ) : (
                     <div className="modern-card__placeholder">

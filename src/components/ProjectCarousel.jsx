@@ -15,11 +15,14 @@ const projects = [
         title: "Rongokit Clinic Management System",
         desc: `Overview:
 
-Rongokit Clinic Management System is a clinic operations platform designed to simplify everyday healthcare workflows. It brings patient information, appointment coordination, and internal clinic management into one streamlined system for staff and practitioners.
+Rongokit Clinic Management System is a clinic operations platform designed to simplify everyday healthcare workflows. It centralizes patient information, appointment coordination, invoicing, and payment tracking in one streamlined system, helping clinics reduce repetitive manual work and improve day-to-day efficiency.
 
 Key Features:
-• Patient profile and record management
+• Automated data collection and centralized patient record management
+• Reduced manual administrative work through streamlined clinic workflows
 • Appointment scheduling and visit coordination
+• One-click invoice submission and payment submission
+• Invoice and payment status tracking for better financial visibility
 • Clinic dashboard for staff workflow visibility
 • Treatment and consultation tracking
 • Responsive interface for smoother day-to-day operations
@@ -27,6 +30,7 @@ Key Features:
 Tech Stack:
 Full-stack web application`,
         image: project7,
+        imageFit: "cover",
     },
     {
         title: "3D Dental Chart",
@@ -154,6 +158,7 @@ export default function ProjectCarousel() {
                         title={proj.title}
                         desc={proj.desc}
                         link={proj.link}
+                        imageFit={proj.imageFit}
                     />
                 ))}
             </div>
