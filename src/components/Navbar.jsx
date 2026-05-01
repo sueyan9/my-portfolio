@@ -26,7 +26,7 @@ export default function Navbar({
         [0, 100],
         ["rgba(255,255,255,0)", "rgba(255,255,255,0.8)"] // 你可以自定义颜色
     );
-    const height = useTransform(scrollY, [0, 100], [100, 40]);
+    const height = useTransform(scrollY, [0, 100], [82, 40]);
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 700);
@@ -59,10 +59,10 @@ export default function Navbar({
             <div className="navbar-grid">
                 <span className="navbar-logo" onClick={() => {console.log('logo clicked'); handleNavClick(onLogoClick)}}>Sue Yan</span>
                 <div className="navbar-links desktop-nav">
-                    <button className="nav-btn-link" onClick={() => handleNavClick(onAboutClick)}>About</button>
-                    <button className="nav-btn-link" onClick={() => handleNavClick(onProjectClick)}>Projects</button>
-                    <button className="nav-btn-link" onClick={() => handleNavClick(onTechClick)}>Tech Stack</button>
-                    <button className="nav-btn-link" onClick={() => handleNavClick(onBlogClick)}>Blog</button>
+                    <button className="nav-text-link" onClick={() => handleNavClick(onAboutClick)}>About</button>
+                    <button className="nav-text-link" onClick={() => handleNavClick(onProjectClick)}>Projects</button>
+                    <button className="nav-text-link" onClick={() => handleNavClick(onTechClick)}>Tech Stack</button>
+                    <button className="nav-text-link" onClick={() => handleNavClick(onBlogClick)}>Blog</button>
                     <button className="nav-btn-link chat-btn" onClick={() => handleNavClick(onChatClick)}>Let’s Chat! 👋</button>
                 </div>
                 {/* 汉堡按钮 */}
