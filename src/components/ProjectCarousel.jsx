@@ -7,6 +7,7 @@ import project3 from "../assets/priceHound.jpg";
 import project4 from "../assets/project3DProject.png";
 import project5 from "../assets/project5.png";
 import project6 from "../assets/project6.png";
+import project7 from "../assets/project7.png";
 
 
 const projects = [
@@ -25,6 +26,7 @@ Key Features:
 
 Tech Stack:
 Full-stack web application`,
+        image: project7,
     },
     {
         title: "3D Dental Chart",
