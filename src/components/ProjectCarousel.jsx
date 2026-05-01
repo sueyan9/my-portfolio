@@ -67,7 +67,6 @@ React · React Three Fiber · Three.js · JavaScript · HTML/CSS`,
             "Tech Stack:\n" +
             "React Native · Node.js · Express · MongoDB · Three.js · Firebase · Expo\n",
         video: project2,
-        link: "https://github.com/sueyan9/ToothMate_App_2025",
     },
     {
         title: "Price Hound",

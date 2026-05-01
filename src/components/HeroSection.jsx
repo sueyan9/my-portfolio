@@ -150,8 +150,8 @@ function createTextParticles(width, height) {
     ? Math.max(42, Math.min(84, width * 0.08))
     : Math.max(68, Math.min(136, width * 0.082));
   let bodySize = isCompact
-    ? Math.max(28, Math.min(46, width * 0.046))
-    : Math.max(42, Math.min(66, width * 0.044));
+    ? Math.max(32, Math.min(52, width * 0.052))
+    : Math.max(48, Math.min(74, width * 0.05));
 
   const fitText = (drawContext, fontWeight, fontFamily, initialSize, content, maxWidth) => {
     let size = initialSize;
@@ -218,7 +218,7 @@ function createTextParticles(width, height) {
     fill: "#4b3729",
     color: "rgba(75, 55, 41, 0.98)",
     gap: SUBTITLE_TEXT_GAP,
-    size: 2.9,
+    size: 3.2,
     driftScale: 0.6,
   });
 
