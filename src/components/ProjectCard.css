@@ -111,6 +111,15 @@
     white-space: pre-line;
     max-height: 240px;   /* 可根据需要调整 */
     overflow: auto;
+    padding: 1rem 1.1rem;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0);
+    transition: background-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.modern-card__desc--scrolled {
+    background: #f3f4f6;
+    box-shadow: inset 0 0 0 1px rgba(209, 213, 219, 0.65);
 }
 
 .modern-card__btn {
