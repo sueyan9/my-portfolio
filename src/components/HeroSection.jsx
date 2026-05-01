@@ -127,12 +127,17 @@ function createDogParticles(width, height, image) {
 }
 
 function createTextParticles(width, height) {
-  const offscreen = document.createElement("canvas");
-  offscreen.width = width;
-  offscreen.height = height;
+  const makeContext = () => {
+    const layer = document.createElement("canvas");
+    layer.width = width;
+    layer.height = height;
+    return layer.getContext("2d", { willReadFrequently: true });
+  };
 
-  const context = offscreen.getContext("2d", { willReadFrequently: true });
-  if (!context) {
+  const titleContext = makeContext();
+  const subtitleContext = makeContext();
+
+  if (!titleContext || !subtitleContext) {
     return [];
   }
 
@@ -145,74 +150,77 @@ function createTextParticles(width, height) {
     ? Math.max(42, Math.min(84, width * 0.08))
     : Math.max(68, Math.min(136, width * 0.082));
   let bodySize = isCompact
-    ? Math.max(18, Math.min(34, width * 0.034))
-    : Math.max(28, Math.min(48, width * 0.032));
+    ? Math.max(28, Math.min(46, width * 0.046))
+    : Math.max(42, Math.min(66, width * 0.044));
 
-  const fitText = (fontWeight, fontFamily, initialSize, content, maxWidth) => {
+  const fitText = (drawContext, fontWeight, fontFamily, initialSize, content, maxWidth) => {
     let size = initialSize;
-    context.font = `${fontWeight} ${size}px ${fontFamily}`;
-    while (context.measureText(content).width > maxWidth && size > 18) {
+    drawContext.font = `${fontWeight} ${size}px ${fontFamily}`;
+    while (drawContext.measureText(content).width > maxWidth && size > 18) {
       size -= 2;
-      context.font = `${fontWeight} ${size}px ${fontFamily}`;
+      drawContext.font = `${fontWeight} ${size}px ${fontFamily}`;
     }
     return size;
   };
 
-  titleSize = fitText('700', '"Georgia", "Times New Roman", serif', titleSize, title, textWidth);
-  bodySize = fitText('500', '"Helvetica Neue", Arial, sans-serif', bodySize, subtitle, textWidth);
+  titleSize = fitText(titleContext, '700', '"Georgia", "Times New Roman", serif', titleSize, title, textWidth);
+  bodySize = fitText(subtitleContext, '700', '"Helvetica Neue", Arial, sans-serif', bodySize, subtitle, textWidth);
 
   const titleY = isCompact ? height * 0.62 : height * 0.43;
-  const bodyY = titleY + titleSize * 1.08;
-
-  context.clearRect(0, 0, width, height);
-  context.textAlign = "left";
-  context.textBaseline = "middle";
-
-  context.font = `700 ${titleSize}px "Georgia", "Times New Roman", serif`;
-  context.fillStyle = "#231711";
-  context.fillText(title, textX, titleY);
-
-  context.font = `500 ${bodySize}px "Helvetica Neue", Arial, sans-serif`;
-  context.fillStyle = "#5c4636";
-  context.fillText(subtitle, textX, bodyY);
-
-  const { data } = context.getImageData(0, 0, width, height);
+  const bodyY = titleY + titleSize * 1.16;
   const particles = [];
 
-  for (let y = 0; y < height; y += 1) {
-    for (let x = 0; x < width; x += 1) {
-      const index = (y * width + x) * 4;
-      const alpha = data[index + 3];
-      if (alpha < 80) {
-        continue;
+  const sampleTextLayer = (drawContext, text, y, options) => {
+    drawContext.clearRect(0, 0, width, height);
+    drawContext.textAlign = "left";
+    drawContext.textBaseline = "middle";
+    drawContext.font = options.font;
+    drawContext.fillStyle = options.fill;
+    drawContext.fillText(text, textX, y);
+
+    const { data } = drawContext.getImageData(0, 0, width, height);
+
+    for (let py = 0; py < height; py += options.gap) {
+      for (let px = 0; px < width; px += options.gap) {
+        const index = (py * width + px) * 4;
+        const alpha = data[index + 3];
+        if (alpha < 80) {
+          continue;
+        }
+
+        particles.push({
+          kind: "text",
+          x: px,
+          y: py,
+          baseX: px,
+          baseY: py,
+          vx: 0,
+          vy: 0,
+          color: options.color,
+          size: options.size,
+          drift: Math.random() * Math.PI * 2 * options.driftScale,
+        });
       }
-
-      const red = data[index];
-      const green = data[index + 1];
-      const blue = data[index + 2];
-      const brightness = (red + green + blue) / 3;
-
-      const gap = brightness < 80 ? TITLE_TEXT_GAP : SUBTITLE_TEXT_GAP;
-      if (x % gap !== 0 || y % gap !== 0) {
-        continue;
-      }
-
-      particles.push({
-        kind: "text",
-        x,
-        y,
-        baseX: x,
-        baseY: y,
-        vx: 0,
-        vy: 0,
-        color: brightness < 80
-          ? "rgba(42, 28, 20, 0.98)"
-          : `rgba(${red}, ${green}, ${blue}, 0.92)`,
-        size: brightness < 80 ? 2.45 : 2.2,
-        drift: Math.random() * Math.PI * 2,
-      });
     }
-  }
+  };
+
+  sampleTextLayer(titleContext, title, titleY, {
+    font: `700 ${titleSize}px "Georgia", "Times New Roman", serif`,
+    fill: "#231711",
+    color: "rgba(42, 28, 20, 0.98)",
+    gap: TITLE_TEXT_GAP,
+    size: 2.45,
+    driftScale: 1,
+  });
+
+  sampleTextLayer(subtitleContext, subtitle, bodyY, {
+    font: `700 ${bodySize}px "Helvetica Neue", Arial, sans-serif`,
+    fill: "#4b3729",
+    color: "rgba(75, 55, 41, 0.98)",
+    gap: SUBTITLE_TEXT_GAP,
+    size: 2.9,
+    driftScale: 0.6,
+  });
 
   return particles;
 }
