@@ -34,14 +34,14 @@ const timelineData = [
 ];
 
 const ARC_WIDTH = 1080;
-const ARC_HEIGHT = 360;
+const ARC_HEIGHT = 320;
 const CENTER_X = ARC_WIDTH / 2;
-const CENTER_Y = 620;
-const RADIUS = 560;
-const START_ANGLE = (214 * Math.PI) / 180;
-const END_ANGLE = (326 * Math.PI) / 180;
+const CENTER_Y = 1260;
+const RADIUS = 1220;
+const START_ANGLE = (228 * Math.PI) / 180;
+const END_ANGLE = (312 * Math.PI) / 180;
 const ACTIVE_ANGLE = (270 * Math.PI) / 180;
-const EDGE_PADDING_SLOTS = 2;
+const EDGE_PADDING_SLOTS = 4;
 
 function polarToCartesian(cx, cy, radius, angle) {
   return {
@@ -86,7 +86,7 @@ export function SimpleTimeline() {
     return timelineData.map((item, index) => {
       const angle = baseAngles[index] + rotationOffset;
       const point = polarToCartesian(CENTER_X, CENTER_Y, RADIUS, angle);
-      const timePoint = polarToCartesian(CENTER_X, CENTER_Y, RADIUS - 88, angle);
+      const timePoint = polarToCartesian(CENTER_X, CENTER_Y, RADIUS - 130, angle);
       const iconPoint = polarToCartesian(CENTER_X, CENTER_Y, RADIUS + 10, angle);
 
       return {
@@ -124,10 +124,11 @@ export function SimpleTimeline() {
       <div
         style={{
           width: "100%",
-          maxWidth: "1120px",
+          maxWidth: "1320px",
           margin: "0 auto",
           position: "relative",
-          padding: "0 0 14.5rem",
+          padding: "2.5rem 0 11rem",
+          overflow: "hidden",
         }}
       >
         <svg
@@ -153,7 +154,7 @@ export function SimpleTimeline() {
             const inner = polarToCartesian(
               CENTER_X,
               CENTER_Y,
-              index % 6 === 0 ? RADIUS - 24 : RADIUS - 10,
+              index % 6 === 0 ? RADIUS - 20 : RADIUS - 10,
               angle
             );
 
@@ -181,13 +182,13 @@ export function SimpleTimeline() {
                   x2={item.timePoint.x}
                   y2={item.timePoint.y}
                   stroke={isActive ? "#6b5cd6" : "#d1d5db"}
-                  strokeWidth={isActive ? "4" : "2.5"}
+                  strokeWidth={isActive ? "3.5" : "2"}
                   strokeLinecap="round"
                 />
 
                 <text
                   x={item.timePoint.x}
-                  y={item.timePoint.y - 14}
+                  y={item.timePoint.y + 14}
                   textAnchor="middle"
                   fill={isActive ? "#6b5cd6" : "#9ca3af"}
                   fontSize={isActive ? "24" : "18"}
