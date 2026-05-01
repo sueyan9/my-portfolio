@@ -25,7 +25,7 @@ export default function AvatarCard({ onExploreClick }) {
                 <div className="bottom">
                     <div className="social-buttons-container">
                         <button className="social-button social-button1"
-                                onClick={() => window.open("https://www.linkedin.com/in/xu-yan-b74a72274/", "_blank")}>
+                                onClick={() => window.open("https://www.linkedin.com/in/sue-yan-b74a72274/", "_blank")}>
                             <svg
                                 viewBox="0 0 24 20"
                                 xmlns="http://www.w3.org/2000/svg"
