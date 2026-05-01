@@ -7,7 +7,6 @@ const MOUSE_RADIUS = 68;
 const DAMPING = 0.9;
 const SPRING = 0.065;
 const DOG_GAP = 3;
-const TEXT_GAP = 5;
 
 function drawCoverImage(context, image, targetX, targetY, targetWidth, targetHeight) {
   const imageRatio = image.width / image.height;
@@ -122,69 +121,6 @@ function createDogParticles(width, height, image) {
   return particles;
 }
 
-function createTextParticles(width, height) {
-  const offscreen = document.createElement("canvas");
-  offscreen.width = width;
-  offscreen.height = height;
-
-  const context = offscreen.getContext("2d", { willReadFrequently: true });
-  if (!context) {
-    return [];
-  }
-
-  context.clearRect(0, 0, width, height);
-  context.textAlign = "left";
-  context.textBaseline = "middle";
-
-  let fontSize = Math.max(72, Math.min(150, width * 0.105));
-  const textX = width * 0.52;
-  const textY = height * 0.47;
-  const maxTextWidth = width * 0.44;
-
-  context.font = `700 ${fontSize}px "Georgia", "Times New Roman", serif`;
-  while (context.measureText("welcome").width > maxTextWidth && fontSize > 60) {
-    fontSize -= 4;
-    context.font = `700 ${fontSize}px "Georgia", "Times New Roman", serif`;
-  }
-  context.fillStyle = "#19153a";
-  context.fillText("welcome", textX, textY);
-
-  const { data } = context.getImageData(0, 0, width, height);
-  const particles = [];
-
-  for (let y = 0; y < height; y += TEXT_GAP) {
-    for (let x = 0; x < width; x += TEXT_GAP) {
-      const index = (y * width + x) * 4;
-      const alpha = data[index + 3];
-      if (alpha < 120) {
-        continue;
-      }
-
-      const red = data[index];
-      const green = data[index + 1];
-      const blue = data[index + 2];
-      const brightness = (red + green + blue) / 3;
-
-      particles.push({
-        kind: "text",
-        x,
-        y,
-        baseX: x,
-        baseY: y,
-        vx: 0,
-        vy: 0,
-        color: brightness < 90
-          ? "rgba(88, 76, 160, 0.95)"
-          : `rgba(${red}, ${green}, ${blue}, 0.85)`,
-        size: brightness < 90 ? 2.1 : 1.8,
-        drift: Math.random() * Math.PI * 2,
-      });
-    }
-  }
-
-  return particles;
-}
-
 export default function HeroSection() {
   const canvasRef = useRef(null);
   const frameRef = useRef(0);
@@ -222,7 +158,6 @@ export default function HeroSection() {
       if (image.complete) {
         particles = [
           ...createDogParticles(width, height, image),
-          ...createTextParticles(width, height),
         ];
       }
     };
@@ -318,15 +253,50 @@ export default function HeroSection() {
     };
   }, []);
 
-    return (
+  return (
     <section className="hero-section">
-      <div className="hero-art">
-        <div className="hero-canvas-shell">
-          <canvas
-            ref={canvasRef}
-            className="hero-particle-canvas"
-            aria-label="Interactive dog particle portrait"
-          />
+      <div className="hero-grid">
+        <div className="hero-story">
+          <p className="hero-kicker">Interactive Portfolio</p>
+          <h1 className="hero-title">
+            Hi, I&apos;m <span>Sue Yan</span>
+          </h1>
+          <p className="hero-lead">
+            I turn systems into smooth experiences.
+          </p>
+          <p className="hero-body">
+            The dog is more than cute. It stands for curiosity, playfulness, and companion energy:
+            the part of product work that keeps exploring until something complex feels natural.
+          </p>
+          <div className="hero-pillars" aria-label="Dog meaning">
+            <span>Curiosity</span>
+            <span>Playfulness</span>
+            <span>Companion</span>
+          </div>
+          <div className="hero-note">
+            <span className="hero-note__label">Hover cue</span>
+            <p>treat or trip.</p>
+          </div>
+        </div>
+
+        <div className="hero-art">
+          <div className="hero-art-card">
+            <div className="hero-art-head">
+              <span className="hero-art-tag">Dog Particle Signal</span>
+              <span className="hero-art-meta">treat or trip</span>
+            </div>
+            <div className="hero-canvas-shell">
+              <canvas
+                ref={canvasRef}
+                className="hero-particle-canvas"
+                aria-label="Interactive dog particle portrait"
+              />
+            </div>
+            <div className="hero-art-footer">
+              <p>Curiosity in motion.</p>
+              <p>Move the cursor and the companion reacts.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

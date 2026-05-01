@@ -4,6 +4,7 @@ import Blog from './components/Blog';
 import MarkdownBlog from "./components/MarkdownBlog";
 import Home from './Home';
 import Navbar from './components/Navbar';
+import MatrixCursor from './components/MatrixCursor';
 
 function AppContent() {
     const aboutRef = useRef(null);
@@ -34,6 +35,7 @@ function AppContent() {
     };
     return (
         <>
+            <MatrixCursor />
             <Navbar
                 onLogoClick={handleLogoClick}
                 onAboutClick={scrollToAbout}
