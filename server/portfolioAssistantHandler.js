@@ -1,6 +1,7 @@
 import {
   buildPortfolioResumeSummary,
   buildStructuredPortfolioData,
+  findBestLocalReply,
   getCardsForTopic,
   getFollowUpsForTopic,
   portfolioAssistantFallback,
@@ -64,7 +65,7 @@ function isRateLimited(ip, now = Date.now()) {
 
 function getTotalTokenLimit(env) {
   const rawValue = Number(getEnvValue(env, "AI_TOTAL_TOKEN_LIMIT"));
-  return Number.isFinite(rawValue) && rawValue > 0 ? rawValue : 500000;
+  return Number.isFinite(rawValue) && rawValue > 0 ? rawValue : 50000;
 }
 
 function resolveProviderConfig(env) {
@@ -72,13 +73,17 @@ function resolveProviderConfig(env) {
   const openAiKey = getEnvValue(env, "OPENAI_API_KEY");
   const deepSeekKey = getEnvValue(env, "DEEPSEEK_API_KEY");
   const genericKey = getEnvValue(env, "LLM_API_KEY");
+  const genericModel =
+    getEnvValue(env, "AI_MODEL") || getEnvValue(env, "LLM_MODEL");
+  const genericBaseUrl =
+    getEnvValue(env, "AI_BASE_URL") || getEnvValue(env, "LLM_BASE_URL");
 
   if (explicitProvider === "openai" || (!explicitProvider && openAiKey)) {
     return {
       provider: "openai",
       apiKey: genericKey || openAiKey,
-      model: getEnvValue(env, "OPENAI_MODEL") || getEnvValue(env, "LLM_MODEL") || "gpt-4o-mini",
-      baseUrl: getEnvValue(env, "OPENAI_BASE_URL") || getEnvValue(env, "LLM_BASE_URL") || "https://api.openai.com/v1",
+      model: getEnvValue(env, "OPENAI_MODEL") || genericModel || "gpt-4o-mini",
+      baseUrl: getEnvValue(env, "OPENAI_BASE_URL") || genericBaseUrl || "https://api.openai.com/v1",
     };
   }
 
@@ -86,8 +91,8 @@ function resolveProviderConfig(env) {
     return {
       provider: "deepseek",
       apiKey: genericKey || deepSeekKey,
-      model: getEnvValue(env, "DEEPSEEK_MODEL") || getEnvValue(env, "LLM_MODEL") || "deepseek-chat",
-      baseUrl: getEnvValue(env, "DEEPSEEK_BASE_URL") || getEnvValue(env, "LLM_BASE_URL") || "https://api.deepseek.com/v1",
+      model: getEnvValue(env, "DEEPSEEK_MODEL") || genericModel || "deepseek-chat",
+      baseUrl: getEnvValue(env, "DEEPSEEK_BASE_URL") || genericBaseUrl || "https://api.deepseek.com/v1",
     };
   }
 
@@ -187,7 +192,7 @@ async function generateAssistantReply({ question, history, env, fetchImpl }) {
     body: JSON.stringify({
       model: providerConfig.model,
       temperature: 0.3,
-      max_tokens: 300,
+      max_tokens: 200,
       messages: [
         { role: "system", content: portfolioAssistantSystemPrompt },
         {
@@ -262,14 +267,15 @@ export async function handlePortfolioAssistantRequest(request, { env = process.e
   }
 
   if (totalCompletionTokens >= getTotalTokenLimit(env)) {
+    const localReply = question ? findBestLocalReply(question) : portfolioAssistantFallback;
+
     return jsonResponse(
       {
-        ...portfolioAssistantFallback,
-        answer: "AI assistant is currently offline.",
-        cta: "The portfolio links below still cover Sue's projects, skills, and contact options.",
-        provider: "quota-reached",
+        ...localReply,
+        cta: `${localReply.cta} AI usage is currently capped, so this answer is coming from Sue's local portfolio knowledge base.`,
+        provider: "quota-fallback",
       },
-      503
+      200
     );
   }
 

@@ -40,7 +40,7 @@ Optional advanced overrides:
 - `LLM_MODEL`
 - `LLM_BASE_URL`
 - `AI_ENABLED=true|false`
-- `AI_TOTAL_TOKEN_LIMIT=500000`
+- `AI_TOTAL_TOKEN_LIMIT=50000`
 
 If no API key is configured, the UI falls back to the local portfolio knowledge base instead of breaking.
 
@@ -48,11 +48,11 @@ If no API key is configured, the UI falls back to the local portfolio knowledge 
 
 The assistant now includes several simple protections:
 
-- `max_tokens` is capped at `300` per LLM response
+- `max_tokens` is capped at `200` per LLM response
 - Frontend questions longer than `200` characters are blocked
 - A simple in-memory rate limit allows one request per IP every `5` seconds
 - `AI_ENABLED=false` can manually disable AI responses at any time
-- `AI_TOTAL_TOKEN_LIMIT` stops responses after the in-memory token counter reaches the configured limit
+- `AI_TOTAL_TOKEN_LIMIT` automatically switches responses back to the local portfolio FAQ after the in-memory token counter reaches the configured limit
 
 Important note:
 
