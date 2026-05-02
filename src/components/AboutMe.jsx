@@ -62,7 +62,7 @@ export default function AboutMe({ onExploreClick }) {
     
     const texts = [
         "Welcome To My Page !",
-        "A software engineering student who loves building fun and useful things. Passionate about creating applications that make people's lives easier and more enjoyable.",
+        "A software engineer who loves building fun and useful things. Passionate about creating applications that make people's lives easier and more enjoyable.",
         "🌏 Based in New Zealand"
     ];
 
