@@ -95,6 +95,9 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
             <div>
               <p className="portfolio-assistant-panel__eyebrow">Portfolio Assistant</p>
               <h3>Sue's AI Guide</h3>
+              <p className="portfolio-assistant-panel__boundary">
+                I answer based only on Sue&apos;s portfolio and project information.
+              </p>
             </div>
             <button
               type="button"

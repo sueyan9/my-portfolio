@@ -98,6 +98,14 @@
   font-size: 1.3rem;
 }
 
+.portfolio-assistant-panel__boundary {
+  margin: 0.55rem 0 0;
+  max-width: 290px;
+  color: rgba(255, 237, 227, 0.78);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
 .portfolio-assistant-panel__eyebrow {
   margin: 0;
   color: #f8c38f;
