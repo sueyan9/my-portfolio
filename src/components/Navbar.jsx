@@ -65,7 +65,7 @@ export default function Navbar({
                     <button className="nav-text-link" onClick={() => handleNavClick(onBlogClick)}>Blog</button>
                 </div>
                 <div className="navbar-cta desktop-nav">
-                    <button className="nav-btn-link chat-btn" onClick={() => handleNavClick(onChatClick)}>Let’s Chat! 👋</button>
+                    <button className="nav-btn-link chat-btn" onClick={() => handleNavClick(onChatClick)}>Ask My AI</button>
                 </div>
                 {/* 汉堡按钮 */}
                 <button
@@ -86,7 +86,7 @@ export default function Navbar({
                 <button className="nav-btn-link" onClick={() => handleNavClick(onTechClick)}>Tech Stack</button>
                 <button className="nav-btn-link" onClick={() => handleNavClick(onBlogClick)}>Blog</button>
                 <button className="nav-btn-link chat-btn" onClick={() => handleNavClick(onChatClick)}>
-                    Let’s Chat! 👋
+                    Ask My AI
                 </button>
             </div>
             {/* 遮罩层 */}
