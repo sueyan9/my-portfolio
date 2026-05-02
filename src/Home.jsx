@@ -272,7 +272,11 @@ export default function Home({ aboutRef, projectsRef, techRef , mainContentRef }
                 {/* 顶部 About Me */}
                 <section className="section-block" ref={aboutRef}>
                     <div className="container">
-                        <AboutMe />
+                        <AboutMe
+                            onExploreClick={() =>
+                                projectsRef.current?.scrollIntoView({ behavior: "smooth" })
+                            }
+                        />
                     </div>
                 </section>
 
@@ -294,4 +298,3 @@ export default function Home({ aboutRef, projectsRef, techRef , mainContentRef }
         </div>
     );
 }
-
