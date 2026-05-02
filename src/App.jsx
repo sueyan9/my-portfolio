@@ -1,15 +1,17 @@
-import React, { useRef }  from 'react';
+import React, { useRef, useState }  from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation} from 'react-router-dom';
 import Blog from './components/Blog';
 import MarkdownBlog from "./components/MarkdownBlog";
 import Home from './Home';
 import Navbar from './components/Navbar';
 import MatrixCursor from './components/MatrixCursor';
+import PortfolioAssistant from './components/PortfolioAssistant';
 
 function AppContent() {
     const aboutRef = useRef(null);
     const projectsRef = useRef(null);
     const techRef = useRef(null);
+    const [assistantOpen, setAssistantOpen] = useState(false);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -28,11 +30,7 @@ function AppContent() {
     const scrollToAbout = () => aboutRef.current?.scrollIntoView({ behavior: "smooth" });
     const scrollToProjects = () => projectsRef.current?.scrollIntoView({ behavior: "smooth" });
     const scrollToTech = () => techRef.current?.scrollIntoView({ behavior: "smooth" });
-    const openCrispChat = () => {
-        if (window.$crisp) {
-            window.$crisp.push(["do", "chat:open"]);
-        }
-    };
+    const openPortfolioAssistant = () => setAssistantOpen(true);
     return (
         <>
             <MatrixCursor />
@@ -42,7 +40,7 @@ function AppContent() {
                 onProjectClick={scrollToProjects}
                 onTechClick={scrollToTech}
                 onBlogClick={() => navigate('/blog')}
-                onChatClick={openCrispChat}
+                onChatClick={openPortfolioAssistant}
             />
             <Routes location={location} key={location.pathname}>
                 <Route path="/" element={
@@ -56,6 +54,10 @@ function AppContent() {
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:slug" element={<MarkdownBlog />} />
             </Routes>
+            <PortfolioAssistant
+                isOpen={assistantOpen}
+                onToggle={() => setAssistantOpen((open) => !open)}
+            />
         </>
     );
 }
