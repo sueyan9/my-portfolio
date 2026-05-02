@@ -189,6 +189,24 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
             ) : null}
           </div>
 
+          <form className="portfolio-assistant-panel__composer" onSubmit={handleSubmit}>
+            <label className="portfolio-assistant-panel__composer-label" htmlFor="portfolio-assistant-input">
+              Ask your own question
+            </label>
+            <input
+              id="portfolio-assistant-input"
+              type="text"
+              value={draft}
+              onChange={(event) => setDraft(event.target.value)}
+              placeholder="Ask about projects, backend skills, or contact info"
+              aria-label="Ask Sue's assistant a question"
+              disabled={isLoading}
+            />
+            <button type="submit" disabled={isLoading}>
+              {isLoading ? "..." : "Send"}
+            </button>
+          </form>
+
           <div className="portfolio-assistant-panel__prompts">
             {suggestedQuestions.map((prompt) => (
               <button
@@ -202,20 +220,6 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
               </button>
             ))}
           </div>
-
-          <form className="portfolio-assistant-panel__composer" onSubmit={handleSubmit}>
-            <input
-              type="text"
-              value={draft}
-              onChange={(event) => setDraft(event.target.value)}
-              placeholder="Ask about projects, backend skills, or contact info"
-              aria-label="Ask Sue's assistant a question"
-              disabled={isLoading}
-            />
-            <button type="submit" disabled={isLoading}>
-              {isLoading ? "..." : "Send"}
-            </button>
-          </form>
         </div>
       </aside>
     </>
