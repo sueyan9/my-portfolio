@@ -1,40 +1,15 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import "./PortfolioAssistant.css";
 import {
-  portfolioAssistantFallback,
-  portfolioAssistantKnowledge,
+  findBestLocalReply,
   portfolioAssistantPrompts,
+  portfolioAssistantWelcome,
 } from "./portfolioAssistantData";
-
-function findBestReply(input) {
-  const normalized = input.trim().toLowerCase();
-
-  if (!normalized) {
-    return portfolioAssistantFallback;
-  }
-
-  const directMatch = portfolioAssistantKnowledge.find((item) =>
-    item.matchers.some((matcher) => normalized.includes(matcher))
-  );
-
-  return directMatch || portfolioAssistantFallback;
-}
 
 export default function PortfolioAssistant({ isOpen, onToggle }) {
   const [draft, setDraft] = useState("");
-  const [messages, setMessages] = useState(() => [
-    {
-      role: "assistant",
-      question: "Welcome",
-      answer:
-        "Hi, I'm Sue's portfolio assistant. I can answer questions about her projects, skills, experience, and contact options.",
-      cta: "Pick a question below or type your own HR-style question.",
-      cards: [
-        { title: "Projects", label: "Browse projects", href: "#projects" },
-        { title: "LinkedIn", label: "Open profile", href: "https://www.linkedin.com/in/sue-yan-b74a72274/" },
-      ],
-    },
-  ]);
+  const [messages, setMessages] = useState(() => [{ role: "assistant", ...portfolioAssistantWelcome }]);
+  const [isLoading, setIsLoading] = useState(false);
   const bodyRef = useRef(null);
 
   const suggestedQuestions = useMemo(() => portfolioAssistantPrompts, []);
@@ -50,26 +25,63 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
     });
   }, [messages, isOpen]);
 
-  const submitQuestion = (questionText) => {
+  const normalizeAssistantMessage = (reply, userQuestion) => ({
+    role: "assistant",
+    question: reply.question || userQuestion,
+    answer: reply.answer,
+    cta: reply.cta,
+    cards: reply.cards || [],
+    followUps: reply.followUps || [],
+  });
+
+  const submitQuestion = async (questionText) => {
     const userQuestion = questionText.trim();
-    if (!userQuestion) {
+    if (!userQuestion || isLoading) {
       return;
     }
 
-    const reply = findBestReply(userQuestion);
+    const userMessage = { role: "user", text: userQuestion };
+    const nextMessages = [...messages, userMessage];
 
-    setMessages((current) => [
-      ...current,
-      { role: "user", text: userQuestion },
-      {
-        role: "assistant",
-        question: reply.question,
-        answer: reply.answer,
-        cta: reply.cta,
-        cards: reply.cards || [],
-      },
-    ]);
+    setMessages(nextMessages);
     setDraft("");
+    setIsLoading(true);
+
+    try {
+      const response = await fetch("/api/portfolio-assistant", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          question: userQuestion,
+          history: nextMessages,
+        }),
+      });
+      const payload = await response.json();
+
+      if (!response.ok && !payload?.answer) {
+        throw new Error(payload?.error || "Assistant request failed.");
+      }
+
+      const reply = payload?.answer ? payload : findBestLocalReply(userQuestion);
+      setMessages((current) => [...current, normalizeAssistantMessage(reply, userQuestion)]);
+    } catch {
+      const fallbackReply = findBestLocalReply(userQuestion);
+
+      setMessages((current) => [
+        ...current,
+        normalizeAssistantMessage(
+          {
+            ...fallbackReply,
+            cta: `${fallbackReply.cta} The live LLM response is unavailable right now, so this answer used the local portfolio knowledge base.`,
+          },
+          userQuestion
+        ),
+      ]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleSubmit = (event) => {
@@ -87,7 +99,7 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
         aria-controls="portfolio-assistant-panel"
       >
         <span className="portfolio-assistant-fab__icon">AI</span>
-        <span className="portfolio-assistant-fab__label">Ask my assistant</span>
+        <span className="portfolio-assistant-fab__label">Ask My AI</span>
       </button>
 
       <aside
@@ -143,12 +155,33 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
                         ))}
                       </div>
                     ) : null}
+                    {message.followUps?.length ? (
+                      <div className="portfolio-assistant-message__followups">
+                        {message.followUps.map((followUp) => (
+                          <button
+                            key={`${message.question}-${followUp}`}
+                            type="button"
+                            className="portfolio-assistant-followup"
+                            onClick={() => submitQuestion(followUp)}
+                            disabled={isLoading}
+                          >
+                            {followUp}
+                          </button>
+                        ))}
+                      </div>
+                    ) : null}
                   </>
                 ) : (
                   <p>{message.text}</p>
                 )}
               </div>
             ))}
+            {isLoading ? (
+              <div className="portfolio-assistant-message portfolio-assistant-message--assistant portfolio-assistant-message--typing">
+                <span className="portfolio-assistant-message__badge">Assistant</span>
+                <p>Thinking through Sue&apos;s portfolio details...</p>
+              </div>
+            ) : null}
           </div>
 
           <div className="portfolio-assistant-panel__prompts">
@@ -158,6 +191,7 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
                 type="button"
                 className="portfolio-assistant-chip"
                 onClick={() => submitQuestion(prompt)}
+                disabled={isLoading}
               >
                 {prompt}
               </button>
@@ -171,8 +205,11 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
               onChange={(event) => setDraft(event.target.value)}
               placeholder="Ask about projects, backend skills, or contact info"
               aria-label="Ask Sue's assistant a question"
+              disabled={isLoading}
             />
-            <button type="submit">Send</button>
+            <button type="submit" disabled={isLoading}>
+              {isLoading ? "..." : "Send"}
+            </button>
           </form>
         </div>
       </aside>

@@ -1,0 +1,25 @@
+export const skills = {
+  backend: [
+    "Java (Spring Boot, Maven/Gradle)",
+    "C# (ASP.NET Core, NuGet)",
+    "Node.js",
+    "RESTful APIs",
+    "Hibernate/MyBatis",
+    "Entity Framework",
+    "LINQ",
+  ],
+  frontend: [
+    "React",
+    "React Native",
+    "Next.js",
+    "Material UI",
+    "Ant Design",
+    "TypeScript",
+    "Vite",
+  ],
+  databases: ["MySQL", "SQL Server", "PostgreSQL", "MongoDB"],
+  cloudAndInfrastructure: ["AWS (EC2, RDB)", "Azure", "GCP", "Cloudflare"],
+  messagingAndSearch: ["RabbitMQ"],
+  testing: ["Unit testing", "Playwright", "TestCafe", "Cucumber"],
+  methodology: ["SCRUM", "Kanban", "Ticket management"],
+};

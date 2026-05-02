@@ -1,0 +1,7 @@
+[build]
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/api/portfolio-assistant"
+  to = "/.netlify/functions/portfolio-assistant"
+  status = 200
