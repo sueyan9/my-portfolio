@@ -51,7 +51,7 @@ export default function Home({ aboutRef, projectsRef, techRef , mainContentRef }
         }
     }, [location, mainContentRef]);
     return (
-        <div ref={mainContentRef}>
+        <div ref={mainContentRef} id="top">
             <HeroSection />
 
             {/* matrix background */}
@@ -270,7 +270,7 @@ export default function Home({ aboutRef, projectsRef, techRef , mainContentRef }
 
             <div className="main-content" >
                 {/* 顶部 About Me */}
-                <section className="section-block" ref={aboutRef}>
+                <section className="section-block" ref={aboutRef} id="about">
                     <div className="container">
                         <AboutMe
                             onExploreClick={() =>
@@ -281,14 +281,14 @@ export default function Home({ aboutRef, projectsRef, techRef , mainContentRef }
                 </section>
 
                 {/*  技术栈 */}
-                <section className="section-block tech-stack-bg" ref={techRef}>
+                <section className="section-block tech-stack-bg" ref={techRef} id="tech-stack">
                     <div className="container">
                         <TechStack />
                     </div>
                 </section>
 
                 {/*  Project 墙，背景色全屏 */}
-                <section className="section-block project-wall-bg"ref={projectsRef}>
+                <section className="section-block project-wall-bg" ref={projectsRef} id="projects">
                     <div className="container">
                         <ProjectCarousel />
                     </div>

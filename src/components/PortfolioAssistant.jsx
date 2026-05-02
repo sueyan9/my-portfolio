@@ -29,6 +29,10 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
       answer:
         "Hi, I'm Sue's portfolio assistant. I can answer questions about her projects, skills, experience, and contact options.",
       cta: "Pick a question below or type your own HR-style question.",
+      cards: [
+        { title: "Projects", label: "Browse projects", href: "#projects" },
+        { title: "LinkedIn", label: "Open profile", href: "https://www.linkedin.com/in/sue-yan-b74a72274/" },
+      ],
     },
   ]);
   const bodyRef = useRef(null);
@@ -62,6 +66,7 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
         question: reply.question,
         answer: reply.answer,
         cta: reply.cta,
+        cards: reply.cards || [],
       },
     ]);
     setDraft("");
@@ -121,6 +126,22 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
                     <p>{message.answer}</p>
                     {message.cta ? (
                       <p className="portfolio-assistant-message__cta">{message.cta}</p>
+                    ) : null}
+                    {message.cards?.length ? (
+                      <div className="portfolio-assistant-message__cards">
+                        {message.cards.map((card) => (
+                          <a
+                            key={`${message.question}-${card.title}-${card.label}`}
+                            className="portfolio-assistant-card"
+                            href={card.href}
+                            target={card.href.startsWith("http") ? "_blank" : undefined}
+                            rel={card.href.startsWith("http") ? "noreferrer" : undefined}
+                          >
+                            <span className="portfolio-assistant-card__title">{card.title}</span>
+                            <span className="portfolio-assistant-card__label">{card.label}</span>
+                          </a>
+                        ))}
+                      </div>
                     ) : null}
                   </>
                 ) : (
