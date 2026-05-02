@@ -26,6 +26,7 @@ The assistant now uses:
 - A server-side API route at `/api/portfolio-assistant`
 - A Netlify Function for production deployment
 - A Vite dev middleware so `npm run dev` works locally without exposing API keys to the browser
+- Built-in guardrails for token length, rate limiting, and AI shutoff
 
 Create a local `.env` from `.env.example` and set one provider:
 
@@ -38,5 +39,21 @@ Optional advanced overrides:
 - `LLM_API_KEY`
 - `LLM_MODEL`
 - `LLM_BASE_URL`
+- `AI_ENABLED=true|false`
+- `AI_TOTAL_TOKEN_LIMIT=500000`
 
 If no API key is configured, the UI falls back to the local portfolio knowledge base instead of breaking.
+
+## Safety Guardrails
+
+The assistant now includes several simple protections:
+
+- `max_tokens` is capped at `300` per LLM response
+- Frontend questions longer than `200` characters are blocked
+- A simple in-memory rate limit allows one request per IP every `5` seconds
+- `AI_ENABLED=false` can manually disable AI responses at any time
+- `AI_TOTAL_TOKEN_LIMIT` stops responses after the in-memory token counter reaches the configured limit
+
+Important note:
+
+- Netlify Functions are stateless, so the simple rate limit and total token counter are best-effort per warm function instance rather than a globally consistent quota system

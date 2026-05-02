@@ -8,6 +8,9 @@ import {
   portfolioAssistantSystemPrompt,
 } from "../shared/portfolioAssistantData.js";
 
+const lastRequestTimeByIp = new Map();
+let totalCompletionTokens = 0;
+
 function jsonResponse(body, status = 200) {
   return new Response(JSON.stringify(body), {
     status,
@@ -27,6 +30,41 @@ function getEnvValue(env, key) {
   }
 
   return env[key];
+}
+
+function isAiEnabled(env) {
+  const rawValue = getEnvValue(env, "AI_ENABLED");
+
+  if (rawValue === undefined) {
+    return true;
+  }
+
+  return String(rawValue).toLowerCase() === "true";
+}
+
+function getRequestIp(request) {
+  return (
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    request.headers.get("client-ip") ||
+    request.headers.get("x-real-ip") ||
+    "unknown"
+  );
+}
+
+function isRateLimited(ip, now = Date.now()) {
+  const lastRequestAt = lastRequestTimeByIp.get(ip);
+
+  if (lastRequestAt && now - lastRequestAt < 5000) {
+    return true;
+  }
+
+  lastRequestTimeByIp.set(ip, now);
+  return false;
+}
+
+function getTotalTokenLimit(env) {
+  const rawValue = Number(getEnvValue(env, "AI_TOTAL_TOKEN_LIMIT"));
+  return Number.isFinite(rawValue) && rawValue > 0 ? rawValue : 500000;
 }
 
 function resolveProviderConfig(env) {
@@ -149,7 +187,7 @@ async function generateAssistantReply({ question, history, env, fetchImpl }) {
     body: JSON.stringify({
       model: providerConfig.model,
       temperature: 0.3,
-      max_tokens: 550,
+      max_tokens: 300,
       messages: [
         { role: "system", content: portfolioAssistantSystemPrompt },
         {
@@ -170,6 +208,8 @@ async function generateAssistantReply({ question, history, env, fetchImpl }) {
   }
 
   const payload = await response.json();
+  const completionTokens = payload?.usage?.completion_tokens || 0;
+  totalCompletionTokens += completionTokens;
   const content = payload?.choices?.[0]?.message?.content;
   const parsed = extractJson(content);
 
@@ -193,6 +233,44 @@ async function generateAssistantReply({ question, history, env, fetchImpl }) {
 export async function handlePortfolioAssistantRequest(request, { env = process.env, fetchImpl = fetch } = {}) {
   if (request.method !== "POST") {
     return jsonResponse({ error: "Method not allowed." }, 405);
+  }
+
+  if (!isAiEnabled(env)) {
+    return jsonResponse(
+      {
+        ...portfolioAssistantFallback,
+        answer: "AI assistant is currently offline.",
+        cta: "You can still use the suggested prompts to browse Sue's portfolio highlights.",
+        provider: "disabled",
+      },
+      503
+    );
+  }
+
+  const ip = getRequestIp(request);
+
+  if (isRateLimited(ip)) {
+    return jsonResponse(
+      {
+        ...portfolioAssistantFallback,
+        answer: "Too many requests. Please wait a few seconds before asking another question.",
+        cta: "Try again in 5 seconds or use the portfolio links below.",
+        provider: "rate-limited",
+      },
+      429
+    );
+  }
+
+  if (totalCompletionTokens >= getTotalTokenLimit(env)) {
+    return jsonResponse(
+      {
+        ...portfolioAssistantFallback,
+        answer: "AI assistant is currently offline.",
+        cta: "The portfolio links below still cover Sue's projects, skills, and contact options.",
+        provider: "quota-reached",
+      },
+      503
+    );
   }
 
   let body;

@@ -40,6 +40,11 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
       return;
     }
 
+    if (userQuestion.length > 200) {
+      window.alert("Question too long");
+      return;
+    }
+
     const userMessage = { role: "user", text: userQuestion };
     const nextMessages = [...messages, userMessage];
 
