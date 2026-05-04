@@ -8,6 +8,5 @@ export {
   portfolioAssistantFollowUps,
   portfolioAssistantPromptGroups,
   portfolioAssistantPrompts,
-  portfolioAssistantSystemPrompt,
   portfolioAssistantWelcome,
 } from "../../shared/portfolioAssistantData.js";

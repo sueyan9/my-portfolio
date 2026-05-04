@@ -2,13 +2,12 @@ import {
   buildPortfolioResumeSummary,
   buildStructuredPortfolioData,
   findBestLocalReply,
-  findForcedLocalReply,
   getCardsForTopic,
   getFollowUpsForTopic,
   portfolioAssistantFallback,
   portfolioAssistantFollowUps,
-  portfolioAssistantSystemPrompt,
 } from "../shared/portfolioAssistantData.js";
+import { findForcedLocalReply, portfolioAssistantSystemPrompt } from "./assistantPrivateConfig.js";
 
 const lastRequestTimeByIp = new Map();
 let totalCompletionTokens = 0;
