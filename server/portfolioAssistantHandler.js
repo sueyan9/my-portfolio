@@ -2,6 +2,7 @@ import {
   buildPortfolioResumeSummary,
   buildStructuredPortfolioData,
   findBestLocalReply,
+  findForcedLocalReply,
   getCardsForTopic,
   getFollowUpsForTopic,
   portfolioAssistantFallback,
@@ -266,19 +267,6 @@ export async function handlePortfolioAssistantRequest(request, { env = process.e
     );
   }
 
-  if (totalCompletionTokens >= getTotalTokenLimit(env)) {
-    const localReply = question ? findBestLocalReply(question) : portfolioAssistantFallback;
-
-    return jsonResponse(
-      {
-        ...localReply,
-        cta: `${localReply.cta} AI usage is currently capped, so this answer is coming from Sue's local portfolio knowledge base.`,
-        provider: "quota-fallback",
-      },
-      200
-    );
-  }
-
   let body;
 
   try {
@@ -292,6 +280,28 @@ export async function handlePortfolioAssistantRequest(request, { env = process.e
 
   if (!question) {
     return jsonResponse({ error: "Question is required." }, 400);
+  }
+
+  const forcedLocalReply = findForcedLocalReply(question);
+
+  if (forcedLocalReply) {
+    return jsonResponse({
+      ...forcedLocalReply,
+      provider: "local-persona",
+    });
+  }
+
+  if (totalCompletionTokens >= getTotalTokenLimit(env)) {
+    const localReply = findBestLocalReply(question);
+
+    return jsonResponse(
+      {
+        ...localReply,
+        cta: `${localReply.cta} AI usage is currently capped, so this answer is coming from Sue's local portfolio knowledge base.`,
+        provider: "quota-fallback",
+      },
+      200
+    );
   }
 
   try {

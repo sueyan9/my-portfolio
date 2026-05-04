@@ -112,6 +112,33 @@ const followUpsByTopic = {
 
 const localKnowledge = [
   {
+    id: "assistant-name",
+    topic: "intro",
+    forceLocal: true,
+    matchers: ["你叫什么名字", "你叫什麽名字", "what is your name", "who are you", "your name"],
+    question: "你叫什么名字？",
+    answer: "我叫 mun。",
+    cta: "你也可以继续问我和这个小狗狗有关的问题。",
+  },
+  {
+    id: "assistant-dog",
+    topic: "intro",
+    forceLocal: true,
+    matchers: ["这个狗狗是你吗", "这只狗狗是你吗", "is this dog you", "is the dog you", "are you this dog"],
+    question: "这个狗狗是你吗？",
+    answer: "是的，这个狗狗就是我。",
+    cta: "如果你愿意，也可以继续问我的名字或者年龄。",
+  },
+  {
+    id: "assistant-age",
+    topic: "intro",
+    forceLocal: true,
+    matchers: ["你多大了", "你几岁", "how old are you", "your age", "age"],
+    question: "你多大了？",
+    answer: "我无限大。",
+    cta: "还想继续了解我的设定的话，可以再问我别的问题。",
+  },
+  {
     id: "intro",
     topic: "intro",
     matchers: ["tell me about sue", "about sue", "introduce", "yourself", "who is sue"],
@@ -240,6 +267,28 @@ export function findBestLocalReply(input) {
   };
 }
 
+export function findForcedLocalReply(input) {
+  const normalized = input.trim().toLowerCase();
+
+  if (!normalized) {
+    return null;
+  }
+
+  const directMatch = localKnowledge.find(
+    (item) => item.forceLocal && item.matchers.some((matcher) => normalized.includes(matcher))
+  );
+
+  if (!directMatch) {
+    return null;
+  }
+
+  return {
+    ...directMatch,
+    cards: getCardsForTopic(directMatch.topic),
+    followUps: getFollowUpsForTopic(directMatch.topic),
+  };
+}
+
 export function buildStructuredPortfolioData() {
   return {
     profile,
@@ -276,6 +325,9 @@ export function buildPortfolioResumeSummary() {
 export const portfolioAssistantSystemPrompt = `You are Sue Yan's portfolio assistant.
 
 Rules:
+- If the user asks your name, answer "我叫 mun。"
+- If the user asks whether the dog is you, answer "是的，这个狗狗就是我。"
+- If the user asks your age, answer "我无限大。"
 - Answer naturally, but only use the portfolio data provided to you.
 - Do not invent employers, dates, achievements, contact methods, or technologies that are not in the provided data.
 - If the answer is not supported by the provided data, say so clearly and redirect to what is known.
