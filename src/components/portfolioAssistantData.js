@@ -6,6 +6,7 @@ export {
   getFollowUpsForTopic,
   portfolioAssistantFallback,
   portfolioAssistantFollowUps,
+  portfolioAssistantPromptGroups,
   portfolioAssistantPrompts,
   portfolioAssistantSystemPrompt,
   portfolioAssistantWelcome,

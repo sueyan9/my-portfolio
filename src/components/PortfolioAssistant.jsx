@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import "./PortfolioAssistant.css";
 import {
   findBestLocalReply,
-  portfolioAssistantPrompts,
+  portfolioAssistantPromptGroups,
   portfolioAssistantWelcome,
 } from "./portfolioAssistantData";
 
@@ -12,7 +12,7 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
   const [isLoading, setIsLoading] = useState(false);
   const bodyRef = useRef(null);
 
-  const suggestedQuestions = useMemo(() => portfolioAssistantPrompts, []);
+  const promptGroups = useMemo(() => portfolioAssistantPromptGroups, []);
 
   useEffect(() => {
     if (!bodyRef.current) {
@@ -118,7 +118,7 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
               <p className="portfolio-assistant-panel__eyebrow">Portfolio Assistant</p>
               <h3>Sue's AI Guide</h3>
               <p className="portfolio-assistant-panel__boundary">
-                I answer based only on Sue&apos;s portfolio and project information.
+                Friendly, portfolio-grounded answers about Sue&apos;s work, strengths, and projects.
               </p>
             </div>
             <button
@@ -198,7 +198,7 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
               type="text"
               value={draft}
               onChange={(event) => setDraft(event.target.value)}
-              placeholder="Ask about projects, backend skills, or contact info"
+              placeholder="Ask about backend systems, strongest projects, or hiring fit"
               aria-label="Ask Sue's assistant a question"
               disabled={isLoading}
             />
@@ -208,16 +208,23 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
           </form>
 
           <div className="portfolio-assistant-panel__prompts">
-            {suggestedQuestions.map((prompt) => (
-              <button
-                key={prompt}
-                type="button"
-                className="portfolio-assistant-chip"
-                onClick={() => submitQuestion(prompt)}
-                disabled={isLoading}
-              >
-                {prompt}
-              </button>
+            {promptGroups.map((group) => (
+              <section key={group.label} className="portfolio-assistant-prompt-group">
+                <p className="portfolio-assistant-prompt-group__label">{group.label}</p>
+                <div className="portfolio-assistant-prompt-group__chips">
+                  {group.prompts.map((prompt) => (
+                    <button
+                      key={prompt}
+                      type="button"
+                      className="portfolio-assistant-chip"
+                      onClick={() => submitQuestion(prompt)}
+                      disabled={isLoading}
+                    >
+                      {prompt}
+                    </button>
+                  ))}
+                </div>
+              </section>
             ))}
           </div>
         </div>

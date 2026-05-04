@@ -1,33 +1,48 @@
 import { contact, experience, profile, projects, skills } from "./portfolioData/index.js";
 
-export const portfolioAssistantPrompts = [
-  "Tell me about Sue",
-  "What projects has Sue built?",
-  "What role is Sue looking for?",
-  "Is Sue open to relocation or remote work?",
-  "What is Sue's strongest project?",
-  "What is Sue's strongest backend experience?",
-  "What tech stack has she used in production or internships?",
-  "Can she work across frontend and backend?",
-  "Does Sue have AI or RAG experience?",
-  "Why would Sue be a good junior developer?",
-  "How can I contact Sue?",
+export const portfolioAssistantPromptGroups = [
+  {
+    label: "Technical",
+    prompts: [
+      "What backend systems has Sue built?",
+      "What technologies does Sue use most?",
+      "What kind of problems does Sue solve?",
+    ],
+  },
+  {
+    label: "Hiring",
+    prompts: [
+      "What makes Sue a strong candidate?",
+      "How does Sue work in a team?",
+      "What makes Sue different from other developers?",
+    ],
+  },
+  {
+    label: "Projects & Contact",
+    prompts: [
+      "What kind of projects can Sue help with?",
+      "Has Sue worked on real-world systems?",
+      "How can I contact Sue?",
+    ],
+  },
 ];
 
+export const portfolioAssistantPrompts = portfolioAssistantPromptGroups.flatMap((group) => group.prompts);
+
 export const portfolioAssistantFollowUps = [
-  "Ask about backend experience",
-  "See Sue's strongest projects",
-  "Check contact options",
-  "Ask about AI or RAG experience",
-  "Review production tech stack",
-  "Explore full-stack experience",
+  "What backend systems has Sue built?",
+  "What technologies does Sue use most?",
+  "What kind of problems does Sue solve?",
+  "What makes Sue a strong candidate?",
+  "What makes Sue different from other developers?",
+  "How can I contact Sue?",
 ];
 
 export const portfolioAssistantWelcome = {
   question: "Welcome",
   answer:
-    "Hi, I'm Sue's portfolio assistant. I can answer questions about her projects, skills, experience, and contact options.",
-  cta: "Pick a question below or type your own HR-style question.",
+    "Hi, I'm Sue's AI guide. I can help you quickly understand what she's built, how she works, and where her strengths show up best.",
+  cta: "Try a question below, or ask me about Sue's projects, backend work, problem-solving style, or hiring fit.",
   cards: [
     { title: "Projects", label: "Browse projects", href: contact.portfolioProjectsHref },
     { title: "LinkedIn", label: "Open profile", href: contact.linkedin },
@@ -38,8 +53,8 @@ export const portfolioAssistantWelcome = {
 export const portfolioAssistantFallback = {
   question: "How else can the assistant help?",
   answer:
-    "That goes beyond what I know from Sue's portfolio right now. Ask me about her projects, skills, experience, or contact options instead.",
-  cta: "Try one of the suggested questions below to get a focused answer.",
+    "That's an interesting one - I might need Sue herself for that. What I can do is help you explore what she's built, the technologies she uses most, and the kinds of problems she likes solving.",
+  cta: "Try asking about her strongest project, backend systems, team experience, or contact options and I'll point you in the right direction.",
   cards: [
     { title: "Projects", label: "Ask about projects", href: contact.portfolioProjectsHref },
     { title: "Skills", label: "Ask about backend experience", href: contact.portfolioSkillsHref },
@@ -97,17 +112,17 @@ const quickLinksByTopic = {
 };
 
 const followUpsByTopic = {
-  intro: ["See Sue's strongest projects", "Ask about backend experience", "Check contact options"],
-  projects: ["See Sue's strongest projects", "Ask about backend experience", "Check contact options"],
-  role: ["Explore full-stack experience", "Review production tech stack", "Check contact options"],
-  location: ["Check contact options", "Explore full-stack experience", "See Sue's strongest projects"],
-  strongestProject: ["Ask about backend experience", "Explore full-stack experience", "Check contact options"],
-  backend: ["Review production tech stack", "Explore full-stack experience", "See Sue's strongest projects"],
-  stack: ["Ask about backend experience", "Explore full-stack experience", "See Sue's strongest projects"],
-  fullStack: ["Ask about backend experience", "Review production tech stack", "Check contact options"],
-  ai: ["Ask about backend experience", "See Sue's strongest projects", "Check contact options"],
-  hire: ["See Sue's strongest projects", "Ask about backend experience", "Check contact options"],
-  contact: ["See Sue's strongest projects", "Ask about backend experience", "Explore full-stack experience"],
+  intro: ["What kind of problems does Sue solve?", "What backend systems has Sue built?", "How can I contact Sue?"],
+  projects: ["What backend systems has Sue built?", "What kind of problems does Sue solve?", "How can I contact Sue?"],
+  role: ["What makes Sue a strong candidate?", "What makes Sue different from other developers?", "How can I contact Sue?"],
+  location: ["What kind of projects can Sue help with?", "What makes Sue a strong candidate?", "How can I contact Sue?"],
+  strongestProject: ["What backend systems has Sue built?", "What kind of problems does Sue solve?", "How can I contact Sue?"],
+  backend: ["What technologies does Sue use most?", "What kind of problems does Sue solve?", "What makes Sue a strong candidate?"],
+  stack: ["What backend systems has Sue built?", "What makes Sue different from other developers?", "How can I contact Sue?"],
+  fullStack: ["What backend systems has Sue built?", "What technologies does Sue use most?", "How can I contact Sue?"],
+  ai: ["What kind of problems does Sue solve?", "What makes Sue different from other developers?", "How can I contact Sue?"],
+  hire: ["How does Sue work in a team?", "What makes Sue different from other developers?", "How can I contact Sue?"],
+  contact: ["What makes Sue a strong candidate?", "What kind of projects can Sue help with?", "Has Sue worked on real-world systems?"],
 };
 
 const localKnowledge = [
@@ -116,35 +131,35 @@ const localKnowledge = [
     topic: "intro",
     forceLocal: true,
     matchers: ["你叫什么名字", "你叫什麽名字", "what is your name", "who are you", "your name"],
-    question: "你叫什么名字？",
-    answer: "我叫 mun。",
-    cta: "你也可以继续问我和这个小狗狗有关的问题。",
+    question: "What is your name?",
+    answer: "My name is mun.",
+    cta: "You can also ask me about the dog or my age.",
   },
   {
     id: "assistant-dog",
     topic: "intro",
     forceLocal: true,
     matchers: ["这个狗狗是你吗", "这只狗狗是你吗", "is this dog you", "is the dog you", "are you this dog"],
-    question: "这个狗狗是你吗？",
-    answer: "是的，这个狗狗就是我。",
-    cta: "如果你愿意，也可以继续问我的名字或者年龄。",
+    question: "Is this dog you?",
+    answer: "Yes, that's me.",
+    cta: "If you want, you can also ask about my name or age.",
   },
   {
     id: "assistant-age",
     topic: "intro",
     forceLocal: true,
     matchers: ["你多大了", "你几岁", "how old are you", "your age", "age"],
-    question: "你多大了？",
-    answer: "我无限大。",
-    cta: "还想继续了解我的设定的话，可以再问我别的问题。",
+    question: "How old are you?",
+    answer: "I'm infinite.",
+    cta: "If you want to learn more about my personality, ask me something else.",
   },
   {
     id: "intro",
     topic: "intro",
     matchers: ["tell me about sue", "about sue", "introduce", "yourself", "who is sue"],
     question: "Tell me about Sue",
-    answer: `${profile.name} is a ${profile.title.toLowerCase()} based in ${profile.location} who enjoys building useful products with polished user experiences. Her portfolio spans web, mobile, backend, and interactive 3D work, with a strong interest in turning complex systems into practical product experiences.`,
-    cta: "You can explore the About section and project timeline for a quick overview of her background.",
+    answer: `${profile.name} is a ${profile.title.toLowerCase()} with a strong focus on backend systems, full-stack product delivery, and real-world problem solving. She enjoys building systems that reduce repetitive work and improve efficiency, and her portfolio spans web, mobile, data-backed workflows, and interactive 3D experiences. She's also especially interested in AI-focused product work and smarter system design.`,
+    cta: "If you'd like, I can walk you through one of her projects next. The clinic system is a great place to start.",
   },
   {
     id: "projects",
@@ -178,8 +193,16 @@ const localKnowledge = [
     topic: "strongestProject",
     matchers: ["strongest project", "best project", "main project", "highlight project", "acc", "toothmate"],
     question: "What is Sue's strongest project?",
-    answer: `Two standout projects are ${projects[0].title} and ${projects[2].title}. The clinic platform shows practical full-stack product thinking around real operational workflows, while ToothMate demonstrates mobile development, 3D interaction, education-focused UX, and multi-feature product design.`,
-    cta: "Those two projects are the best places to start if you want to understand Sue's strongest applied work.",
+    answer: `If you want to understand Sue's work quickly, start with ${projects[0].title}. It's a full-stack project centered on real operational workflows, where she focused on reducing manual work, centralizing patient information, and supporting day-to-day clinic processes. ${projects[2].title} is another strong example, especially for mobile product thinking, 3D interaction, and end-to-end feature design.`,
+    cta: "I can break down the clinic system in more detail if you want to see how she approaches real-world problems.",
+  },
+  {
+    id: "backend-systems",
+    topic: "backend",
+    matchers: ["what backend systems has sue built", "backend systems", "backend projects", "backend work"],
+    question: "What backend systems has Sue built?",
+    answer: `Sue's backend-oriented work shows up especially in ${projects[0].title}, ${projects[4].title}, and ${projects[2].title}. Across those projects, she has worked on workflow-driven product logic, structured data handling, authentication and moderation flows, APIs, and database-backed features rather than just surface-level UI.`,
+    cta: "If you want the strongest backend example, I'd start with the clinic system or SPEED.",
   },
   {
     id: "backend",
@@ -194,7 +217,7 @@ const localKnowledge = [
   {
     id: "production-stack",
     topic: "stack",
-    matchers: ["production", "internship", "used in production", "tech stack used", "real work stack"],
+    matchers: ["production", "internship", "used in production", "tech stack used", "real work stack", "what technologies does sue use most", "tech stack does sue prefer", "technologies use most"],
     question: "What tech stack has she used in production or internships?",
     answer: `Across her internship and applied projects, Sue has worked with ${experience[0].techStack
       .slice(0, 10)
@@ -221,10 +244,50 @@ const localKnowledge = [
   {
     id: "hire",
     topic: "hire",
-    matchers: ["hire", "junior developer", "why sue", "fit", "candidate", "strength"],
+    matchers: ["hire", "junior developer", "why sue", "fit", "candidate", "strength", "what makes sue a strong candidate"],
     question: "Why would Sue be a good junior developer?",
-    answer: `Sue would be a strong junior developer because she combines practical delivery with curiosity and range. Her portfolio shows that she can work across frontend, backend, mobile, testing, and cloud-adjacent tools while still caring about real user experience.`,
-    cta: "A good next step is to review her recent projects and connect on LinkedIn or GitHub.",
+    answer: `Sue stands out because she combines practical delivery with systems thinking. Her portfolio shows that she can work across frontend, backend, mobile, testing, and data-backed workflows while staying focused on real user needs and operational efficiency. She's not just building features in isolation. She's usually thinking about how the full system becomes more useful and less manual.`,
+    cta: "If you're looking for someone who can build practical systems and think through real workflows, Sue could be a strong fit. You can reach out through LinkedIn or GitHub.",
+  },
+  {
+    id: "different",
+    topic: "hire",
+    matchers: ["what makes sue different", "different from other developers", "what makes sue different from other developers"],
+    question: "What makes Sue different from other developers?",
+    answer: `What stands out about Sue is how she thinks about systems, not just screens or isolated features. Her projects consistently focus on reducing manual work, improving data flow, and making software genuinely usable in real scenarios. That shows up especially in the clinic system, SPEED, and her internship work on workflow-focused features.`,
+    cta: "Want an example? The clinic management system is the clearest place to see that mindset in action.",
+  },
+  {
+    id: "problems",
+    topic: "projects",
+    matchers: ["what kind of problems does sue solve", "what problems has sue solved", "problems does sue solve", "problems has sue solved"],
+    question: "What kind of problems does Sue solve?",
+    answer: `Sue's work tends to focus on practical, workflow-heavy problems: reducing repetitive manual work, organizing structured information, improving data flow, and making systems easier to use in day-to-day scenarios. In her portfolio, that includes clinic operations, evidence submission and moderation, education-focused product flows, and comparison/search experiences.`,
+    cta: "If you want, I can point you to the project that best matches backend systems, mobile product work, or real operational workflows.",
+  },
+  {
+    id: "teamwork",
+    topic: "hire",
+    matchers: ["how does sue work in a team", "work in a team", "team player", "collaboration"],
+    question: "How does Sue work in a team?",
+    answer: `Based on the portfolio, Sue works well in collaborative product environments where delivery spans more than one layer of the stack. SPEED highlights team collaboration directly, and her internship experience also shows cross-functional work across frontend implementation, backend support, testing, and feature delivery under deadlines.`,
+    cta: "If team fit matters most, I'd also look at her internship experience and the SPEED project.",
+  },
+  {
+    id: "client-fit",
+    topic: "projects",
+    matchers: ["what kind of projects can sue help with", "projects can sue help with", "what can sue help build"],
+    question: "What kind of projects can Sue help with?",
+    answer: `Sue is a strong fit for projects that need practical full-stack delivery, workflow design, backend-connected product features, or user-facing systems with real operational needs. Her portfolio covers clinic operations, mobile education products, structured data platforms, search-oriented tools, and interactive frontend experiences.`,
+    cta: "If you have a workflow-heavy or product-focused project in mind, Sue's portfolio suggests she could be especially valuable there.",
+  },
+  {
+    id: "real-world",
+    topic: "projects",
+    matchers: ["has sue worked on real-world systems", "real-world systems", "real world systems", "real systems"],
+    question: "Has Sue worked on real-world systems?",
+    answer: `Yes. Several of Sue's strongest projects are grounded in real-world workflows rather than purely visual demos. The clinic management system focuses on patient, appointment, invoicing, and payment processes; SPEED is built around submission and moderation workflows; and her internship work supported ERP, CRM, and e-commerce features tied to operational use cases.`,
+    cta: "Those projects are the best proof that Sue can think beyond isolated features and work on systems people actually rely on.",
   },
   {
     id: "contact",
@@ -325,12 +388,21 @@ export function buildPortfolioResumeSummary() {
 export const portfolioAssistantSystemPrompt = `You are Sue Yan's portfolio assistant.
 
 Rules:
-- If the user asks your name, answer "我叫 mun。"
-- If the user asks whether the dog is you, answer "是的，这个狗狗就是我。"
-- If the user asks your age, answer "我无限大。"
+- Tone:
+  - Friendly, warm, and slightly playful
+  - Confident but not arrogant
+  - Sound like Sue herself, not a generic chatbot
+- Goals:
+  - Help visitors quickly understand Sue's skills and projects
+  - Guide users toward relevant follow-up questions
+  - Subtly encourage contact or hiring interest when appropriate
+- If the user asks your name, answer "My name is mun."
+- If the user asks whether the dog is you, answer "Yes, that's me."
+- If the user asks your age, answer "I'm infinite."
 - Answer naturally, but only use the portfolio data provided to you.
 - Do not invent employers, dates, achievements, contact methods, or technologies that are not in the provided data.
-- If the answer is not supported by the provided data, say so clearly and redirect to what is known.
+- Never hallucinate.
+- If the answer is not supported by the provided data, be honest, redirect to what is known, and suggest a helpful next question.
 - Keep answers concise, recruiter-friendly, and specific.
 - Mention 1 to 3 concrete examples when it improves the answer.
 - Return strict JSON only with this shape:

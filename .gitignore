@@ -23,3 +23,23 @@ dist-ssr
 *.sln
 *.sw?
 .env
+assistant-persona-notes.md
+
+# Private/local media assets
+src/assets/avatar.png
+src/assets/dog-hero.jpg
+src/assets/dog-particle-source.png
+src/assets/dog-particle-source-large.png
+src/assets/hero.jpg
+src/assets/priceHound.jpg
+src/assets/project1.png
+src/assets/project2.mov
+src/assets/project3DProject.png
+src/assets/project3Dprinting.png
+src/assets/project5.png
+src/assets/project6.png
+src/assets/project7.png
+src/assets/react.svg
+src/assets/toothmate.jpg
+public/toothmate.jpg
+public/femaleDeveloper.png
