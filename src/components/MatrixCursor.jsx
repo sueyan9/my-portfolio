@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-const GLYPHS = ['1011', 'SYS', 'RED', 'WAKE', 'NEO', 'ZX'];
+const GLYPHS = ['WOOF', 'NULL', 'BOOP', 'SNIFF', '404?', 'BARK', 'TREAT', 'BUG?'];
 
 export default function MatrixCursor() {
   const boneRef = useRef(null);
