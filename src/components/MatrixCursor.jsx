@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 const GLYPHS = ['1011', 'SYS', 'RED', 'WAKE', 'NEO', 'ZX'];
 
 export default function MatrixCursor() {
-  const capsuleRef = useRef(null);
+  const boneRef = useRef(null);
   const auraRef = useRef(null);
   const glyphRef = useRef(null);
   const frameRef = useRef(0);
@@ -17,11 +17,11 @@ export default function MatrixCursor() {
       return undefined;
     }
 
-    const capsule = capsuleRef.current;
+    const bone = boneRef.current;
     const aura = auraRef.current;
     const glyph = glyphRef.current;
 
-    if (!capsule || !aura || !glyph) {
+    if (!bone || !aura || !glyph) {
       return undefined;
     }
 
@@ -36,7 +36,7 @@ export default function MatrixCursor() {
 
       const scale = hoveringRef.current ? 1.15 : 1;
       const auraScale = pressedRef.current ? 0.92 : hoveringRef.current ? 1.2 : 1;
-      capsule.style.transform = `translate3d(${target.x}px, ${target.y}px, 0) translate(-50%, -50%) rotate(32deg) scale(${scale})`;
+      bone.style.transform = `translate3d(${target.x}px, ${target.y}px, 0) translate(-50%, -50%) rotate(-16deg) scale(${scale})`;
       aura.style.transform = `translate3d(${current.x}px, ${current.y}px, 0) translate(-50%, -50%) scale(${auraScale})`;
       glyph.style.transform = `translate3d(${current.x + 18}px, ${current.y - 18}px, 0) translate(-50%, -50%)`;
 
@@ -49,7 +49,7 @@ export default function MatrixCursor() {
       );
 
       hoveringRef.current = isInteractive;
-      capsule.dataset.hover = String(isInteractive);
+      bone.dataset.hover = String(isInteractive);
       aura.dataset.hover = String(isInteractive);
     };
 
@@ -60,26 +60,26 @@ export default function MatrixCursor() {
 
     const handleDown = () => {
       pressedRef.current = true;
-      capsule.dataset.pressed = 'true';
+      bone.dataset.pressed = 'true';
       aura.dataset.pressed = 'true';
       glyph.textContent = 'JACK IN';
     };
 
     const handleUp = () => {
       pressedRef.current = false;
-      capsule.dataset.pressed = 'false';
+      bone.dataset.pressed = 'false';
       aura.dataset.pressed = 'false';
       glyph.textContent = GLYPHS[glyphIndex % GLYPHS.length];
     };
 
     const handleLeave = () => {
-      capsule.dataset.visible = 'false';
+      bone.dataset.visible = 'false';
       aura.dataset.visible = 'false';
       glyph.dataset.visible = 'false';
     };
 
     const handleEnter = () => {
-      capsule.dataset.visible = 'true';
+      bone.dataset.visible = 'true';
       aura.dataset.visible = 'true';
       glyph.dataset.visible = 'true';
     };
@@ -113,10 +113,13 @@ export default function MatrixCursor() {
   return (
     <div className="matrix-cursor-layer" aria-hidden="true">
       <div ref={auraRef} className="matrix-cursor-aura" data-visible="false" data-hover="false" data-pressed="false" />
-      <div ref={capsuleRef} className="matrix-cursor-capsule" data-visible="false" data-hover="false" data-pressed="false">
-        <span className="matrix-cursor-capsule__half matrix-cursor-capsule__half--red" />
-        <span className="matrix-cursor-capsule__half matrix-cursor-capsule__half--red-deep" />
-        <span className="matrix-cursor-capsule__shine" />
+      <div ref={boneRef} className="matrix-cursor-bone" data-visible="false" data-hover="false" data-pressed="false">
+        <span className="matrix-cursor-bone__joint matrix-cursor-bone__joint--tl" />
+        <span className="matrix-cursor-bone__joint matrix-cursor-bone__joint--tr" />
+        <span className="matrix-cursor-bone__joint matrix-cursor-bone__joint--bl" />
+        <span className="matrix-cursor-bone__joint matrix-cursor-bone__joint--br" />
+        <span className="matrix-cursor-bone__shaft" />
+        <span className="matrix-cursor-bone__heart" />
       </div>
       <div ref={glyphRef} className="matrix-cursor-glyph" data-visible="false" />
     </div>
