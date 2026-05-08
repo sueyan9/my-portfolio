@@ -46,7 +46,7 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
     role: "assistant",
     question: reply.question || userQuestion,
     answer: reply.answer,
-    cta: reply.cta,
+    cta: reply.error ? `${reply.cta} (${reply.error})` : reply.cta,
     cards: reply.cards || [],
     followUps: reply.followUps || [],
   });
