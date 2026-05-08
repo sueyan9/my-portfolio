@@ -114,12 +114,8 @@ export default function MatrixCursor() {
     <div className="matrix-cursor-layer" aria-hidden="true">
       <div ref={auraRef} className="matrix-cursor-aura" data-visible="false" data-hover="false" data-pressed="false" />
       <div ref={boneRef} className="matrix-cursor-bone" data-visible="false" data-hover="false" data-pressed="false">
-        <span className="matrix-cursor-bone__joint matrix-cursor-bone__joint--tl" />
-        <span className="matrix-cursor-bone__joint matrix-cursor-bone__joint--tr" />
-        <span className="matrix-cursor-bone__joint matrix-cursor-bone__joint--bl" />
-        <span className="matrix-cursor-bone__joint matrix-cursor-bone__joint--br" />
-        <span className="matrix-cursor-bone__shaft" />
-        <span className="matrix-cursor-bone__heart" />
+        <span className="matrix-cursor-bone__emoji">🦴</span>
+        <span className="matrix-cursor-bone__heart">💖</span>
       </div>
       <div ref={glyphRef} className="matrix-cursor-glyph" data-visible="false" />
     </div>
