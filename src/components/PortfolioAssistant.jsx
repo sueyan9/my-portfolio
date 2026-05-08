@@ -12,6 +12,7 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
   const [isLoading, setIsLoading] = useState(false);
   const bodyRef = useRef(null);
   const quickPrompts = portfolioAssistantFollowUps.slice(0, 3);
+  const showQuickPrompts = messages.length <= 1;
 
   useEffect(() => {
     if (!bodyRef.current) {
@@ -186,19 +187,21 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
             ) : null}
           </div>
 
-          <div className="portfolio-assistant-panel__quick-prompts">
-            {quickPrompts.map((prompt) => (
-              <button
-                key={prompt}
-                type="button"
-                className="portfolio-assistant-chip"
-                onClick={() => submitQuestion(prompt)}
-                disabled={isLoading}
-              >
-                {prompt}
-              </button>
-            ))}
-          </div>
+          {showQuickPrompts ? (
+            <div className="portfolio-assistant-panel__quick-prompts">
+              {quickPrompts.map((prompt) => (
+                <button
+                  key={prompt}
+                  type="button"
+                  className="portfolio-assistant-chip"
+                  onClick={() => submitQuestion(prompt)}
+                  disabled={isLoading}
+                >
+                  {prompt}
+                </button>
+              ))}
+            </div>
+          ) : null}
 
           <form className="portfolio-assistant-panel__composer" onSubmit={handleSubmit}>
             <input

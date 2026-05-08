@@ -44,7 +44,7 @@ export const portfolioAssistantWelcome = {
     "I can quickly explain Sue's projects, backend experience, and where she fits best.",
   cta: "Start with one of the suggested questions, or type your own.",
   cards: [],
-  followUps: portfolioAssistantFollowUps.slice(0, 3),
+  followUps: [],
 };
 
 export const portfolioAssistantFallback = {
