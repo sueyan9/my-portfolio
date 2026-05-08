@@ -41,12 +41,9 @@ export const portfolioAssistantFollowUps = [
 export const portfolioAssistantWelcome = {
   question: "Welcome",
   answer:
-    "Hi, I'm Sue's AI guide. I can help you quickly understand what she's built, how she works, and where her strengths show up best.",
-  cta: "Try a question below, or ask me about Sue's projects, backend work, problem-solving style, or hiring fit.",
-  cards: [
-    { title: "Projects", label: "Browse projects", href: contact.portfolioProjectsHref },
-    { title: "LinkedIn", label: "Open profile", href: contact.linkedin },
-  ],
+    "I can quickly explain Sue's projects, backend experience, and where she fits best.",
+  cta: "Start with one of the suggested questions, or type your own.",
+  cards: [],
   followUps: portfolioAssistantFollowUps.slice(0, 3),
 };
 

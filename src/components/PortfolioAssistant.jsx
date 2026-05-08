@@ -1,8 +1,8 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./PortfolioAssistant.css";
 import {
   findBestLocalReply,
-  portfolioAssistantPromptGroups,
+  portfolioAssistantFollowUps,
   portfolioAssistantWelcome,
 } from "./portfolioAssistantData";
 
@@ -11,8 +11,7 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
   const [messages, setMessages] = useState(() => [{ role: "assistant", ...portfolioAssistantWelcome }]);
   const [isLoading, setIsLoading] = useState(false);
   const bodyRef = useRef(null);
-
-  const promptGroups = useMemo(() => portfolioAssistantPromptGroups, []);
+  const quickPrompts = portfolioAssistantFollowUps.slice(0, 3);
 
   useEffect(() => {
     if (!bodyRef.current) {
@@ -117,9 +116,7 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
             <div>
               <p className="portfolio-assistant-panel__eyebrow">Portfolio Assistant</p>
               <h3>Sue's AI Guide</h3>
-              <p className="portfolio-assistant-panel__boundary">
-                Friendly, portfolio-grounded answers about Sue&apos;s work, strengths, and projects.
-              </p>
+              <p className="portfolio-assistant-panel__boundary">Ask about projects, backend work, or hiring fit.</p>
             </div>
             <button
               type="button"
@@ -189,16 +186,27 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
             ) : null}
           </div>
 
+          <div className="portfolio-assistant-panel__quick-prompts">
+            {quickPrompts.map((prompt) => (
+              <button
+                key={prompt}
+                type="button"
+                className="portfolio-assistant-chip"
+                onClick={() => submitQuestion(prompt)}
+                disabled={isLoading}
+              >
+                {prompt}
+              </button>
+            ))}
+          </div>
+
           <form className="portfolio-assistant-panel__composer" onSubmit={handleSubmit}>
-            <label className="portfolio-assistant-panel__composer-label" htmlFor="portfolio-assistant-input">
-              Ask your own question
-            </label>
             <input
               id="portfolio-assistant-input"
               type="text"
               value={draft}
               onChange={(event) => setDraft(event.target.value)}
-              placeholder="Ask about backend systems, strongest projects, or hiring fit"
+              placeholder="Ask about Sue's work..."
               aria-label="Ask Sue's assistant a question"
               disabled={isLoading}
             />
@@ -206,27 +214,6 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
               {isLoading ? "..." : "Send"}
             </button>
           </form>
-
-          <div className="portfolio-assistant-panel__prompts">
-            {promptGroups.map((group) => (
-              <section key={group.label} className="portfolio-assistant-prompt-group">
-                <p className="portfolio-assistant-prompt-group__label">{group.label}</p>
-                <div className="portfolio-assistant-prompt-group__chips">
-                  {group.prompts.map((prompt) => (
-                    <button
-                      key={prompt}
-                      type="button"
-                      className="portfolio-assistant-chip"
-                      onClick={() => submitQuestion(prompt)}
-                      disabled={isLoading}
-                    >
-                      {prompt}
-                    </button>
-                  ))}
-                </div>
-              </section>
-            ))}
-          </div>
         </div>
       </aside>
     </>
