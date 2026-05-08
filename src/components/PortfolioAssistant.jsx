@@ -31,6 +31,32 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
   const bodyRef = useRef(null);
   const showQuickPrompts = messages.length <= 1;
 
+  const formatAssistantError = (error) => {
+    if (!error) {
+      return "";
+    }
+
+    const normalized = String(error).toLowerCase();
+
+    if (normalized.includes("insufficient balance") || normalized.includes("402")) {
+      return "Live AI is temporarily unavailable because the model account has no available balance.";
+    }
+
+    if (normalized.includes("401") || normalized.includes("unauthorized")) {
+      return "Live AI is temporarily unavailable because the API credentials were rejected.";
+    }
+
+    if (normalized.includes("429")) {
+      return "Live AI is temporarily unavailable because the request limit was reached.";
+    }
+
+    if (normalized.includes("missing llm api key")) {
+      return "Live AI is temporarily unavailable because the server is missing its API key.";
+    }
+
+    return "Live AI is temporarily unavailable right now.";
+  };
+
   useEffect(() => {
     if (!bodyRef.current) {
       return;
@@ -46,7 +72,7 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
     role: "assistant",
     question: reply.question || userQuestion,
     answer: reply.answer,
-    cta: reply.error ? `${reply.cta} (${reply.error})` : reply.cta,
+    cta: reply.error ? `${reply.cta} ${formatAssistantError(reply.error)}` : reply.cta,
     cards: reply.cards || [],
     followUps: reply.followUps || [],
   });
