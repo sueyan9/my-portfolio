@@ -2,16 +2,33 @@ import React, { useEffect, useRef, useState } from "react";
 import "./PortfolioAssistant.css";
 import {
   findBestLocalReply,
-  portfolioAssistantFollowUps,
   portfolioAssistantWelcome,
 } from "./portfolioAssistantData";
+
+const quickPrompts = [
+  {
+    label: "What stack does Sue use?",
+    question: "What technologies does Sue use most?",
+  },
+  {
+    label: "Best role fit for her?",
+    question: "What makes Sue a strong candidate?",
+  },
+  {
+    label: "Tell me about her projects",
+    question: "What projects has Sue built?",
+  },
+  {
+    label: "Her backend experience?",
+    question: "What backend systems has Sue built?",
+  },
+];
 
 export default function PortfolioAssistant({ isOpen, onToggle }) {
   const [draft, setDraft] = useState("");
   const [messages, setMessages] = useState(() => [{ role: "assistant", ...portfolioAssistantWelcome }]);
   const [isLoading, setIsLoading] = useState(false);
   const bodyRef = useRef(null);
-  const quickPrompts = portfolioAssistantFollowUps.slice(0, 3);
   const showQuickPrompts = messages.length <= 1;
 
   useEffect(() => {
@@ -114,22 +131,31 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
       >
         <div className="portfolio-assistant-panel__shell">
           <div className="portfolio-assistant-panel__header">
-            <div>
-              <p className="portfolio-assistant-panel__eyebrow">Portfolio Assistant</p>
-              <h3>Sue's AI Guide</h3>
-              <p className="portfolio-assistant-panel__boundary">Ask about projects, backend work, or hiring fit.</p>
+            <div className="portfolio-assistant-panel__identity">
+              <div className="portfolio-assistant-panel__monogram" aria-hidden="true">
+                S
+              </div>
+              <div>
+                <p className="portfolio-assistant-panel__eyebrow">Portfolio Assistant</p>
+                <h3>Sue's AI Guide</h3>
+                <p className="portfolio-assistant-panel__boundary">Projects · Backend · Hiring fit</p>
+              </div>
             </div>
-            <button
-              type="button"
-              className="portfolio-assistant-panel__close"
-              onClick={onToggle}
-              aria-label="Close assistant"
-            >
-              ×
-            </button>
+            <div className="portfolio-assistant-panel__status">
+              <button
+                type="button"
+                className="portfolio-assistant-panel__close"
+                onClick={onToggle}
+                aria-label="Close assistant"
+              >
+                •••
+              </button>
+              <span className="portfolio-assistant-panel__indicator" aria-hidden="true" />
+            </div>
           </div>
 
           <div className="portfolio-assistant-panel__body" ref={bodyRef}>
+            <p className="portfolio-assistant-panel__section-label">Assistant</p>
             {messages.map((message, index) => (
               <div
                 key={`${message.role}-${index}`}
@@ -191,13 +217,13 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
             <div className="portfolio-assistant-panel__quick-prompts">
               {quickPrompts.map((prompt) => (
                 <button
-                  key={prompt}
+                  key={prompt.label}
                   type="button"
                   className="portfolio-assistant-chip"
-                  onClick={() => submitQuestion(prompt)}
+                  onClick={() => submitQuestion(prompt.question)}
                   disabled={isLoading}
                 >
-                  {prompt}
+                  {prompt.label}
                 </button>
               ))}
             </div>
@@ -213,8 +239,8 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
               aria-label="Ask Sue's assistant a question"
               disabled={isLoading}
             />
-            <button type="submit" disabled={isLoading}>
-              {isLoading ? "..." : "Send"}
+            <button type="submit" disabled={isLoading} aria-label="Send message">
+              {isLoading ? "…" : "→"}
             </button>
           </form>
         </div>

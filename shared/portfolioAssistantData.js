@@ -41,8 +41,8 @@ export const portfolioAssistantFollowUps = [
 export const portfolioAssistantWelcome = {
   question: "Welcome",
   answer:
-    "I can quickly explain Sue's projects, backend experience, and where she fits best.",
-  cta: "Start with one of the suggested questions, or type your own.",
+    "Hi, I know Sue's work inside out - her projects, backend stack, and what roles she thrives in.",
+  cta: "Try a suggested question below, or just ask me anything.",
   cards: [],
   followUps: [],
 };
