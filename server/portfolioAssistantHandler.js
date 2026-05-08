@@ -307,14 +307,17 @@ export async function handlePortfolioAssistantRequest(request, { env = process.e
     const reply = await generateAssistantReply({ question, history, env, fetchImpl });
     return jsonResponse(reply);
   } catch (error) {
+    const localReply = findBestLocalReply(question);
+
     return jsonResponse(
       {
-        ...portfolioAssistantFallback,
+        ...localReply,
         error: error.message,
-        followUps: portfolioAssistantFallback.followUps,
+        cta: `${localReply.cta} The live AI response is unavailable right now, so this answer is coming from Sue's local portfolio knowledge base.`,
+        followUps: localReply.followUps,
         provider: "fallback",
       },
-      500
+      200
     );
   }
 }

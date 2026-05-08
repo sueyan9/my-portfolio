@@ -53,9 +53,10 @@
 .portfolio-assistant-panel {
   position: fixed;
   right: 24px;
+  top: 24px;
   bottom: 92px;
   width: min(92vw, 1480px);
-  max-height: min(88vh, 1180px);
+  height: min(calc(100vh - 116px), 1180px);
   z-index: 1199;
   opacity: 0;
   pointer-events: none;
@@ -73,7 +74,7 @@
 .portfolio-assistant-panel__shell {
   display: flex;
   flex-direction: column;
-  min-height: min(84vh, 1120px);
+  height: 100%;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 34px;
@@ -203,6 +204,7 @@
   border-radius: 30px;
   line-height: 1.55;
   animation: portfolio-assistant-fade-in 0.24s ease;
+  flex-shrink: 0;
 }
 
 .portfolio-assistant-message p {
@@ -388,11 +390,9 @@
 
 @media (max-width: 1100px) {
   .portfolio-assistant-panel {
+    top: 14px;
+    bottom: 88px;
     width: calc(100vw - 28px);
-  }
-
-  .portfolio-assistant-panel__shell {
-    min-height: min(82vh, 980px);
   }
 
   .portfolio-assistant-panel__header {
@@ -431,13 +431,13 @@
 
   .portfolio-assistant-panel {
     right: 12px;
+    top: 12px;
     bottom: 80px;
     width: calc(100vw - 24px);
-    max-height: calc(100vh - 104px);
+    height: calc(100vh - 104px);
   }
 
   .portfolio-assistant-panel__shell {
-    min-height: calc(100vh - 116px);
     border-radius: 28px;
   }
 
