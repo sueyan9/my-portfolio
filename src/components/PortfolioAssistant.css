@@ -55,8 +55,8 @@
   right: 24px;
   top: 24px;
   bottom: 92px;
-  width: min(92vw, 1480px);
-  height: min(calc(100vh - 116px), 1180px);
+  width: min(86vw, 1180px);
+  height: min(calc(100vh - 132px), 920px);
   z-index: 1199;
   opacity: 0;
   pointer-events: none;
@@ -93,26 +93,26 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 1.5rem;
-  padding: 2rem 2.4rem 1.9rem;
+  padding: 1.4rem 1.7rem 1.3rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .portfolio-assistant-panel__identity {
   display: flex;
   align-items: center;
-  gap: 1.35rem;
+  gap: 1rem;
 }
 
 .portfolio-assistant-panel__monogram {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 84px;
-  height: 84px;
-  border: 3px solid rgba(226, 190, 116, 0.9);
+  width: 64px;
+  height: 64px;
+  border: 2px solid rgba(226, 190, 116, 0.9);
   border-radius: 50%;
   color: #dcb96a;
-  font-size: 2rem;
+  font-size: 1.55rem;
   font-weight: 700;
   line-height: 1;
 }
@@ -120,14 +120,14 @@
 .portfolio-assistant-panel__header h3 {
   margin: 0.18rem 0 0;
   color: #f6efe8;
-  font-size: clamp(2rem, 2.2vw, 2.2rem);
+  font-size: clamp(1.55rem, 1.9vw, 1.9rem);
   line-height: 1.04;
 }
 
 .portfolio-assistant-panel__eyebrow {
   margin: 0;
   color: #f0c784;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -136,7 +136,7 @@
 .portfolio-assistant-panel__boundary {
   margin: 0.48rem 0 0;
   color: rgba(235, 222, 234, 0.62);
-  font-size: 1rem;
+  font-size: 0.84rem;
   font-weight: 600;
   line-height: 1.4;
 }
@@ -145,26 +145,25 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.82rem;
+  gap: 0.65rem;
   padding-top: 0.1rem;
 }
 
 .portfolio-assistant-panel__close {
-  min-width: 58px;
-  min-height: 54px;
+  min-width: 44px;
+  min-height: 44px;
   padding: 0;
-  border: none;
-  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
   background: rgba(47, 44, 39, 0.9);
   color: rgba(255, 246, 236, 0.82);
-  font-size: 1.1rem;
-  letter-spacing: 0.18em;
+  font-size: 1.45rem;
   line-height: 1;
 }
 
 .portfolio-assistant-panel__indicator {
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: #58f0a2;
   box-shadow: 0 0 18px rgba(88, 240, 162, 0.75);
@@ -174,10 +173,10 @@
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  gap: 1.15rem;
+  gap: 0.85rem;
   min-height: 0;
   overflow-y: auto;
-  padding: 2rem 2rem 1rem;
+  padding: 1.15rem 1.4rem 0.7rem;
 }
 
 .portfolio-assistant-panel__body::-webkit-scrollbar {
@@ -192,7 +191,7 @@
 .portfolio-assistant-panel__section-label {
   margin: 0 0 0.1rem;
   color: rgba(210, 192, 222, 0.68);
-  font-size: 0.92rem;
+  font-size: 0.74rem;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -200,8 +199,8 @@
 
 .portfolio-assistant-message {
   max-width: min(80%, 1160px);
-  padding: 1.85rem 2rem;
-  border-radius: 30px;
+  padding: 1.2rem 1.35rem;
+  border-radius: 24px;
   line-height: 1.55;
   animation: portfolio-assistant-fade-in 0.24s ease;
   flex-shrink: 0;
@@ -219,8 +218,8 @@
 }
 
 .portfolio-assistant-message--assistant p {
-  font-size: clamp(1.1rem, 1.55vw, 1.28rem);
-  line-height: 1.7;
+  font-size: clamp(0.92rem, 1.2vw, 1.02rem);
+  line-height: 1.62;
 }
 
 .portfolio-assistant-message--user {
@@ -232,16 +231,16 @@
 
 .portfolio-assistant-message__badge {
   display: inline-block;
-  margin-bottom: 1rem;
+  margin-bottom: 0.7rem;
   color: #f0c784;
-  font-size: 0.76rem;
+  font-size: 0.66rem;
   font-weight: 800;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
 .portfolio-assistant-message__cta {
-  margin-top: 1.6rem;
+  margin-top: 1rem;
   color: #d1ad63;
   font-style: italic;
 }
@@ -249,15 +248,15 @@
 .portfolio-assistant-message__cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 0.9rem;
-  margin-top: 1.25rem;
+  gap: 0.7rem;
+  margin-top: 1rem;
 }
 
 .portfolio-assistant-message__followups {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 1.25rem;
+  gap: 0.55rem;
+  margin-top: 0.9rem;
 }
 
 .portfolio-assistant-card,
@@ -271,9 +270,9 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.8rem;
-  padding: 0.95rem 1.05rem;
+  padding: 0.72rem 0.9rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 18px;
+  border-radius: 16px;
   background: rgba(255, 255, 255, 0.05);
   color: #fff5ee;
   text-decoration: none;
@@ -293,17 +292,17 @@
 
 .portfolio-assistant-card__label {
   color: #ffd3b7;
-  font-size: 0.86rem;
+  font-size: 0.78rem;
   text-align: right;
 }
 
 .portfolio-assistant-followup {
-  padding: 0.72rem 1rem;
+  padding: 0.58rem 0.8rem;
   border-radius: 999px;
   border: 1px solid rgba(255, 214, 186, 0.16);
   background: rgba(255, 214, 186, 0.06);
   color: #ffe6d5;
-  font-size: 0.9rem;
+  font-size: 0.78rem;
   line-height: 1.3;
 }
 
@@ -314,18 +313,18 @@
 .portfolio-assistant-panel__quick-prompts {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  padding: 0 2rem 1.6rem;
+  gap: 0.7rem;
+  padding: 0 1.4rem 1rem;
 }
 
 .portfolio-assistant-chip {
   flex: 0 0 auto;
-  padding: 0.92rem 1.9rem;
-  border-radius: 18px;
+  padding: 0.66rem 1rem;
+  border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.16);
   background: rgba(34, 19, 54, 0.34);
   color: #f4edf6;
-  font-size: clamp(1rem, 1.45vw, 1.06rem);
+  font-size: clamp(0.82rem, 1vw, 0.9rem);
   font-weight: 600;
   line-height: 1.25;
 }
@@ -338,22 +337,22 @@
 
 .portfolio-assistant-panel__composer {
   display: grid;
-  grid-template-columns: 1fr 82px;
-  gap: 1rem;
+  grid-template-columns: 1fr 64px;
+  gap: 0.8rem;
   align-items: center;
-  padding: 1.6rem 2rem 2rem;
+  padding: 1rem 1.4rem 1.3rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .portfolio-assistant-panel__composer input {
   min-width: 0;
-  height: 72px;
+  height: 56px;
   border: 1px solid rgba(221, 196, 147, 0.26);
   border-radius: 14px;
-  padding: 0 1.45rem;
+  padding: 0 1rem;
   background: rgba(53, 52, 47, 0.92);
   color: #fff8f3;
-  font-size: 1.08rem;
+  font-size: 0.94rem;
 }
 
 .portfolio-assistant-panel__composer input::placeholder {
@@ -361,12 +360,12 @@
 }
 
 .portfolio-assistant-panel__composer button {
-  height: 72px;
-  border-radius: 18px;
+  height: 56px;
+  border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: rgba(30, 14, 50, 0.96);
   color: #fff6ee;
-  font-size: 2rem;
+  font-size: 1.65rem;
   line-height: 1;
 }
 
@@ -392,29 +391,29 @@
   .portfolio-assistant-panel {
     top: 14px;
     bottom: 88px;
-    width: calc(100vw - 28px);
+    width: min(calc(100vw - 28px), 980px);
   }
 
   .portfolio-assistant-panel__header {
-    padding: 1.5rem 1.5rem 1.4rem;
+    padding: 1.2rem 1.3rem 1.1rem;
   }
 
   .portfolio-assistant-panel__monogram {
-    width: 68px;
-    height: 68px;
-    font-size: 1.65rem;
+    width: 58px;
+    height: 58px;
+    font-size: 1.4rem;
   }
 
   .portfolio-assistant-panel__body,
   .portfolio-assistant-panel__quick-prompts,
   .portfolio-assistant-panel__composer {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
   }
 
   .portfolio-assistant-message {
     max-width: 100%;
-    padding: 1.45rem 1.55rem;
+    padding: 1.05rem 1.15rem;
   }
 }
 

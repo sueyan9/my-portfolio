@@ -148,7 +148,7 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
                 onClick={onToggle}
                 aria-label="Close assistant"
               >
-                •••
+                ×
               </button>
               <span className="portfolio-assistant-panel__indicator" aria-hidden="true" />
             </div>
