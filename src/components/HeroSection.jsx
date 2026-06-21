@@ -9,6 +9,9 @@ const SPRING = 0.065;
 const DOG_GAP = 3;
 const TITLE_TEXT_GAP = 5;
 const SUBTITLE_TEXT_GAP = 6;
+// Below this width the title/subtitle render as real HTML text instead of
+// canvas particles (mobile), so the canvas only draws the dog portrait.
+const HTML_TEXT_BREAKPOINT = 680;
 
 function drawCoverImage(context, image, targetX, targetY, targetWidth, targetHeight) {
   const imageRatio = image.width / image.height;
@@ -46,11 +49,18 @@ function createDogParticles(width, height, image) {
   context.fillRect(0, 0, width, height);
 
   const isCompact = width < 900;
-  const portraitSize = isCompact
-    ? Math.min(width * 0.76, height * 0.42)
-    : Math.min(width * 0.5, height * 0.9);
+  const isMobile = width < HTML_TEXT_BREAKPOINT;
+  const portraitSize = isMobile
+    ? Math.min(width * 0.72, height * 0.82)
+    : isCompact
+      ? Math.min(width * 0.76, height * 0.42)
+      : Math.min(width * 0.5, height * 0.9);
   const portraitX = isCompact ? (width - portraitSize) / 2 : width * 0.03;
-  const portraitY = isCompact ? height * 0.08 : (height - portraitSize) / 2;
+  const portraitY = isMobile
+    ? (height - portraitSize) / 2
+    : isCompact
+      ? height * 0.08
+      : (height - portraitSize) / 2;
   const portraitCenterX = portraitX + portraitSize * 0.48;
   const portraitCenterY = portraitY + portraitSize * 0.5;
   const portraitRadiusX = portraitSize * 0.38;
@@ -260,10 +270,10 @@ export default function HeroSection() {
       context.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       if (image.complete) {
-        particles = [
-          ...createDogParticles(width, height, image),
-          ...createTextParticles(width, height),
-        ];
+        particles = [...createDogParticles(width, height, image)];
+        if (width >= HTML_TEXT_BREAKPOINT) {
+          particles.push(...createTextParticles(width, height));
+        }
       }
     };
 
@@ -367,6 +377,10 @@ export default function HeroSection() {
             className="hero-particle-canvas"
             aria-label="Interactive dog particle portrait and text"
           />
+        </div>
+        <div className="hero-text-html">
+          <h1 className="hero-text-html__title">Hi, I&apos;m Sue Yan</h1>
+          <p className="hero-text-html__subtitle">I turn systems into smooth experiences.</p>
         </div>
       </div>
     </section>
