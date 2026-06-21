@@ -15,6 +15,22 @@ export const projects = [
     links: [{ title: "Projects", label: "See project section", href: "#projects" }],
   },
   {
+    id: "clinic-rag-support",
+    title: "Clinic RAG Support API",
+    summary:
+      "A local-first Retrieval-Augmented Generation (RAG) API for clinic-management support, built with FastAPI, Qdrant, and Ollama. It retrieves section-aware knowledge-base chunks with domain routing and returns source-grounded answers — fully offline, with no prompts, embeddings, or context sent to external AI vendors.",
+    highlights: [
+      "Local-first, private RAG running entirely on local Ollama models",
+      "Heading-aware markdown ingestion into section-level semantic chunks with metadata",
+      "Domain-routed retrieval over a Qdrant vector store with global fallback",
+      "Source-grounded answers with citations and similarity scores",
+      "Built-in evaluation set measuring retrieval, answer, and citation quality",
+    ],
+    techStack: ["FastAPI", "Qdrant", "Ollama", "Python", "Docker"],
+    strengths: ["RAG / AI engineering", "Retrieval and evaluation design", "Privacy-conscious local-first AI", "Backend API design"],
+    links: [{ title: "Clinic RAG Support API", label: "Open GitHub", href: "https://github.com/sueyan9/ecommerce-rag-support" }],
+  },
+  {
     id: "dental-chart",
     title: "3D Dental Chart",
     summary:

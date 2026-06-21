@@ -8,6 +8,7 @@ import project4 from "../assets/project3DProject.png";
 import project5 from "../assets/project5.png";
 import project6 from "../assets/project6.png";
 import project7 from "../assets/project7.png";
+import projectRAG from "../assets/projectRAG.png";
 
 
 const projects = [
@@ -31,6 +32,25 @@ Tech Stack:
 Full-stack web application`,
         image: project7,
         imageFit: "cover",
+    },
+    {
+        title: "Clinic RAG Support API",
+        desc: `Overview:
+
+A local-first Retrieval-Augmented Generation (RAG) API that answers clinic-management support questions, built with FastAPI, Qdrant, and Ollama. It runs entirely on local models — no prompts, embeddings, or retrieved context are ever sent to external AI vendors, making it safe to prototype AI support on operationally sensitive clinic data.
+
+Key Features:
+• 🔒 Local-first & private: embeddings and answer generation run on local Ollama models; works offline and keeps data developer-controlled.
+• 📚 Heading-aware ingestion: splits markdown docs into section-level semantic chunks with rich metadata (domain, source, title, section, chunk index).
+• 🎯 Domain-routed retrieval: classifies each question into a domain (booking, invoice, policy…) and filters the Qdrant search to it, falling back to global retrieval when unsure.
+• 🧾 Source-grounded answers: returns the answer plus source citations and similarity scores, so every answer is traceable to a knowledge-base section.
+• 📊 Built-in evaluation: run an evaluation set against the live API to measure retrieval, answer, and citation quality.
+
+Tech Stack:
+FastAPI · Qdrant (vector DB) · Ollama (local LLM + embeddings) · Python`,
+        image: projectRAG,
+        imageFit: "cover",
+        link: "https://github.com/sueyan9/ecommerce-rag-support",
     },
     {
         title: "3D Dental Chart",
