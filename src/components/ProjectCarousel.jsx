@@ -32,6 +32,7 @@ Tech Stack:
 Full-stack web application`,
         image: project7,
         imageFit: "cover",
+        link: "https://rongolab.com",
     },
     {
         title: "Clinic RAG Support API",

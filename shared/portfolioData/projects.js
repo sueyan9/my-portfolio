@@ -12,7 +12,7 @@ export const projects = [
     ],
     techStack: ["Full-stack web application"],
     strengths: ["Operational workflow design", "Full-stack product thinking", "Healthcare-oriented UX"],
-    links: [{ title: "Projects", label: "See project section", href: "#projects" }],
+    links: [{ title: "Rongokit Clinic Management System", label: "Open live site", href: "https://rongolab.com" }],
   },
   {
     id: "clinic-rag-support",
