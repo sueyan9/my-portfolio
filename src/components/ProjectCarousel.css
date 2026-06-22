@@ -78,8 +78,8 @@
 
 .project-card__btn {
     margin-top: 1.2rem;
-    background: #6a5acd;
-    color: #fff;
+    background: var(--accent, #f6a623);
+    color: var(--accent-ink, #5a3a00);
     padding: 0.6rem 1.5rem;
     border-radius: 8px;
     text-decoration: none;
@@ -90,7 +90,7 @@
     display: inline-block;
 }
 .project-card__btn:hover {
-    background: #483d8b;
+    background: var(--accent-strong, #e0901f);
 }
 
 @media (max-width: 900px) {

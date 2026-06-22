@@ -95,7 +95,7 @@
         font-weight: 700;
         font-size: clamp(2.1rem, 9vw, 2.9rem);
         line-height: 1.1;
-        color: #231711;
+        color: var(--anchor, #3a1d6e);
     }
 
     .hero-text-html__subtitle {
@@ -105,6 +105,6 @@
         font-weight: 600;
         font-size: clamp(1.05rem, 4.4vw, 1.35rem);
         line-height: 1.4;
-        color: #4b3729;
+        color: var(--anchor-soft, #5e4a86);
     }
 }

@@ -154,7 +154,7 @@
 }
 
 .bottom .social-buttons-container .social-button:active {
-    background: #ffd700;
+    background: var(--accent, #f6a623);
 }
 
 .bottom .social-buttons-container .social-button:active .svg {

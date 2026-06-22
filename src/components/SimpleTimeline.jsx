@@ -203,11 +203,23 @@ export function SimpleTimeline() {
   );
 
   const tickAngles = useMemo(() => {
-    return Array.from({ length: 25 }, (_, index) => {
-      const progress = index / 24;
+    return Array.from({ length: 49 }, (_, index) => {
+      const progress = index / 48;
       return startAngle + (endAngle - startAngle) * progress + rotationOffset;
     });
   }, [startAngle, endAngle, rotationOffset]);
+
+  const decorStars = useMemo(
+    () => [
+      { tick: 5, radiusOffset: 58, size: 9, opacity: 0.5 },
+      { tick: 11, radiusOffset: 132, size: 7, opacity: 0.38 },
+      { tick: 17, radiusOffset: 48, size: 8, opacity: 0.55 },
+      { tick: 31, radiusOffset: 112, size: 7, opacity: 0.4 },
+      { tick: 37, radiusOffset: 64, size: 9, opacity: 0.5 },
+      { tick: 43, radiusOffset: 150, size: 6, opacity: 0.32 },
+    ],
+    []
+  );
 
   const points = useMemo(() => {
     return timelineData.map((item, index) => {
@@ -271,36 +283,66 @@ export function SimpleTimeline() {
           <path
             d={arcPath}
             fill="none"
-            stroke="#e5e7eb"
-            strokeWidth="4"
+            stroke="#e7e3f1"
+            strokeWidth="1"
             strokeLinecap="round"
+          />
+          <path
+            d={arcPath}
+            fill="none"
+            stroke="#b3a9d4"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeDasharray="0.5 9"
           />
 
           {tickAngles.map((angle, index) => {
-            const outer = polarToCartesian(centerX, centerY, radius + 4, angle);
+            const isMajor = index % 8 === 0;
+            const outer = polarToCartesian(centerX, centerY, radius + 3, angle);
             const inner = polarToCartesian(
               centerX,
               centerY,
-              index % 6 === 0 ? radius - majorTickDepth : radius - minorTickDepth,
+              radius - (isMajor ? majorTickDepth : minorTickDepth * 0.7),
               angle
             );
 
             return (
-              <line
-                key={index}
-                x1={outer.x}
-                y1={outer.y}
-                x2={inner.x}
-                y2={inner.y}
-                stroke={index % 6 === 0 ? "#cfd5df" : "#e4e7ee"}
-                strokeWidth={index % 6 === 0 ? "2.5" : "1.5"}
-                strokeLinecap="round"
-              />
+              <g key={index}>
+                <line
+                  x1={outer.x}
+                  y1={outer.y}
+                  x2={inner.x}
+                  y2={inner.y}
+                  stroke={isMajor ? "#a99fce" : "#dcd6ec"}
+                  strokeWidth={isMajor ? "1.5" : "0.75"}
+                  strokeLinecap="round"
+                />
+                {isMajor && <circle cx={outer.x} cy={outer.y} r="2" fill="#a99fce" />}
+              </g>
+            );
+          })}
+
+          {decorStars.map((star, index) => {
+            const angle = tickAngles[star.tick];
+            const pos = polarToCartesian(centerX, centerY, radius - star.radiusOffset, angle);
+            return (
+              <text
+                key={`star-${index}`}
+                x={pos.x}
+                y={pos.y + star.size * 0.35}
+                textAnchor="middle"
+                fontSize={star.size}
+                fill="#9b8fc4"
+                opacity={star.opacity}
+              >
+                ✦
+              </text>
             );
           })}
 
           {points.map((item, index) => {
             const isActive = index === activeIndex;
+            const burst = activeCircle + 13;
             return (
               <g key={item.time}>
                 <line
@@ -308,16 +350,17 @@ export function SimpleTimeline() {
                   y1={item.point.y}
                   x2={item.timePoint.x}
                   y2={item.timePoint.y}
-                  stroke={isActive ? "#6b5cd6" : "#d1d5db"}
-                  strokeWidth={isActive ? "3.5" : "2"}
+                  stroke={isActive ? "#3a1d6e" : "#cbc4de"}
+                  strokeWidth={isActive ? "3" : "1.5"}
                   strokeLinecap="round"
+                  strokeDasharray={isActive ? "none" : "2 4"}
                 />
 
                 <text
                   x={item.timePoint.x}
                   y={item.timePoint.y + timeOffsetY}
                   textAnchor="middle"
-                  fill={isActive ? "#6b5cd6" : "#9ca3af"}
+                  fill={isActive ? "#3a1d6e" : "#9a93ab"}
                   fontSize={isActive ? activeTimeSize : inactiveTimeSize}
                   fontWeight={isActive ? "600" : "500"}
                   style={{ transition: "all 0.35s ease" }}
@@ -329,13 +372,47 @@ export function SimpleTimeline() {
                   onClick={() => setActiveIndex(index)}
                   style={{ cursor: "pointer", transition: "all 0.35s ease" }}
                 >
+                  {isActive && (
+                    <>
+                      <circle cx={item.iconPoint.x} cy={item.iconPoint.y} r={activeCircle + 11} fill="#f6a623" opacity="0.13" />
+                      <circle cx={item.iconPoint.x} cy={item.iconPoint.y} r={activeCircle + 5} fill="none" stroke="#f6a623" strokeWidth="1.1" opacity="0.55" />
+                      {[
+                        [0, -burst],
+                        [0, burst],
+                        [-burst, 0],
+                        [burst, 0],
+                      ].map(([dx, dy], starIndex) => (
+                        <text
+                          key={starIndex}
+                          x={item.iconPoint.x + dx}
+                          y={item.iconPoint.y + dy + 3.5}
+                          textAnchor="middle"
+                          fontSize="10"
+                          fill="#e0901f"
+                          opacity="0.9"
+                        >
+                          ✦
+                        </text>
+                      ))}
+                    </>
+                  )}
+                  {!isActive && (
+                    <circle
+                      cx={item.iconPoint.x}
+                      cy={item.iconPoint.y}
+                      r={inactiveCircle + 4}
+                      fill="none"
+                      stroke="#e3def0"
+                      strokeWidth="1"
+                    />
+                  )}
                   <circle
                     cx={item.iconPoint.x}
                     cy={item.iconPoint.y}
                     r={isActive ? activeCircle : inactiveCircle}
-                    fill={isActive ? "#6b5cd6" : "#f8fafc"}
-                    stroke={isActive ? "#6b5cd6" : "#d1d5db"}
-                    strokeWidth="4"
+                    fill={isActive ? "#3a1d6e" : "#faf8f3"}
+                    stroke={isActive ? "#f6a623" : "#c9c2dd"}
+                    strokeWidth={isActive ? "2.5" : "1.5"}
                     style={{ transition: "all 0.25s ease" }}
                   />
                   <text
@@ -343,6 +420,7 @@ export function SimpleTimeline() {
                     y={item.iconPoint.y + 8}
                     textAnchor="middle"
                     fontSize={isActive ? activeIcon : inactiveIcon}
+                    opacity={isActive ? 1 : 0.82}
                   >
                     {item.icon}
                   </text>

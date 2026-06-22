@@ -216,8 +216,8 @@ function createTextParticles(width, height) {
 
   sampleTextLayer(titleContext, title, titleY, {
     font: `700 ${titleSize}px "Georgia", "Times New Roman", serif`,
-    fill: "#231711",
-    color: "rgba(42, 28, 20, 0.98)",
+    fill: "#3a1d6e",
+    color: "rgba(58, 29, 110, 0.98)",
     gap: TITLE_TEXT_GAP,
     size: 2.45,
     driftScale: 1,
@@ -225,8 +225,8 @@ function createTextParticles(width, height) {
 
   sampleTextLayer(subtitleContext, subtitle, bodyY, {
     font: `700 ${bodySize}px "Helvetica Neue", Arial, sans-serif`,
-    fill: "#4b3729",
-    color: "rgba(75, 55, 41, 0.98)",
+    fill: "#5e4a86",
+    color: "rgba(94, 74, 134, 0.98)",
     gap: SUBTITLE_TEXT_GAP,
     size: 3.2,
     driftScale: 0.6,
@@ -237,7 +237,6 @@ function createTextParticles(width, height) {
 
 export default function HeroSection() {
   const canvasRef = useRef(null);
-  const frameRef = useRef(0);
   const mouseRef = useRef({ x: -9999, y: -9999, active: false });
 
   useEffect(() => {
@@ -257,6 +256,7 @@ export default function HeroSection() {
     let particles = [];
     let width = 0;
     let height = 0;
+    let animationFrameId = 0;
 
     const resize = () => {
       const bounds = canvas.getBoundingClientRect();
@@ -321,7 +321,7 @@ export default function HeroSection() {
       renderParticles(time);
 
       context.shadowBlur = 0;
-      frameRef.current = window.requestAnimationFrame(render);
+      animationFrameId = window.requestAnimationFrame(render);
     };
 
     const handlePointerMove = (event) => {
@@ -364,7 +364,7 @@ export default function HeroSection() {
       resizeObserver.disconnect();
       canvas.removeEventListener("pointermove", handlePointerMove);
       canvas.removeEventListener("pointerleave", handlePointerLeave);
-      window.cancelAnimationFrame(frameRef.current);
+      window.cancelAnimationFrame(animationFrameId);
     };
   }, []);
 

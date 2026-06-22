@@ -1,4 +1,19 @@
 @import "tailwindcss";
+
+/* Palette — Option A: pink + lilac base, deep-plum anchor, marigold accent */
+:root {
+  --cream: #f7f4ee;
+  --pink: #f4c0d1;
+  --lilac: #afa9ec;
+  --brand-purple: #6c2fd6;
+  --anchor: #3a1d6e;        /* headings, primary text */
+  --anchor-soft: #5e4a86;   /* secondary text */
+  --accent: #f6a623;        /* marigold — buttons, links, highlights */
+  --accent-strong: #e0901f; /* marigold hover */
+  --accent-ink: #5a3a00;    /* text on marigold */
+  --blue-aux: #6e8cb0;      /* dusty blue — borders, secondary */
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -16,11 +31,11 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--anchor, #3a1d6e);
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: var(--accent-strong, #e0901f);
 }
 
 body {
@@ -48,7 +63,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: var(--accent, #f6a623);
 }
 button:focus,
 button:focus-visible {
@@ -63,7 +78,7 @@ button:focus-visible {
     --light-pink: #f3e6e8;
   }
   a:hover {
-    color: #747bff;
+    color: var(--accent-strong, #e0901f);
   }
   button {
     background-color: #f9f9f9;
