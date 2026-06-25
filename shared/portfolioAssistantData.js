@@ -1,5 +1,7 @@
 import { contact, experience, profile, projects, skills } from "./portfolioData/index.js";
 
+const getProjectTitle = (id, fallback) => projects.find((project) => project.id === id)?.title ?? fallback;
+
 export const portfolioAssistantPromptGroups = [
   {
     label: "Technical",
@@ -163,7 +165,7 @@ const localKnowledge = [
     topic: "strongestProject",
     matchers: ["strongest project", "best project", "main project", "highlight project", "acc", "toothmate"],
     question: "What is Sue's strongest project?",
-    answer: `If you want to understand Sue's work quickly, start with ${projects[0].title}. It's a full-stack project centered on real operational workflows, where she focused on reducing manual work, centralizing patient information, and supporting day-to-day clinic processes. ${projects[2].title} is another strong example, especially for mobile product thinking, 3D interaction, and end-to-end feature design.`,
+    answer: `If you want to understand Sue's work quickly, start with ${getProjectTitle("clinic-system", "Rongokit Clinic Management System")}. It's a full-stack project centered on real operational workflows, where she focused on reducing manual work, centralizing patient information, and supporting day-to-day clinic processes. ${getProjectTitle("toothmate", "ToothMate Mobile App")} is another strong example, especially for mobile product thinking, 3D interaction, and end-to-end feature design.`,
     cta: "I can break down the clinic system in more detail if you want to see how she approaches real-world problems.",
   },
   {
@@ -171,7 +173,7 @@ const localKnowledge = [
     topic: "backend",
     matchers: ["what backend systems has sue built", "backend systems", "backend projects", "backend work"],
     question: "What backend systems has Sue built?",
-    answer: `Sue's backend-oriented work shows up especially in ${projects[0].title}, ${projects[4].title}, and ${projects[2].title}. Across those projects, she has worked on workflow-driven product logic, structured data handling, authentication and moderation flows, APIs, and database-backed features rather than just surface-level UI.`,
+    answer: `Sue's backend-oriented work shows up especially in ${getProjectTitle("clinic-system", "Rongokit Clinic Management System")}, ${getProjectTitle("clinic-rag-support", "Clinic RAG Support API")}, and ${getProjectTitle("speed", "SPEED")}. Across those projects, she has worked on workflow-driven product logic, structured data handling, authentication and moderation flows, APIs, and database-backed features rather than just surface-level UI.`,
     cta: "If you want the strongest backend example, I'd start with the clinic system or SPEED.",
   },
   {

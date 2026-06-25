@@ -105,4 +105,21 @@ export const projects = [
     strengths: ["Spatial thinking", "Fabrication workflow", "Design systems mindset"],
     links: [{ title: "Projects", label: "Browse projects", href: "#projects" }],
   },
+  {
+    id: "matricle-platform",
+    title: "All-In-One (ERP + CRM + E-commerce) Platform",
+    summary:
+      "An enterprise internship project where Sue contributed to a full-stack ERP, CRM, and e-commerce platform, with the main focus on Spring Boot backend development and Vue-based frontend delivery for workflow-heavy business features.",
+    highlights: [
+      "Enterprise workflow features built primarily on Java Spring Boot services",
+      "Vue-based frontend delivery for internal business flows and e-commerce interfaces",
+      "Bootstrap used for selected custom pages and faster UI delivery where needed",
+      "Backend support across Java (Spring Boot), C#, and Node.js services",
+      "Unit testing with JUnit plus full-cycle manual testing for stability and release readiness",
+      "Purchase order workflow improvements that reduced manual input errors",
+    ],
+    techStack: ["Java (Spring Boot)", "Vue", "Bootstrap", "Material UI", "C#", "Node.js", "MySQL", "PostgreSQL", "MongoDB"],
+    strengths: ["Workflow-heavy product delivery", "Frontend and backend collaboration", "Testing and QA", "Internship production experience"],
+    links: [{ title: "Matricle", label: "Visit company site", href: "https://www.matricle.com/" }],
+  },
 ];

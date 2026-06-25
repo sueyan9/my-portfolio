@@ -17,7 +17,6 @@ export const experience = [
       "Contributed to multiple feature releases under tight deadlines",
     ],
     techStack: [
-      "React",
       "Thymeleaf",
       "Bootstrap",
       "Material UI",
