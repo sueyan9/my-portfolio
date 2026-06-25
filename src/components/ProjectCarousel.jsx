@@ -86,7 +86,7 @@ React · React Three Fiber · Three.js · JavaScript · HTML/CSS`,
             "\t•\t🔒 Authentication & Profiles: User login, role-based access, and secure treatment data\n" +
             "\n" +
             "Tech Stack:\n" +
-            "React Native · Node.js · Express · MongoDB · Three.js · Firebase · Expo\n",
+            "React Native · Node.js · Express · MongoDB · Three.js · AWS · Expo\n",
         video: project2,
     },
     {
