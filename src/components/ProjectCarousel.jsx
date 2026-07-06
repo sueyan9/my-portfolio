@@ -10,6 +10,7 @@ import project5 from "../assets/project5.png";
 import project6 from "../assets/project6.png";
 import project7 from "../assets/project7.png";
 import projectRAG from "../assets/projectRAG.png";
+import leavewise from "../assets/Agentic_ai_project.png";
 
 const projectMediaById = {
     "clinic-system": { image: project7, imageFit: "cover" },
@@ -20,6 +21,7 @@ const projectMediaById = {
     speed: { image: project5 },
     "parametric-design": { image: project4 },
     "matricle-platform": { image: project6 },
+    leavewise: { image: leavewise },
 };
 
 function buildProjectDescription(project) {

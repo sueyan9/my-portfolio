@@ -28,7 +28,10 @@ export default function ProjectCard({ image, video, title, desc, link, imageFit 
                         <span className="modern-card__placeholder-badge">New Project</span>
                         <h6 className="modern-card__placeholder-title">{title}</h6>
                         <p className="modern-card__placeholder-text">
-                            Clinic workflows, patient records, and appointment coordination in one place.
+                            {desc
+                                ?.split("\n")
+                                .find((line) => line.trim().length > 0 && line.trim() !== "Overview:") ??
+                                "Details coming soon."}
                         </p>
                     </div>
                 )}

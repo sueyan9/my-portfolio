@@ -15,6 +15,22 @@ export const projects = [
     links: [{ title: "Rongokit Clinic Management System", label: "Open live site", href: "https://rongolab.com" }],
   },
   {
+    id: "leavewise",
+    title: "LeaveWise – AI Daily Commute Planner",
+    summary:
+      "An AI-powered daily commute assistant that decides when to leave and how to travel each morning, combining live location, weather, and traffic data into one clear recommendation. Designed around a multi-agent architecture — a Planner/Orchestrator coordinating specialized Context, Weather, Routing, Traffic, and Calendar agents — so each data source can be reasoned about independently before being merged into an explainable recommendation.",
+    highlights: [
+      "Designed a multi-agent architecture: a Planner/Orchestrator coordinating Context, Weather, Routing, Traffic, and Calendar agents that feed into a shared context",
+      "Recommendation agent layer that turns merged multi-agent signals into an explainable departure-time and travel-mode suggestion",
+      "Browser geolocation for automatic starting-location detection, with reverse geocoding and driving route estimates via Google Maps APIs",
+      "Real-time weather data from Open-Meteo factored into routing decisions",
+      "Currently shipped as a layered FastAPI service (API / planner / LLM explanation layers) implementing this design, with full multi-agent orchestration as the next milestone",
+    ],
+    techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "FastAPI", "Python", "Google Maps API", "Open-Meteo"],
+    strengths: ["Multi-agent system design", "Full-stack AI product design", "Real-time data integration", "API orchestration"],
+    links: [{ title: "LeaveWise", label: "Open GitHub", href: "https://github.com/sueyan9/AI-Daily-Commute-Planner" }],
+  },
+  {
     id: "clinic-rag-support",
     title: "Clinic RAG Support API",
     summary:
