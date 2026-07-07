@@ -280,17 +280,17 @@ export default function Home({ aboutRef, projectsRef, techRef , mainContentRef }
                     </div>
                 </section>
 
-                {/*  技术栈 */}
-                <section className="section-block tech-stack-bg" ref={techRef} id="tech-stack">
-                    <div className="container">
-                        <TechStack />
-                    </div>
-                </section>
-
                 {/*  Project 墙，背景色全屏 */}
                 <section className="section-block project-wall-bg" ref={projectsRef} id="projects">
                     <div className="container">
                         <ProjectCarousel />
+                    </div>
+                </section>
+
+                {/*  技术栈 */}
+                <section className="section-block tech-stack-bg" ref={techRef} id="tech-stack">
+                    <div className="container">
+                        <TechStack />
                     </div>
                 </section>
 
