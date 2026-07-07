@@ -1,7 +1,7 @@
 import {
     FaReact, FaNodeJs, FaAws, FaCloud, FaCogs, FaDatabase, FaMobileAlt, FaCloudflare, FaJava, FaMicrosoft, FaDocker, FaEnvelope, FaSearch, FaCheckCircle, FaBug, FaListAlt, FaTasks
 } from "react-icons/fa";
-import { SiSpring, SiMongodb, SiPostgresql, SiMysql  , SiRabbitmq, SiCucumber,SiTestcafe, SiTypescript, SiNextdotjs, SiMui, SiAntdesign, SiVite, SiGooglecloud } from "react-icons/si";
+import { SiSpring, SiMongodb, SiPostgresql, SiMysql  , SiRabbitmq, SiCucumber,SiTestcafe, SiTypescript, SiNextdotjs, SiMui, SiAntdesign, SiVite, SiGooglecloud, SiJirasoftware } from "react-icons/si";
 import "./TechStack.css";
 
 const techStacks = [
@@ -74,9 +74,10 @@ const techStacks = [
     {
         title: "Methodology",
         items: [
-            { name: "SCRUM", icon: <FaListAlt color="#888" /> },
+            { name: "Agile", icon: <FaTasks color="#888" /> },
+            { name: "Scrum", icon: <FaListAlt color="#888" /> },
             { name: "Kanban", icon: <FaTasks color="#888" /> },
-            { name: "Ticket management", icon: <FaListAlt color="#888" /> }
+            { name: "Jira", icon: <SiJirasoftware color="#0052CC" /> }
         ]
     }
 ];
