@@ -1,46 +1,58 @@
 import React, { useEffect, useMemo, useState } from "react";
-
+import {
+  Plane,
+  HeartHandshake,
+  GraduationCap,
+  BriefcaseBusiness,
+  Award,
+  LaptopMinimal,
+} from "lucide-react";
 const timelineData = [
   {
     time: "2008",
-    icon: "✈️",
-    title: "Moved to NZ",
-    description: "Immigrated to New Zealand from China, started adapting to new culture and education system",
+    icon: Plane,
+    title: "A New Beginning",
+    description:
+        "Moved from China to New Zealand and began adapting to a new culture, language, and education system.",
   },
   {
     time: "2021",
-    icon: "🐶",
-    title: "SPCA Volunteer",
-    description: "Started volunteering at SPCA, participating in animal care and front desk support work",
+    icon: HeartHandshake,
+    title: "Community Service",
+    description:
+        "Volunteered at SPCA, supporting animal care while giving back to the local community.",
   },
   {
     time: "2023",
-    icon: "📚",
-    title: "University",
-    description: "Started software engineering studies at university, began academic journey in tech",
+    icon: GraduationCap,
+    title: "Software Engineering",
+    description:
+        "Began studying Software Engineering and started turning curiosity into real software projects.",
   },
   {
     time: "2023 Aug",
-    icon: "💼",
-    title: "First Internship",
-    description: "Started first internship at a local company, gained full-stack development experience",
+    icon: BriefcaseBusiness,
+    title: "Industry Experience",
+    description:
+        "Joined my first software internship and started building production applications with a development team.",
   },
   {
     time: "2025",
-    icon: "🎓",
-    title: "Graduation",
-    description: "Graduated and ready to start career in software engineering field",
+    icon: Award,
+    title: "A New Chapter",
+    description:
+        "Completed my university journey and stepped into professional software development.",
   },
   {
     time: "2026",
-    icon: "💻",
-    title: " Software Developer · Rongo Lab",
+    icon: LaptopMinimal,
+    title: "Software Developer · Rongo Lab",
     description:
-        "Developing custom software solutions for New Zealand businesses, including health Tech, ERP/CRM platforms, Shopify integrations, and AI-powered workflow automation.",
+        "Working directly with clients to design and deliver end-to-end software solutions, including HealthTech platforms, ERP/CRM systems, Shopify integrations, and AI-powered workflow automation.",
   },
 ];
 
-const ACTIVE_ANGLE = (270 * Math.PI) / 180;
+const ACTIVE_ANGLE = (270* Math.PI) / 180;
 const EDGE_PADDING_SLOTS = 4;
 
 function polarToCartesian(cx, cy, radius, angle) {
@@ -58,10 +70,12 @@ function describeArc(cx, cy, radius, startAngle, endAngle) {
 }
 
 export function SimpleTimeline() {
-  const [activeIndex, setActiveIndex] = useState(2);
+  const [activeIndex, setActiveIndex] = useState(timelineData.length - 1);
+  const [hasInteracted, setHasInteracted] = useState(false);
   const [viewportWidth, setViewportWidth] = useState(() =>
     typeof window === "undefined" ? 1200 : window.innerWidth
   );
+
 
   useEffect(() => {
     const handleResize = () => setViewportWidth(window.innerWidth);
@@ -201,8 +215,10 @@ export function SimpleTimeline() {
       return startAngle + (endAngle - startAngle) * progress;
     });
   }, [startAngle, endAngle]);
-
-  const rotationOffset = ACTIVE_ANGLE - baseAngles[activeIndex];
+  const rotationOffset = hasInteracted
+      ? ACTIVE_ANGLE - baseAngles[activeIndex]
+      : 0;
+  //const rotationOffset = ACTIVE_ANGLE - baseAngles[activeIndex];
 
   const arcPath = useMemo(
     () => describeArc(centerX, centerY, radius, startAngle + rotationOffset, endAngle + rotationOffset),
@@ -350,6 +366,7 @@ export function SimpleTimeline() {
           {points.map((item, index) => {
             const isActive = index === activeIndex;
             const burst = activeCircle + 13;
+            const Icon = item.icon;
             return (
               <g key={item.time}>
                 <line
@@ -376,7 +393,10 @@ export function SimpleTimeline() {
                 </text>
 
                 <g
-                  onClick={() => setActiveIndex(index)}
+                  onClick={() =>{
+                      setActiveIndex(index);
+                      setHasInteracted(true);
+                }}
                   style={{ cursor: "pointer", transition: "all 0.35s ease" }}
                 >
                   {isActive && (
@@ -422,15 +442,23 @@ export function SimpleTimeline() {
                     strokeWidth={isActive ? "2.5" : "1.5"}
                     style={{ transition: "all 0.25s ease" }}
                   />
-                  <text
-                    x={item.iconPoint.x}
-                    y={item.iconPoint.y + 8}
-                    textAnchor="middle"
-                    fontSize={isActive ? activeIcon : inactiveIcon}
-                    opacity={isActive ? 1 : 0.82}
+                  <g
+                      transform={`translate(
+                      ${item.iconPoint.x - (isActive ? activeIcon : inactiveIcon) / 2},
+                      ${item.iconPoint.y - (isActive ? activeIcon : inactiveIcon) / 2}
+                    )`}
+                      style={{
+                        pointerEvents: "none",
+                        transition: "all 0.35s ease",
+                      }}
                   >
-                    {item.icon}
-                  </text>
+                    <Icon
+                        width={isActive ? activeIcon : inactiveIcon}
+                        height={isActive ? activeIcon : inactiveIcon}
+                        strokeWidth={1.8}
+                        color={isActive ? "#ffffff" : "#A8A8B5"}
+                    />
+                  </g>
                 </g>
               </g>
             );
