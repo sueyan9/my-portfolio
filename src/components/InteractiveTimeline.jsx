@@ -34,8 +34,8 @@ export function InteractiveTimeline() {
     {
       time: "2024-2025",
       icon: "⭐",
-      title: "即将毕业",
-      description: "准备在软件工程领域开启职业生涯"
+      title: "毕业",
+      description: "在软件工程领域开启职业生涯"
     }
   ];
 

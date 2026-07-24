@@ -31,6 +31,13 @@ const timelineData = [
     title: "Graduation",
     description: "Graduated and ready to start career in software engineering field",
   },
+  {
+    time: "2026",
+    icon: "💻",
+    title: " Software Developer · Rongo Lab",
+    description:
+        "Developing custom software solutions for New Zealand businesses, including health Tech, ERP/CRM platforms, Shopify integrations, and AI-powered workflow automation.",
+  },
 ];
 
 const ACTIVE_ANGLE = (270 * Math.PI) / 180;

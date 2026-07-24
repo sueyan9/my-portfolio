@@ -13,6 +13,6 @@ export const profile = {
     "Cross-functional full-stack delivery",
     "Backend APIs and database-backed features",
     "Interactive product UI and 3D experiences",
-    "Strong curiosity around AI, search, and RAG-adjacent product design",
+    "Strong curiosity around AI, search, and product design",
   ],
 };

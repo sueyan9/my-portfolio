@@ -61,8 +61,8 @@ export default function AboutMe({ onExploreClick }) {
     const [currentTextIndex, setCurrentTextIndex] = useState(0);
     
     const texts = [
-        "Welcome To My Page !",
-        "A software engineer who loves building fun and useful things. Passionate about creating applications that make people's lives easier and more enjoyable.",
+        "Hi, I'm Sue. Welcome To My Page !",
+        "I enjoy working closely with clients, turning ideas into software, exploring new technologies, and using AI to build better solutions. I'm always curious about how things work—and how they can work better.",
         "🌏 Based in New Zealand"
     ];
 
