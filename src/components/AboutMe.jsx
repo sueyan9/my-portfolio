@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { motion, AnimatePresence  } from "framer-motion";
+import { motion } from "framer-motion";
 import "./AboutMe.css";
 import AvatarCard from "./AvatarCard";
 import { SimpleTimeline } from "./SimpleTimeline";
@@ -62,7 +62,7 @@ export default function AboutMe({ onExploreClick }) {
     
     const texts = [
         "Hi, I'm Sue. Welcome To My Page !",
-        "I enjoy working closely with clients, turning ideas into software, exploring new technologies, and using AI to build better solutions. I'm always curious about how things work—and how they can work better.",
+        "I'm a developer who loves using technology to solve real problems. Lately, I've been diving deeper into AI and cloud technologies—always curious about what they can make possible. Outside of work, you'll usually find me hiking or training for my goal of running through every reserve in New Zealand.",
         "🌏 Based in New Zealand"
     ];
 

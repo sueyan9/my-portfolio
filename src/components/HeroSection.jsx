@@ -136,7 +136,7 @@ function createDogParticles(width, height, image) {
   return particles;
 }
 
-function createTextParticles(width, height) {
+function createTextParticles(width, height, { title, subtitle }) {
   const makeContext = () => {
     const layer = document.createElement("canvas");
     layer.width = width;
@@ -152,8 +152,6 @@ function createTextParticles(width, height) {
   }
 
   const isCompact = width < 900;
-  const title = "Hi, I'm Sue Yan";
-  const subtitle = "I turn systems into smooth experiences.";
   const textX = isCompact ? width * 0.08 : width * 0.56;
   const textWidth = isCompact ? width * 0.84 : width * 0.38;
   let titleSize = isCompact
@@ -257,6 +255,70 @@ export default function HeroSection() {
     let width = 0;
     let height = 0;
     let animationFrameId = 0;
+    let isTextHovered = false;
+
+    const greetingCopy = {
+      title: "Hello, welcome.",
+      subtitle: "Move closer — the dots have a story to tell.",
+    };
+    const hoverCopies = [
+      { title: "Kia ora.", subtitle: "" },
+      { title: "No sheep here.", subtitle: "" },
+      { title: "You found me.", subtitle: "" },
+    ];
+    let textSequenceTimers = [];
+
+    const replaceTextParticles = (copy) => {
+      if (width < HTML_TEXT_BREAKPOINT) {
+        return;
+      }
+
+      const departingParticles = particles
+        .filter((particle) => particle.kind === "text" && !particle.isLeaving)
+        .map((particle) => ({
+          ...particle,
+          isLeaving: true,
+          opacity: particle.opacity ?? 1,
+          vx: particle.vx + (Math.random() - 0.5) * 4,
+          vy: particle.vy + (Math.random() - 0.5) * 4,
+        }));
+      const nextParticles = createTextParticles(
+        width,
+        height,
+        copy,
+      ).map((particle) => ({
+        ...particle,
+        x: particle.x + (Math.random() - 0.5) * 46,
+        y: particle.y + (Math.random() - 0.5) * 34,
+        opacity: 0,
+        isAppearing: true,
+      }));
+
+      particles = [
+        ...particles.filter((particle) => particle.kind === "dog" || particle.isLeaving),
+        ...departingParticles,
+        ...nextParticles,
+      ];
+    };
+
+    const clearTextSequence = () => {
+      textSequenceTimers.forEach((timer) => window.clearTimeout(timer));
+      textSequenceTimers = [];
+    };
+
+    const playTextSequence = () => {
+      clearTextSequence();
+      replaceTextParticles(hoverCopies[0]);
+      hoverCopies.slice(1).forEach((copy, index) => {
+        textSequenceTimers.push(
+          window.setTimeout(() => {
+            if (isTextHovered) {
+              replaceTextParticles(copy);
+            }
+          }, (index + 1) * 950),
+        );
+      });
+    };
 
     const resize = () => {
       const bounds = canvas.getBoundingClientRect();
@@ -272,7 +334,7 @@ export default function HeroSection() {
       if (image.complete) {
         particles = [...createDogParticles(width, height, image)];
         if (width >= HTML_TEXT_BREAKPOINT) {
-          particles.push(...createTextParticles(width, height));
+          particles.push(...createTextParticles(width, height, greetingCopy));
         }
       }
     };
@@ -281,6 +343,18 @@ export default function HeroSection() {
       context.save();
 
       for (const particle of particles) {
+        if (particle.isLeaving) {
+          particle.opacity -= 0.035;
+          if (particle.opacity <= 0) {
+            continue;
+          }
+        } else if (particle.isAppearing) {
+          particle.opacity = Math.min(1, particle.opacity + 0.075);
+          if (particle.opacity === 1) {
+            particle.isAppearing = false;
+          }
+        }
+
         const idleX = Math.sin(time * 0.0016 + particle.drift) * 0.22;
         const idleY = Math.cos(time * 0.0012 + particle.drift) * 0.22;
         const mouse = mouseRef.current;
@@ -307,10 +381,14 @@ export default function HeroSection() {
         context.fillStyle = particle.color;
         context.shadowColor = particle.color;
         context.shadowBlur = particle.kind === "text" ? 5 : 9;
+        context.globalAlpha = particle.opacity ?? 1;
         context.beginPath();
         context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         context.fill();
       }
+
+      particles = particles.filter((particle) => !particle.isLeaving || particle.opacity > 0);
+      context.globalAlpha = 1;
 
       context.restore();
     };
@@ -331,10 +409,46 @@ export default function HeroSection() {
         y: event.clientY - bounds.top,
         active: true,
       };
+
+      const isOverText =
+        width >= HTML_TEXT_BREAKPOINT &&
+        mouseRef.current.x >= width * 0.4 &&
+        mouseRef.current.y >= height * 0.05 &&
+        mouseRef.current.y <= height * 0.92;
+      if (isOverText !== isTextHovered) {
+        isTextHovered = isOverText;
+        if (isTextHovered) {
+          playTextSequence();
+        } else {
+          clearTextSequence();
+          replaceTextParticles(greetingCopy);
+        }
+      }
+    };
+
+    const handlePointerDown = (event) => {
+      const bounds = canvas.getBoundingClientRect();
+      const isOverText =
+        width >= HTML_TEXT_BREAKPOINT &&
+        event.clientX - bounds.left >= width * 0.4;
+      if (isOverText) {
+        isTextHovered = !isTextHovered;
+        if (isTextHovered) {
+          playTextSequence();
+        } else {
+          clearTextSequence();
+          replaceTextParticles(greetingCopy);
+        }
+      }
     };
 
     const handlePointerLeave = () => {
       mouseRef.current = { x: -9999, y: -9999, active: false };
+      if (isTextHovered) {
+        isTextHovered = false;
+        clearTextSequence();
+        replaceTextParticles(greetingCopy);
+      }
     };
 
     let animationStarted = false;
@@ -358,12 +472,15 @@ export default function HeroSection() {
 
     resizeObserver.observe(canvas);
     canvas.addEventListener("pointermove", handlePointerMove);
+    canvas.addEventListener("pointerdown", handlePointerDown);
     canvas.addEventListener("pointerleave", handlePointerLeave);
 
     return () => {
       resizeObserver.disconnect();
       canvas.removeEventListener("pointermove", handlePointerMove);
+      canvas.removeEventListener("pointerdown", handlePointerDown);
       canvas.removeEventListener("pointerleave", handlePointerLeave);
+      clearTextSequence();
       window.cancelAnimationFrame(animationFrameId);
     };
   }, []);
@@ -379,8 +496,8 @@ export default function HeroSection() {
           />
         </div>
         <div className="hero-text-html">
-          <h1 className="hero-text-html__title">Hi, I&apos;m Sue Yan</h1>
-          <p className="hero-text-html__subtitle">I turn systems into smooth experiences.</p>
+          <h1 className="hero-text-html__title">Hello, welcome.</h1>
+          <p className="hero-text-html__subtitle">Move closer — the dots have a story to tell.</p>
         </div>
       </div>
     </section>
