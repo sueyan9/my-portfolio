@@ -4,6 +4,7 @@ import "./ProjectCard.css";
 export default function ProjectCard({ image, video, title, desc, link, imageFit = "contain" }) {
     const [isDescScrolled, setIsDescScrolled] = useState(false);
     const [isDescActive, setIsDescActive] = useState(false);
+    const descriptionLines = desc?.split("\n") ?? [];
 
     return (
         <div className="modern-card">
@@ -38,7 +39,7 @@ export default function ProjectCard({ image, video, title, desc, link, imageFit 
             </div>
             <div className="modern-card__content">
                 <h5 className="modern-card__title">{title}</h5>
-                <p
+                <div
                     className={`modern-card__desc ${isDescScrolled && isDescActive ? "modern-card__desc--scrolled" : ""}`}
                     onScroll={(event) => {
                         setIsDescScrolled(event.currentTarget.scrollTop > 4);
@@ -48,8 +49,17 @@ export default function ProjectCard({ image, video, title, desc, link, imageFit 
                     onFocus={() => setIsDescActive(true)}
                     onBlur={() => setIsDescActive(false)}
                 >
-                    {desc}
-                </p>
+                    {descriptionLines.map((line, index) => (
+                        <React.Fragment key={`${line}-${index}`}>
+                            {line === "Overview:" || line === "Key Features:" || line === "Tech Stack:" ? (
+                                <strong className="modern-card__section-title">{line}</strong>
+                            ) : (
+                                line
+                            )}
+                            {index < descriptionLines.length - 1 && <br />}
+                        </React.Fragment>
+                    ))}
+                </div>
                 {link && (
                     <a
                         href={link}

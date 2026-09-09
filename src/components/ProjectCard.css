@@ -92,6 +92,7 @@
     flex-direction: column;
     align-items: flex-start;
     min-height: 0;
+    text-align: left;
 }
 
 .modern-card__title {
@@ -99,6 +100,7 @@
     font-weight: bold;
     color: #374151;
     margin-bottom: 0.5rem;
+    text-align: left;
 }
 
 .modern-card__desc {
@@ -113,6 +115,12 @@
     border-radius: 18px;
     background: rgba(255, 255, 255, 0);
     transition: background-color 0.22s ease, box-shadow 0.22s ease;
+    text-align: left;
+}
+
+.modern-card__section-title {
+    color: #374151;
+    font-weight: 700;
 }
 
 .modern-card__desc--scrolled {
