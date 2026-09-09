@@ -1,5 +1,20 @@
 export const projects = [
   {
+    id: "ai-usage-cost-attribution",
+    title: "AI Usage Cost Attribution Platform",
+    summary:
+      "A platform that helps engineering teams understand where their AI development spend goes. As AI coding tools become a normal part of software development, teams can usually see how much they are spending, but it is much harder to understand what that spend was actually used for.",
+    highlights: [
+      "AI Spend Attribution: connect AI usage with engineering activity and delivery outcomes",
+      "Engineering Visibility: understand how AI usage is distributed across projects and development work",
+      "Attribution Review: surface incomplete attribution for review instead of treating uncertain data as fact",
+      "Workflow Integration: connect with existing engineering and work-management workflows",
+    ],
+    techStack: ["React", ".NET", "PostgreSQL", "Docker", "OpenTelemetry", "MCP"],
+    strengths: ["AI cost attribution", "Engineering analytics", "Workflow integration", "Full-stack platform design"],
+    links: [],
+  },
+  {
     id: "clinic-system",
     title: "Rongokit Clinic Management System",
     summary:

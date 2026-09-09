@@ -11,8 +11,10 @@ import project6 from "../assets/project6.png";
 import project7 from "../assets/project7.png";
 import projectRAG from "../assets/projectRAG.png";
 import aiAgenticProject from "../assets/ai-agentic-project.png";
+import aiAnalystPlatform from "../assets/AI-analyst-platform.mov";
 
 const projectMediaById = {
+    "ai-usage-cost-attribution": { video: aiAnalystPlatform },
     "clinic-system": { image: project7, imageFit: "cover" },
     "clinic-rag-support": { image: projectRAG, imageFit: "cover" },
     "dental-chart": { image: project1 },
