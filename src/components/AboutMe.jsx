@@ -13,6 +13,10 @@ const AboutWrapper = styled.section`
     @media (max-width: 768px) {
         padding: 4rem 2rem 2rem 2rem; // 移动端也相应调整
     }
+
+    @media (max-width: 767.98px) {
+        padding: 2rem 1.1rem 1.5rem;
+    }
 `;
 
 const HeroContent = styled.div`
@@ -28,8 +32,8 @@ const HeroContent = styled.div`
 
     // 手机档只保留 welcome 标题，收紧被正文撑开的间距
     @media (max-width: 767.98px) {
-        gap: 1.5rem;
-        margin-bottom: 2rem;
+        gap: 1.25rem;
+        margin-bottom: 1.5rem;
     }
 `;
 
@@ -50,8 +54,10 @@ const HeroText = styled.div`
     }
 
     @media (max-width: 767.98px) {
-        padding: 0.25rem 1rem 0;
+        padding: 0 0.5rem;
         h1 {
+            font-size: 1.6rem;
+            line-height: 1.25;
             margin-bottom: 0;
         }
     }
@@ -68,6 +74,10 @@ const TimelineSection = styled.div`
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+
+    @media (max-width: 767.98px) {
+        margin-top: 1.25rem;
+    }
 `;
 
 export default function AboutMe({ onExploreClick }) {
