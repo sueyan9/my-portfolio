@@ -143,6 +143,7 @@ export default function PortfolioAssistant({ isOpen, onToggle }) {
         type="button"
         className={`portfolio-assistant-fab ${isOpen ? "portfolio-assistant-fab--active" : ""}`}
         onClick={onToggle}
+        aria-label="Ask My AI"
         aria-expanded={isOpen}
         aria-controls="portfolio-assistant-panel"
       >

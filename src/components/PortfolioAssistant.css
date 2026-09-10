@@ -417,17 +417,28 @@
   }
 }
 
-@media (max-width: 640px) {
+/* 手机档 (<=767.98px)：只保留圆形图标，文字标签隐藏
+   （按钮的无障碍名称由 aria-label 提供，见 PortfolioAssistant.jsx） */
+@media (max-width: 767.98px) {
   .portfolio-assistant-fab {
-    right: 16px;
-    bottom: 16px;
-    padding: 0.85rem 1rem;
+    right: 14px;
+    bottom: 14px;
+    gap: 0;
+    padding: 7px;
+  }
+
+  .portfolio-assistant-fab__icon {
+    width: 36px;
+    height: 36px;
+    font-size: 0.78rem;
   }
 
   .portfolio-assistant-fab__label {
-    font-size: 0.88rem;
+    display: none;
   }
+}
 
+@media (max-width: 640px) {
   .portfolio-assistant-panel {
     right: 12px;
     top: 12px;

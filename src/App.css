@@ -359,7 +359,14 @@ html, body, #root {
   }
 }
 
-/* 手机档 (<=768px)：降低背景动画的存在感与绘制压力
+/* 手机档 (<=767.98px)：hero 不渲染，改由 main-content 顶开固定导航栏 */
+@media (max-width: 767.98px) {
+  .main-content {
+    padding-top: 4.5rem;
+  }
+}
+
+/* 手机档 (<=767.98px)：降低背景动画的存在感与绘制压力
    5 组 matrix-pattern x 40 列 = 200 个动画元素，小屏只保留前 2 组 */
 @media (max-width: 767.98px) {
   .matrix-container {

@@ -137,3 +137,15 @@
         max-width: 350px;
     }
 }
+
+/* 手机档 (<=767.98px)：只保留 welcome 标题，正文和产地行收起 */
+@media (max-width: 767.98px) {
+    .hero-text p,
+    .hero-text br {
+        display: none;
+    }
+
+    .hero-text h1 {
+        margin-bottom: 0;
+    }
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import dogHero from "../assets/dog-particle-source-large.png";
 import "./HeroSection.css";
 
@@ -9,9 +9,32 @@ const SPRING = 0.065;
 const DOG_GAP = 3;
 const TITLE_TEXT_GAP = 5;
 const SUBTITLE_TEXT_GAP = 6;
-// Below this width the title/subtitle render as real HTML text instead of
-// canvas particles (mobile), so the canvas only draws the dog portrait.
-const HTML_TEXT_BREAKPOINT = 680;
+// Below this width the canvas draws only the dog portrait, without the
+// title/subtitle particles. Matches the phone tier, below which the hero is
+// not rendered at all, so these narrow-canvas branches are a safety net.
+const HTML_TEXT_BREAKPOINT = 768;
+// Phone tier: the whole hero is dropped. Its title duplicated the "Welcome to my
+// page" heading in the About section, and the canvas is a pointer-driven effect
+// that touch cannot use anyway.
+const PHONE_QUERY = "(max-width: 767.98px)";
+
+function usePhoneViewport() {
+  const [isPhone, setIsPhone] = useState(
+    () => typeof window !== "undefined" && window.matchMedia(PHONE_QUERY).matches
+  );
+
+  useEffect(() => {
+    const query = window.matchMedia(PHONE_QUERY);
+    const handleChange = (event) => setIsPhone(event.matches);
+
+    setIsPhone(query.matches);
+    query.addEventListener("change", handleChange);
+
+    return () => query.removeEventListener("change", handleChange);
+  }, []);
+
+  return isPhone;
+}
 
 function drawCoverImage(context, image, targetX, targetY, targetWidth, targetHeight) {
   const imageRatio = image.width / image.height;
@@ -236,6 +259,7 @@ function createTextParticles(width, height, { title, subtitle }) {
 export default function HeroSection() {
   const canvasRef = useRef(null);
   const mouseRef = useRef({ x: -9999, y: -9999, active: false });
+  const isPhone = usePhoneViewport();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -483,7 +507,11 @@ export default function HeroSection() {
       clearTextSequence();
       window.cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [isPhone]);
+
+  if (isPhone) {
+    return null;
+  }
 
   return (
     <section className="hero-section">
@@ -494,10 +522,6 @@ export default function HeroSection() {
             className="hero-particle-canvas"
             aria-label="Interactive dog particle portrait and text"
           />
-        </div>
-        <div className="hero-text-html">
-          <h1 className="hero-text-html__title">Hello, welcome.</h1>
-          <p className="hero-text-html__subtitle">Move closer — the dots have a story to tell.</p>
         </div>
       </div>
     </section>

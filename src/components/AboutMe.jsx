@@ -25,6 +25,12 @@ const HeroContent = styled.div`
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+
+    // 手机档只保留 welcome 标题，收紧被正文撑开的间距
+    @media (max-width: 767.98px) {
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
 `;
 
 const HeroText = styled.div`
@@ -41,6 +47,13 @@ const HeroText = styled.div`
         margin-bottom: 1rem; // 增加段落底部边距
         font-size: 1.2rem;
         line-height: 1.6; // 增加行高
+    }
+
+    @media (max-width: 767.98px) {
+        padding: 0.25rem 1rem 0;
+        h1 {
+            margin-bottom: 0;
+        }
     }
 `;
 
