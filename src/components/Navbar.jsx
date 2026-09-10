@@ -6,6 +6,8 @@ import {
 } from "framer-motion";
 import "./Navbar.css";
 
+const PHONE_QUERY = "(max-width: 767.98px)";
+
 export default function Navbar({
                                    onLogoClick,
                                    onAboutClick,
@@ -15,8 +17,10 @@ export default function Navbar({
                                    onChatClick
                                }) {
     const [menuOpen, setMenuOpen] = useState(false);
+    // 与 CSS 的手机档保持同一个断点，否则 701-767px 会出现
+    // 「CSS 已切汉堡、JS 仍按桌面高度计算」的错位
     const [isMobile, setIsMobile] = useState(() =>
-        typeof window !== "undefined" ? window.innerWidth <= 700 : false
+        typeof window !== "undefined" && window.matchMedia(PHONE_QUERY).matches
     );
 
     // framer-motion hooks
@@ -26,12 +30,16 @@ export default function Navbar({
         [0, 100],
         ["rgba(255,255,255,0)", "rgba(255,255,255,0.8)"] // 你可以自定义颜色
     );
-    const height = useTransform(scrollY, [0, 100], [72, 38]);
+    const height = useTransform(scrollY, [0, 100], [56, 38]);
 
     useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth <= 700);
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
+        const query = window.matchMedia(PHONE_QUERY);
+        const handleChange = (event) => setIsMobile(event.matches);
+
+        setIsMobile(query.matches);
+        query.addEventListener("change", handleChange);
+
+        return () => query.removeEventListener("change", handleChange);
     }, []);
 
     // 关闭菜单后再跳转
@@ -50,7 +58,7 @@ export default function Navbar({
             className="navbar"
             style={{
                 background: isMobile ? "rgba(255,255,255,0.96)" : background,
-                height: isMobile ? 58 : height,
+                height: isMobile ? 48 : height,
                 backdropFilter: "blur(8px)",   // 模糊玻璃感
                 WebkitBackdropFilter: "blur(8px)", // Safari 兼容
                 boxShadow: "0 2px 16px rgba(0,0,0,0.06)"

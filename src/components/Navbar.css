@@ -11,13 +11,19 @@
     border-radius:0 0 20px 20px;
 }
 
+/* Bootstrap 的 .navbar 同名同权重且后加载，会加上 0.5rem 的纵向内边距
+   （--bs-navbar-padding-y），凭空拔高 16px。用 nav.navbar 提高权重压掉。 */
+nav.navbar {
+    padding: 0;
+}
+
 .navbar-grid {
     display: flex;
     align-items: center;
     justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0.5rem 2rem;
+    padding: 0.4rem 2rem;
     list-style: none;
     gap: 1.5rem;
 }
@@ -134,6 +140,9 @@
     align-items: center;
     width: 40px;
     height: 40px;
+    /* index.css 的全局 button { padding: 0.6em 1.2em } 会吃掉 19.2px 高度，
+       配合 box-sizing: border-box 把三条横线压扁，必须显式清零 */
+    padding: 0;
     background: none;
     border: none;
     cursor: pointer;
@@ -192,29 +201,29 @@
         display: none !important;
     }
     .navbar-grid {
-        padding: 0.45rem 0.9rem;
-        min-height: 58px;
+        padding: 0.35rem 0.9rem;
+        min-height: 0;
         gap: 0.9rem;
     }
     .hamburger {
         display: flex;
-        width: 36px;
-        height: 36px;
+        width: 30px;
+        height: 30px;
     }
     .navbar-logo {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         margin-right: 0;
         line-height: 1;
     }
     .nav-btn-link {
-        font-size: 1rem;
-        padding: 0.5rem 1.2rem;
+        font-size: 0.9rem;
+        padding: 0.35rem 0.9rem;
     }
     .mobile-menu {
         display: flex;
     }
     .navbar{
-        height:58px!important;
+        /* 高度由 Navbar.jsx 的内联样式控制，这里不再覆盖 */
         border-radius: 0 0 18px 18px;
     }
     .hamburger .bar {
