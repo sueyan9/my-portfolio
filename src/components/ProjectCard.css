@@ -91,6 +91,9 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    /* 撑满被栅格拉高的卡片，这样按钮的 margin-top: auto 才是对齐到
+       卡片底部而不是内容块底部 —— 否则标题换行的卡片按钮会低一行 */
+    flex: 1 1 auto;
     min-height: 0;
     text-align: left;
 }

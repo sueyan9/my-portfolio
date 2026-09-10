@@ -1,6 +1,11 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const GLYPHS = ['WOOF', 'NULL', 'BOOP', 'SNIFF', '404?', 'BARK', 'TREAT', 'BUG?'];
+// index.css 在 @media (pointer: fine) 里用 cursor: none 隐藏了系统光标，
+// 那条媒体查询是实时生效的。所以这里必须跟着它一起变：只在挂载时判断一次的话，
+// 设备从 coarse 变成 fine（二合一笔记本插鼠标、DevTools 切换设备模拟等）
+// 会变成「系统光标被藏起来、自定义光标又没画」，屏幕上一个光标都没有。
+const FINE_POINTER_QUERY = '(pointer: fine)';
 
 export default function MatrixCursor() {
   const boneRef = useRef(null);
@@ -11,9 +16,22 @@ export default function MatrixCursor() {
   const targetRef = useRef({ x: 0, y: 0 });
   const hoveringRef = useRef(false);
   const pressedRef = useRef(false);
+  const [isFinePointer, setIsFinePointer] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia(FINE_POINTER_QUERY).matches
+  );
 
   useEffect(() => {
-    if (!window.matchMedia('(pointer: fine)').matches) {
+    const query = window.matchMedia(FINE_POINTER_QUERY);
+    const handleChange = (event) => setIsFinePointer(event.matches);
+
+    setIsFinePointer(query.matches);
+    query.addEventListener('change', handleChange);
+
+    return () => query.removeEventListener('change', handleChange);
+  }, []);
+
+  useEffect(() => {
+    if (!isFinePointer) {
       return undefined;
     }
 
@@ -108,7 +126,7 @@ export default function MatrixCursor() {
       window.removeEventListener('mouseout', handleLeave);
       window.removeEventListener('mouseover', handleEnter);
     };
-  }, []);
+  }, [isFinePointer]);
 
   return (
     <div className="matrix-cursor-layer" aria-hidden="true">
