@@ -150,11 +150,42 @@
 }
 
 /* responsive */
+/* 平板档 (769-900px)：单列但保持较宽的卡片 */
 @media (max-width: 900px) {
     .modern-card {
-        width: 98vw;
-        max-width: 350px !important;
+        width: 100%;
+        max-width: 600px;
         padding-bottom: 1rem;
+    }
+    .modern-card__media {
+        height: 260px;
+        min-height: 260px;
+        border-radius: 18px;
+        margin: 0 0.9rem -2rem 0.9rem;
+        top: -2rem;
+    }
+    .modern-card__title {
+        font-size: 1.6rem;
+    }
+    .modern-card__placeholder {
+        padding: 1.75rem;
+    }
+    .modern-card__placeholder-title {
+        font-size: 1.6rem;
+    }
+    .modern-card__desc {
+        font-size: 1.02rem;
+        max-height: 160px;
+    }
+    .modern-card__content {
+        padding: 1.75rem 1.25rem 0 1.25rem;
+    }
+}
+
+/* 手机档 (<=768px) */
+@media (max-width: 767.98px) {
+    .modern-card {
+        max-width: 440px;
     }
     .modern-card__media {
         height: 220px;
@@ -180,9 +211,10 @@
         padding: 1.5rem 1rem 0 1rem;
     }
 }
+/* 手机小屏细化 (<=500px) */
 @media (max-width: 500px) {
     .modern-card {
-        width: 98vw;
+        width: 100%;
         padding-bottom: 1rem;
     }
     .modern-card__media {

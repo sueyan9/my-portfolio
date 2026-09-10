@@ -99,6 +99,7 @@
     word-break: break-word;
 }
 
+/* 平板档 (769-900px)：两列 */
 @media (max-width: 900px) {
     .tech-stack-row {
         padding: 1rem 0.75rem;
@@ -106,8 +107,9 @@
     }
 
     .tech-card {
-        width: 90%;
-        margin: 0.75rem auto;
+        flex: 1 1 calc(50% - 0.5rem);
+        max-width: 340px;
+        margin: 0.75rem 0;
         padding: 1.25rem 1rem;
     }
 
@@ -122,5 +124,15 @@
 
     .tech-name {
         font-size: 0.85rem;
+    }
+}
+
+/* 手机档 (<=768px)：单列，覆盖基础样式的 max-width: 260px */
+@media (max-width: 767.98px) {
+    .tech-card {
+        flex: 1 1 100%;
+        width: 100%;
+        max-width: 360px;
+        margin: 0.5rem auto;
     }
 }

@@ -186,8 +186,8 @@
     z-index: 1199;
 }
 
-/* 响应式：小屏显示汉堡和弹出菜单，隐藏原导航 */
-@media screen and (max-width: 700px) {
+/* 手机档 (<=768px)：显示汉堡和弹出菜单，隐藏桌面导航 */
+@media screen and (max-width: 767.98px) {
     .desktop-nav {
         display: none !important;
     }

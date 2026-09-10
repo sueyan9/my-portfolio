@@ -93,17 +93,26 @@
     background: var(--accent-strong, #e0901f);
 }
 
+/* 平板档 (769-900px)：单列，但栅格放宽到 640px 让卡片吃满 */
 @media (max-width: 900px) {
     .project-card-grid {
         grid-template-columns: 1fr;
-        max-width: 600px;
+        max-width: 640px;
+        gap: 2.5rem;
     }
     .project-card {
-
         padding: 1.2rem 1rem;
     }
     .project-card__img {
         width: 140px;
         height: 140px;
+    }
+}
+
+/* 手机档 (<=768px) */
+@media (max-width: 767.98px) {
+    .project-card-grid {
+        max-width: 440px;
+        gap: 2rem;
     }
 }

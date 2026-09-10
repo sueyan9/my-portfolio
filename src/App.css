@@ -359,6 +359,23 @@ html, body, #root {
   }
 }
 
+/* 手机档 (<=768px)：降低背景动画的存在感与绘制压力
+   5 组 matrix-pattern x 40 列 = 200 个动画元素，小屏只保留前 2 组 */
+@media (max-width: 767.98px) {
+  .matrix-container {
+    opacity: 0.12;
+  }
+  .matrix-container .matrix-pattern:nth-child(n + 3) {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .matrix-column {
+    animation: none;
+  }
+}
+
 @keyframes matrix-fall {
   0% { transform: translateY(-100vh); }
   100% { transform: translateY(100vh); }
