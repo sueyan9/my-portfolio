@@ -206,9 +206,15 @@
     .modern-card__desc {
         font-size: 1rem;
         max-height: 140px;
+        /* desc 是内嵌滚动面板，默认背景透明（仅滚动时变灰）。
+           用负外边距把面板向外扩，让正文与标题左对齐，
+           面板背景仍比正文宽一圈。 */
+        padding: 0.9rem 0.85rem;
+        margin-left: -0.85rem;
+        margin-right: -0.85rem;
     }
     .modern-card__content {
-        padding: 1.5rem 1rem 0 1rem;
+        padding: 1.5rem 1.15rem 0;
     }
 }
 /* 手机小屏细化 (<=500px) */
@@ -221,7 +227,7 @@
         height: 180px;
         min-height: 180px;
         border-radius: 14px;
-        margin: 0 0.5rem -1.5rem 0.5rem;
+        margin: 0 0.6rem -1.5rem 0.6rem;
         top: -1.5rem;
     }
     .modern-card__title {
@@ -241,6 +247,6 @@
         font-size: 1rem;
     }
     .modern-card__content {
-        padding: 1.2rem 0.5rem 0 0.5rem;
+        padding: 1.2rem 1.1rem 0;
     }
 }
