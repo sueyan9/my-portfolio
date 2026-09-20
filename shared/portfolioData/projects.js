@@ -12,7 +12,7 @@ export const projects = [
     ],
     techStack: ["React", ".NET", "PostgreSQL", "Docker", "OpenTelemetry", "MCP"],
     strengths: ["AI cost attribution", "Engineering analytics", "Workflow integration", "Full-stack platform design"],
-    links: [],
+    links: [{ title: "AI Usage Cost Attribution Platform", label: "Open live demo", href: "https://ai-cost.sueyan.top" }],
   },
   {
     id: "clinic-system",
@@ -27,7 +27,7 @@ export const projects = [
     ],
     techStack: ["Full-stack web application"],
     strengths: ["Operational workflow design", "Full-stack product thinking", "Healthcare-oriented UX"],
-    links: [{ title: "Rongokit Clinic Management System", label: "Open live site", href: "https://rongolab.com" }],
+    links: [{ title: "Rongokit Clinic Management System", label: "Visit company site", href: "https://rongolab.com" }],
   },
   {
     id: "leavewise",

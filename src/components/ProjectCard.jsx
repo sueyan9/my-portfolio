@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./ProjectCard.css";
 
-export default function ProjectCard({ image, video, title, desc, link, imageFit = "contain" }) {
+export default function ProjectCard({ image, video, title, desc, links = [], imageFit = "contain" }) {
     const [isDescScrolled, setIsDescScrolled] = useState(false);
     const [isDescActive, setIsDescActive] = useState(false);
     const descriptionLines = desc?.split("\n") ?? [];
+    const externalLinks = links.filter(({ href }) => /^https?:\/\//.test(href));
 
     return (
         <div className="modern-card">
@@ -60,15 +61,27 @@ export default function ProjectCard({ image, video, title, desc, link, imageFit 
                         </React.Fragment>
                     ))}
                 </div>
-                {link && (
-                    <a
-                        href={link}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="modern-card__btn"
-                    >
-                        Read More
-                    </a>
+                {externalLinks.length > 0 && (
+                    <div className="modern-card__actions">
+                        {externalLinks.map(({ href, label }) => {
+                            const buttonLabel = new URL(href).hostname === "github.com"
+                                ? "GitHub"
+                                : label === "Visit company site" ? "Visit Website" : "Live Demo";
+
+                            return (
+                                <a
+                                    key={href}
+                                    href={href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="modern-card__btn"
+                                    aria-label={`${title}: ${buttonLabel} (opens in a new tab)`}
+                                >
+                                    {buttonLabel} <span aria-hidden="true">↗</span>
+                                </a>
+                            );
+                        })}
+                    </div>
                 )}
             </div>
         </div>

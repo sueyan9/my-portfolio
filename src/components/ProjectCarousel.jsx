@@ -56,7 +56,7 @@ export default function ProjectCarousel() {
                             video={media.video}
                             title={project.title}
                             desc={buildProjectDescription(project)}
-                            link={project.links?.[0]?.href}
+                            links={project.links}
                             imageFit={media.imageFit}
                         />
                     );
