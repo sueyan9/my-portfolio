@@ -1,0 +1,53 @@
+schema: spec-driven
+
+context: |
+  Language: Chinese
+  All artifacts must be written in Chinese.
+  Keep OpenSpec structural headings and SHALL/MUST keywords in English.
+  Project: personal portfolio built with React 19, Vite, JavaScript/JSX,
+  React Router, CSS, Bootstrap, Framer Motion and Three.js. Use npm.
+  Read AGENTS.md before implementation and preserve unrelated local changes.
+  Main UI: src/Home.jsx, src/components/, src/App.css and src/index.css.
+  Routes: /, /blog and /blog/:slug. Portfolio facts come from shared/portfolioData/.
+  Reuse existing components and CSS variables; preserve responsive behavior and accessibility.
+  Keep credentials server-side and preserve the assistant fallback and request limits.
+  Do not deploy or publish unless requested.
+
+rules:
+  proposal:
+    - Describe the user problem, intended behavior, affected pages/components and non-goals.
+    - Distinguish current behavior from proposed behavior; do not invent portfolio facts.
+  specs:
+    - Write observable requirements with Given/When/Then scenarios, including relevant mobile and keyboard behavior.
+  design:
+    - For UI changes, use openspec/templates/ui-design.md as a checklist inside design.md.
+    - Record current and proposed appearance, layout, typography, colors, interaction states, responsive behavior and accessibility.
+    - Link references and before/after screenshots when available; label missing evidence rather than inventing it.
+    - Explain design decisions, alternatives, affected files and any new dependencies.
+  tasks:
+    - Use checkboxes for implementation and verification; record actual results and existing failures.
+    - For code changes run npm run build and npm run lint as appropriate; there is no npm test script.
+    - For UI changes check desktop and mobile interactions when a browser is available; record viewport sizes and screenshot paths.
+    - Documentation-only changes need accuracy and diff review, not a production build.
+
+# Per-artifact rules (optional)
+# Add custom rules for specific artifacts.
+# Example:
+#   rules:
+#     proposal:
+#       - Keep proposals under 500 words
+#       - Always state what is out of scope
+#     tasks:
+#       - Break tasks into chunks of max 2 hours
+
+# Per-operation guidance (optional)
+# Add advisory guidance for how apply and archive work should be conducted.
+# This is separate from artifact rules above.
+# Example:
+#   operations:
+#     apply:
+#       guidance:
+#         - Keep test summaries concise
+#     archive:
+#       guidance:
+#         - Summarize the archive outcome before finishing

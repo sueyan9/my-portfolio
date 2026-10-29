@@ -54,3 +54,11 @@ There is currently no `npm test` script. Do not report tests as passing unless a
 - For assistant changes, check the fallback behavior and relevant request validation without requiring live paid API calls.
 - Documentation-only changes require a review for accuracy and a clean diff; a production build is unnecessary.
 - Summarize the changes, verification performed, and any remaining limitations. Do not deploy or publish unless requested.
+
+## Change and UI Design Tracking
+
+- Use OpenSpec for feature changes, UI redesigns, and behavior changes. See `openspec/README.md` and `openspec/config.yaml`.
+- Keep proposals, specs, design decisions, and tasks in `openspec/changes/<change-name>/`; update them when scope or design changes.
+- For UI work, follow `openspec/templates/ui-design.md` and record responsive behavior, accessibility, and actual visual verification evidence.
+- Small fixes and documentation edits may use a direct diff; do not require a proposal for every edit.
+- Archive completed changes with the OpenSpec workflow and keep related code and planning artifacts together in Git.
